@@ -1,0 +1,254 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+	<div id = "app-frontpage-introsite">
+		<section class = "intro">
+			<!--<div class = "makeChange" style="background-image: url('{% static 'img/icons/vb_liten.png' %}');">
+				<h6>Stem på oss</h6>
+			</div>-->
+			<h4><strong>12 000</strong> mennesker</h4>
+			<h4><strong>12</strong> selskaper</h4>
+			<h4><strong>300</strong> bærekraftige valg</h4>
+		</section>
+		<section id = "introTwo">
+			<h1>Å gjøre handel til en positiv kraft</h1>
+			<!--<h1 id="countdown-holder"></h1>-->
+			<h5>er vår historie</h5>
+			<div class = "downButtons">
+				<a class = "page-scroll" href="#change">
+					<div class = "down">
+						<span class = "glyphicon glyphicon-menu-down" aria-hidden "true"></span>
+					</div>
+				</a>
+				<p>Fortell vår historie</p>
+			</div>
+		</section>
+		<section id="change">
+			<div class = "row">
+				<div class = "col-lg-6 col-md-offset-3 text-center">
+					<h1>De tre stegene vi trenger</h1>
+				</div>
+			</div>
+			<div class = "row margin">
+				<div class = "col-md-4">
+					<div class = "makeChange active" id = "vote">
+						<span class = "glyphicon glyphicon-thumbs-up" aria-hidden = "true"></span>
+					</div>
+					<h6>1. Gi oss din stemme</h6>
+				</div>
+				<div class = "col-md-4">
+					<div class = "makeChange" id = "tips">
+						<span class = "glyphicon glyphicon-user" aria-hidden = "true"></span>
+					</div>
+					<h6>2. Tips en kollega</h6>
+				</div>
+				<div class = "col-md-4">
+					<div class = "makeChange" id="send_mail">
+						<span class = "glyphicon glyphicon-envelope" aria-hidden = "true"></span>
+					</div>
+					<h6>3. Nyhetsbrev</h6>
+				</div>
+			</div>
+			<div class = "row vote">
+				<div class = "col-md-7 col-md-offset-1">
+					<h1>Gi oss din stemme</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non.
+					</p>
+					<a href="https://www.facebook.com/velgbedre?fref=ts" target="_blank"><button class = "button send">Lik oss på facebook!</button></a>
+				</div>
+				<div class = "col-md-4">
+					<a href="https://www.facebook.com/velgbedre?fref=ts" target="_blank">
+						<span class = "glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+					</a>
+				</div>
+			</div>
+			<div class = "row tips">
+				<div class = "col-md-4 col-md-offset-2">
+					<h1>Tips en kollega</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non.
+					</p>
+				</div>
+				<div class = "col-md-4">
+					<form action="" method="post">
+						<h4>Ditt navn:</h4>
+						<input type="text" name="name">
+						<h4>Navnet på den du vil tipse:</h4>
+						<input type="text" name="name">
+						<h4>Epost til den du vil tipse:</h4>
+						<input type="text" name="name">
+						<button class = "button send" type = "submit">Send</button>
+					</form>
+				</div>
+				<div class = "col-md-2">
+					<p>Forhåndsvis brevet</p>
+					<button id = "show_letter"class = "button send">Se brevet</button>
+				</div>
+			</div>
+			
+			<div class = "letter-wrap">
+				<div class = "letter">
+					<h1>Kjære NAVN</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non.
+					</p>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non.
+					</p>
+				</div>
+			</div>
+
+			<div class = "row mail">
+				<div class = "col-md-4 col-md-offset-1">
+					<h1>Send et brev</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non.
+					</p>
+				</div>
+				<div class = "col-md-7">
+					<div id = "with_name" class = "show">
+						<form action="" method = "post">{% csrf_token %} 
+							<div class = "form-holder">
+								<h4>Ditt navn:</h4>
+								<input type="text" name = "name" required>
+							</div>
+							<div class = "form-holder">
+								<h4>Din epost:</h4>
+								<input type="email" name = "email" required>
+							</div>
+							<button type = "submit" class = "button se-res">Abonner</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<section id = "supporters">
+			<h6>Bedrifter som velger bærekraftig:</h6>
+			<div class = "supporter-outer">
+				<div class = "supporters">
+					{% for c in companies %}
+						<div id = "{{c.id}}" class = "supporter" style="background-image: url('{{c.logo.url}}');">
+							<h6>{{c.name}}</h6>
+						</div>
+					{% endfor %}
+					<div id = "{{c.id}}" class = "supporter" style="background-image: url('{% static 'img/icons/plus.png' %}');">
+						<h6>Bli med</h6>
+					</div>
+				</div>
+			</div>
+			{% for c in companies %}
+				{% if forloop.first %}
+				<div id ="info{{c.id}}" class = "more-info">
+				{% else %}
+				<div id ="info{{c.id}}" class = "hidden">
+				{% endif %}
+					<h1>{{c.name}}</h1>
+					<p>
+						{{c.description}}
+					</p>
+				</div>
+				{% endfor %}
+		</section>
+		<section id = "about">
+			<div class = "container">
+				<div class = "row">
+					<div class = "col-md-6 icon">
+						<span class = "glyphicon glyphicon-globe" aria-hidden = "true"></span>
+					</div>
+					<div class = "col-md-6 text">
+						<h1>Lorem ipsum dolor</h1>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id = "contact">
+			<div class = "container">
+				<div class = "row">
+					<div class = "col-md-6 text">
+						<h1>Lorem ipsum dolor</h1>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non.
+						</p>
+					</div>
+					<div class = "col-md-6 icon">
+						<span class = "glyphicon glyphicon-gift" aria-hidden = "true"></span>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class = "productview" id="second-section">
+			<div class = "info">
+				Velkommen til Velg Bedre, norges distrubutør av produkter med en bærekraftig historie!
+			</div>
+			<a class = "page-scroll" href="#products">
+				<div class = "toProducts">
+					Gå til produkter
+				</div>
+			</a>
+		</section>
+		<section id = "products">
+			{% for p in products %}
+				<div class = "product" style="background-image: url('static/img/products/{{p.image}}');">
+					<div class = "info">
+						<h3>{{p.name}}</h3>
+						<p>{{p.short_description}}</p>
+					</div>
+				</div>
+			{% endfor %}
+			{% for p in products %}
+				<div class = "product" style="background-image: url('static/img/products/{{p.image}}');">
+					<div class = "info">
+						<h3>{{p.name}}</h3>
+						<p>{{p.short_description}}</p>
+					</div>
+				</div>
+			{% endfor %}
+			{% for p in products %}
+				<div class = "product" style="background-image: url('static/img/products/{{p.image}}');">
+					<div class = "info">
+						<h3>{{p.name}}</h3>
+						<p>{{p.short_description}}</p>
+					</div>
+				</div>
+			{% endfor %}
+		</section>
+	</div>
+	{% for p in products %}
+		<div class = "fullbox" id = "{{p.id}}" style="display:none">
+			<div class = "row infoExpanded">
+				<div class = "col-md-4 infoimage">
+					<a href="#" class = "trykk">
+						<img src="static/img/products/{{p.image}}" alt="">
+					</a>
+					<!--<div id = "first" class = "chart"></div>-->
+				</div>
+				<div class = "col-md-8 infotext">
+					<h1>Lorem ipsum dolor</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur pellentesque mauris, nec luctus tellus viverra vel. Nullam sed leo a turpis feugiat malesuada. Phasellus quis aliquam arcu. Phasellus fringilla, tellus at laoreet feugiat, mi lectus elementum est, ac consectetur sem nunc in enim. Curabitur rhoncus ullamcorper dui, placerat accumsan dui lobortis at. Ut ac tortor nec libero mattis hendrerit id in nibh. Nulla at elementum urna. Pellentesque sed elit risus. Donec sed maximus nisi. Sed placerat placerat augue, a tincidunt ligula volutpat ut. Vivamus semper quis magna in condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vulputate in velit non rhoncus. Pellentesque a lacus at felis elementum placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla convallis cursus lorem, a commodo augue ornare quis.
+					</p>
+					<p>
+						Fusce vel sollicitudin nulla. Ut non turpis arcu. Integer egestas accumsan mi, eu tempus felis viverra non. Pellentesque velit dui, pellentesque ut faucibus volutpat, lacinia non arcu. Nam quis quam vehicula, iaculis leo id, rhoncus urna. Cras ut mauris sed eros ullamcorper malesuada. Sed luctus libero non dui efficitur finibus. Nam egestas auctor ex non egestas. Mauris et pretium urna. Aliquam urna elit, iaculis ut ante vel, congue faucibus arcu. Etiam est massa, imperdiet in suscipit eget, laoreet nec ligula. Vestibulum neque neque, lobortis eget pretium eget, pellentesque sit amet ex. Aliquam neque nisl, aliquam at ipsum ac, tincidunt consectetur lorem. Aenean condimentum tincidunt congue. Duis sollicitudin, ante vel luctus posuere, lectus lacus faucibus mi, eu ullamcorper urna lorem vehicula sapien.
+					</p>
+					<div class = "vbIconWrapper">
+						<div class = "vbIcon"></div>
+						<div class = "one"></div>
+						<div class = "two"></div>
+						<div class = "three"></div>
+						<div class = "four"></div>
+						<div class = "five"></div>
+						<div class = "six"></div>
+						<div class = "seven"></div>
+						<div class = "eigth"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock content %}

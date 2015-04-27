@@ -1,0 +1,157 @@
+{% load staticfiles %}
+{% load compress %}
+{% load css_folder %}
+<!Doctype HTML>
+<html>
+	<head>
+		{% block head %}
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+
+			<title>{% block title %}Velg Bedre{% endblock title %}</title>
+
+			<!-- iPhone app setup-->
+        	<meta name="apple-mobile-web-app-capable" content="yes">
+        	<meta name="apple-mobile-web-app-status-bar-style" content="grey">
+
+			<link rel="icon" type="image/png" href="{% static 'img/icons/logo.png' %}" sizes="32x32">
+
+			<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+			<!-- Fonts -->
+			<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+			<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+			{% compress css %}
+				{% load_scss %}
+			{% endcompress %}
+
+		{% endblock head %}
+	</head>
+
+	<body id="page-top">
+		<div id = "app-home-navbar">
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header page-scroll">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand page-scroll" href="#page-top"><img src="{% static 'img/icons/logo_hel.png' %}" alt=""></a>
+				</div>
+
+			  <!-- Collect the nav links, forms, and other content for toggling -->
+			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a class="page-scroll" href="{% url 'frontpage' %}">Hjem</a></li>
+					<li><a class="page-scroll" href="{% url 'about' %}">Om oss</a></li>
+					<li><a class="page-scroll" href="{% url 'contact' %}">Kontakt</a></li>
+					<li><a class="page-scroll" href="{% url 'order' %}">Bestilling</a></li>
+				</ul>
+			  </div><!-- /.navbar-collapse -->
+			</nav>
+		</div>
+
+		{% block content %}
+		{% endblock content %}
+
+		<footer>
+			<p>Made with love by <strong>Valdemar Edvard Sandal Rolfsen</strong></p>
+		</footer>
+		
+		<!-- JAVASCRIPT -->
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+		<!-- Chart -->
+		<script src="{% static 'js/chart.js' %}"></script>
+		<script src="{% static 'js/chartLogic.js' %}"></script>
+		<script src = "{% static 'js/scrolling.js' %}"></script>
+		<script src = "{% static 'js/countdown.js' %}"></script>
+
+		<script>
+		  var clock = document.getElementById("countdown-holder")
+		    , targetDate = new Date(2015, 05, 15); // Jan 1, 2050;
+		 
+		  clock.innerHTML = countdown(targetDate).toString();
+		  setInterval(function(){
+		    clock.innerHTML = countdown(targetDate).toString();
+		  }, 1000);
+		</script>
+
+		<script>
+			$(function(){
+	            $("a.push").click(function () {
+	                $("#" + $(this).attr("id") + ".fullbox").slideToggle("middle");
+	                $(function(){
+					  $("#first").drawDoughnutChart([
+					    { title: "Tokyo",         value : 70,  color: "#2C3E50" },
+					    { title: "Berlin",        value : 30,   color: "#FFF" }
+					  ]);
+					});
+	            });
+			});
+		</script>
+
+		<script>
+			$(function() {
+				$('#vote').click(function () {
+					$('.vote').css({"height":"300px"});
+					$('.mail').css({"height":"0px"});
+					$('.tips').css({"height":"0px"});
+
+					$('#vote').addClass('active');
+					$('#send_mail').removeClass('active');
+					$('#tips').removeClass('active');
+
+
+				})
+				$('#tips').click(function () {
+					$('.vote').css({"height":"0px"});
+					$('.mail').css({"height":"0px"});
+					$('.tips').css({"height":"300px"});
+
+					$('#vote').removeClass('active');
+					$('#send_mail').removeClass('active');
+					$('#tips').addClass('active');
+				})
+				$('#send_mail').click(function () {
+					$('.vote').css({"height":"0px"});
+					$('.mail').css({"height":"300px"});
+					$('.tips').css({"height":"0px"});
+
+					$('#vote').removeClass('active');
+					$('#send_mail').addClass('active');
+					$('#tips').removeClass('active');
+				})
+
+				$('#show_letter').click(function() {
+					$('.letter-wrap').css({'display':'block'});
+				})
+
+				$('.letter-wrap').click(function() {
+					$(this).css({'display':'none'});
+				})
+
+				$('.supporter').click(function () {
+					var id = $(this).attr('id');
+					var newid = '#info'+id;
+					$('#supporters').find('.more-info').removeClass("more-info").addClass("hidden"); 
+					$(newid).removeClass("hidden").addClass('more-info');
+				})
+			})
+		</script>
+
+
+	</body>
+</html>
