@@ -4,3 +4,4 @@ staticroot/
 *.pyc
 media/
 venv/
+settings.py
