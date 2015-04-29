@@ -38,8 +38,24 @@ $lightOrange: rgba(184, 116, 62, 0.2);
 
   background-color: #e1e5e5;
 
+  section {
+    border-top: 3px solid #aaa;
+  }
+
   @media (max-width: $smallMediaSize) {
     padding-top: 20px;
+  }
+
+  .down {
+    margin: 20px;
+    margin-top: 50px;
+    text-align: center;
+
+    span {
+      font-size: 70px;
+      color: #fff;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    }
   }
 
   .intro {
@@ -47,7 +63,7 @@ $lightOrange: rgba(184, 116, 62, 0.2);
     height: 100vh;
     display: block;
 
-    padding-top: 110px;
+    padding-top: 100px;
 
     background-attachment: scroll;
     background-image: url(../../img/background/vb-forside.jpg);
@@ -59,7 +75,7 @@ $lightOrange: rgba(184, 116, 62, 0.2);
     -o-background-size: cover;
 
     h1 {
-      font-size: 40px;
+      font-size: 35px;
       text-align: center;
       font-weight: 300;
       font-style: italic;
@@ -69,6 +85,26 @@ $lightOrange: rgba(184, 116, 62, 0.2);
 
       margin-bottom: 30px;
 
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+
+    }
+
+    h2 {
+      font-size: 25px;
+      text-align: center;
+      font-weight: 300;
+      font-style: italic;
+      color: #ddd;
+
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    }
+
+    p {
+      font-size: 20px;
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: 300;
+      color: #ddd;
     }
 
     h4 {
@@ -97,6 +133,12 @@ $lightOrange: rgba(184, 116, 62, 0.2);
       h4 {
         width: 300px;
         font-size: 30px;
+      }
+    }
+
+    .down {
+      span {
+        margin-top: 330px;
       }
     }
 
@@ -141,7 +183,7 @@ $lightOrange: rgba(184, 116, 62, 0.2);
   #intro-bottom {
 
     position: absolute;
-    bottom: 10vh;
+    bottom: 20vh;
 
     width: 100%;
     height: 30vh;
@@ -224,7 +266,7 @@ $lightOrange: rgba(184, 116, 62, 0.2);
     height: 100vh;
     padding: 50px;
 
-    padding-top: 200px;
+    padding-top: 100px;
 
     background-attachment: scroll;
     background-image: url(../../img/background/lstn-bg.jpg);
@@ -251,11 +293,14 @@ $lightOrange: rgba(184, 116, 62, 0.2);
   }
 
   #section-solution {
+
     height: 100vh;
     padding: 50px;
 
+    padding-top: 70px;
+
     background-attachment: scroll;
-    background-image: url(../../img/background/boombox-bg.jpg);
+    background-image: url(../../img/background/yellow-bg.jpg);
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -282,7 +327,7 @@ $lightOrange: rgba(184, 116, 62, 0.2);
     height: 100vh;
     padding: 50px;
 
-    padding-top: 150px;
+    padding-top: 60px;
 
     background-attachment: scroll;
     background-image: url(../../img/background/soulbottle-bg.jpg);
@@ -298,9 +343,20 @@ $lightOrange: rgba(184, 116, 62, 0.2);
     h1 {
       font-size: 70px;
       text-align: center;
-      font-weight: 300;
-      text-transform: uppercase;
+      font-weight: 500;
       margin-bottom: 100px;
+
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+
+      .big {
+        font-size: 110px;
+      }
+    }
+
+    .down {
+      span {
+        margin-top: 40px;
+      }
     }
 
     .icon-container {
@@ -312,6 +368,8 @@ $lightOrange: rgba(184, 116, 62, 0.2);
       .icon {
         width: 250px;
         height: 250px;
+        
+        cursor: pointer;
 
         float: left;
 
@@ -325,7 +383,7 @@ $lightOrange: rgba(184, 116, 62, 0.2);
         text-align: center;
         color: #fff;
 
-        background: rgba(0,0,0,0.6);
+        background: rgba(0,0,0,0.7);
       
         span {
           font-size: 100px;
@@ -354,7 +412,7 @@ $lightOrange: rgba(184, 116, 62, 0.2);
     padding-top: 150px;
 
     background-attachment: scroll;
-    background-image: url(../../img/background/trondheim.jpg);
+    background-image: url(../../img/background/trondheim-bw.jpg);
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -362,80 +420,154 @@ $lightOrange: rgba(184, 116, 62, 0.2);
     background-size: cover;
     -o-background-size: cover;
 
-    .product {
-      width: 280px;
-      height: 280px;
+    .product-wrap {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
 
-      margin: 10px;
+        width: 960px;
+      .product {
+        width: 200px;
+        height: 200px;
 
-      display: inline-block;
-      background-position: center center;
-      background-size: cover;
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
 
-      float: left;
+        margin: 20px;
 
-      -moz-transition: all 300ms ease;
-      -webkit-transition: all 300ms ease;
-      -o-transition: all 300ms ease;
-      transition: all 300ms ease;
+        display: inline-block;
+        background-position: center center;
+        background-size: cover;
 
-      &:hover {
-        .info {
-          height: 280px;
-
-          @media (max-width: $smallMediaSize) {
-            height: 270px;
-          }
-
-          -moz-transition: all 300ms ease;
-          -webkit-transition: all 300ms ease;
-          -o-transition: all 300ms ease;
-          transition: all 300ms ease;
-        }
-      }
-
-      .info {
-        z-index: 10;
-
-        width: 100%;
-        height: 0px;
-        overflow: hidden;
-        padding-left: 15px;
-        background: rgba(0,0,0,0.6);
-        color: #fff;
-
-        font-family: $openSans;
+        float: left;
 
         -moz-transition: all 300ms ease;
         -webkit-transition: all 300ms ease;
         -o-transition: all 300ms ease;
         transition: all 300ms ease;
 
-        p {
-          font-size: 15px;
-          font-weight: 300;
+        &:hover {
+          .info {
+            height: 360px;
+
+            @media (max-width: $smallMediaSize) {
+              height: 270px;
+            }
+
+            -moz-transition: all 300ms ease;
+            -webkit-transition: all 300ms ease;
+            -o-transition: all 300ms ease;
+            transition: all 300ms ease;
+          }
         }
 
-      }
+        .info {
+          z-index: 10;
 
-      img {
-        width: 100%;
-      }
+          width: 100%;
+          height: 0px;
+          overflow: hidden;
+          padding-left: 15px;
+          background: rgba(0,0,0,0.6);
+          color: #fff;
 
-      @media (max-width: $mediumMediaSize) {
-        width: 33.333%;
+          font-family: $openSans;
 
-        @media (max-width: $smallMediaSize) {
-          width: 50%;
+          -moz-transition: all 300ms ease;
+          -webkit-transition: all 300ms ease;
+          -o-transition: all 300ms ease;
+          transition: all 300ms ease;
+
+          p {
+            font-size: 15px;
+            font-weight: 300;
+          }
+
         }
-      }
 
-      -moz-transition: all 1000ms ease;
-      -webkit-transition: all 1000ms ease;
-      -o-transition: all 1000ms ease;
-      transition: all 1000ms ease;
+        img {
+          width: 100%;
+        }
+
+        @media (max-width: $mediumMediaSize) {
+          width: 33.333%;
+
+          @media (max-width: $smallMediaSize) {
+            width: 50%;
+          }
+        }
+
+        -moz-transition: all 1000ms ease;
+        -webkit-transition: all 1000ms ease;
+        -o-transition: all 1000ms ease;
+        transition: all 1000ms ease;
+      }
     }
   }
+
+  #section-press {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    padding: 50px;
+
+    padding-top: 30px;
+
+    box-shadow: 3px 20px 20px rgba(0,0,0,0.5);
+
+
+    background-attachment: scroll;
+    background-image: url(../../img/background/newspapers.jpg);
+    background-position: center center;
+    background-repeat: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+
+    .press-wrap {
+
+      width: 940px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+
+      .press {
+        width: auto;
+        height: 300px;
+        float: left;
+
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+
+        margin: 20px;
+        margin-right: 40px;
+        margin-left: 40px;
+
+        img {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  #section-press-text {
+    height: 50vh;
+    padding: 50px;
+    
+    border: 0px;
+    padding-top: 50px;
+
+    background: #222;
+
+    color: #fff;
+    font-size: 100px;
+    font-weight: 300;
+    text-align: center;
+
+    .big {
+      font-size: 150px;
+    }
+  }
+
   
   #change {
     width: 100%;

@@ -6,8 +6,16 @@
 			<!--<div class = "makeChange" style="background-image: url('{% static 'img/icons/vb_liten.png' %}');">
 				<h6>Stem på oss</h6>
 			</div>-->
+			<div class = "down">
+				<h1>Hver gang du bruker penger, stemmer du på den verdenen du har lyst til å leve i.</h1>
+				<h2>Velg Bedre knytter sammen bedrifter og produsenter som bryr seg.</h2>
+				<a class = "page-scroll" href="#section-problem">
+					<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
+				</a>
+				<p>Velg Bedre gjør bærekraftige innkjøp enkelt, trykk her</p>
+			</div>
 		</section>
-		<section id = "intro-bottom">
+		<div id = "intro-bottom">
 			<div class = "number-wrap">
 				<div class = "number">
 					<h1>2000</h1>
@@ -22,32 +30,42 @@
 					<p>Bærekraftige valg</p>
 				</div>
 			</div>
-		</section>
+		</div>
 		<section id = "section-problem">
 			<div class = "row">
 				<div class = "col-md-5">
 					<h1>Kunsten å velge bedre</h1>
 					<p>
 						Samfunnsansvarlige bedrifter har i dag et konkurransefortrinn i næringslivet. Den moderne forbruker stiller høyere og høyere forventninger til hva bedrifter utretter utover å drive virksomhet, men trender i norsk næringsliv viser at over halvparten av norske arbeidstakere ikke oppfatter at sin arbeidsgiver tar aktivt ansvar.
-					</p>	
+					</p>
+					<div class = "down">
+						<a class = "page-scroll" href="#section-solution">
+							<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
+						</a>
+					</div>	
 				</div>
 			</div>
 		</section>
 		<section id = "section-solution">
 			<div class = "row">
-				<div class = "col-md-5 col-md-offset-7">
+				<div class = "col-md-6">
 					<h1>Vår tjeneste</h1>
 					<p>
 						Velg Bedre er en bedriftstjeneste som tilbyr bærekraftige premier og bedriftsgaver til bedrifter, organisasjoner og konferanser. Vi finner kvalitetsbevisste produsenter fra hele verden og knytter dem til vårt nettverk slik at vi kan levere de beste bærekraftige løsningene. Hver gang du bruker penger, stemmer du på den verdenen du ønsker å leve i.
 					</p>	
+					<div class = "down">
+						<a class = "page-scroll" href="#section-change">
+							<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
+						</a>
+					</div>
 				</div>
 			</div>
 		</section>
 		<section id = "section-change">
-			<h1>Bli med!</h1>
+			<h1>tre <strong class = "big">enkle</strong> steg</h1>
 			<div class = "icon-container">
 				<div class = "icon">
-					<span class = "glyphicon glyphicon-thumbs-up" aria-hidden = "true"></span>
+					<span id = "show_letter" class = "glyphicon glyphicon-thumbs-up" aria-hidden = "true"></span>
 					<p>Lik oss</p>
 				</div>
 				<div class = "icon">
@@ -58,17 +76,39 @@
 					<span class = "glyphicon glyphicon-envelope" aria-hidden = "true"></span>
 					<p>Nyhetsbrev</p>
 				</div>
+				<div class = "down">
+					<a class = "page-scroll" href="#section-supporters">
+						<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
+					</a>
+				</div>
 			</div>
 		</section>
 		<section id = "section-supporters">
-			{% for c in companies %}
-				<div class = "product" style="background-image: url('{{c.logo.url}}');">
-					<div class = "info">
-						<h3>{{c.name}}</h3>
-						<p>{{c.description}}</p>
+			<div class = "product-wrap">
+				{% for c in companies %}
+					<div class = "product" style="background-image: url('{{c.logo.url}}');">
+						<div class = "info">
+							<h3>{{c.name}}</h3>
+							<p>{{c.description}}</p>
+						</div>
 					</div>
+				{% endfor %}
+				<div class = "down">
+					<a class = "page-scroll" href="#section-press">
+						<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
+					</a>
 				</div>
-			{% endfor %}
+			</div>
+		</section>
+		<section id = "section-press">
+			<div class = "press-wrap">
+				<div class = "press"><img src="{% static 'img/press/kapital.jpg' %}" alt=""></div>
+				<div class = "press"><img src="{% static 'img/press/pengevirke.jpg' %}" alt=""></div>
+				<div class = "press"><img src="{% static 'img/press/dusken.jpg' %}" alt=""></div>
+			</div>
+		</section>
+		<section id = "section-press-text">
+			presse <strong class = "big">&</strong> media
 		</section>
 		<section id="change">
 			<div class = "row">
