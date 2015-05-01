@@ -136,11 +136,21 @@
 				})
 
 				$('#show_letter').click(function() {
-					$('.letter-wrap').css({'display':'block'});
+					$('#send_letter').css({'display':'block'});
+					event.stopPropagation();
 				})
 
-				$('.letter-wrap').click(function() {
-					$(this).css({'display':'none'});
+				$('#join_letter').click(function() {
+					$('#join_newsletter').css({'display':'block'});
+					event.stopPropagation();
+				})
+
+				$('.letter').click(function() {
+					event.stopPropagation();
+				})
+
+				$('html').click(function() {
+					$('.letter-wrap').css({'display':'none'});
 				})
 
 				$('.supporter').click(function () {

@@ -35,4 +35,14 @@ class Subscriber(models.Model):
 		verbose_name = "Subscriber"
 		verbose_name_plural = "Subscribers"
 
+class Letter(models.Model):
+
+	name = models.CharField(max_length=100)
+	email = models.CharField(max_length=100)
+	the_lucky_one = models.CharField(max_length=100)
+
+	class Meta:
+		verbose_name = "Letter"
+		verbose_name_plural = "Letters"
+
     

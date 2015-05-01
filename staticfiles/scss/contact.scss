@@ -4,25 +4,43 @@ $smallMediaSize : 768px;
 
 #app-contact {
 
-	padding-top: 250px;
+	#section-intro-image {
+		position: relative;
+		height: 50vh;
 
-	height: 100vh;
+		padding-top: 160px; 
 
-	background: url(../../img/background/trondheim.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+		box-shadow: 3px 20px 20px rgba(0,0,0,0.5);
 
-    @media (max-width: $smallMediaSize) {
-	      padding-top: 70px;
+		background-attachment: scroll;
+		background-image: url(../../img/background/trondheim.jpg);
+		background-position: center center;
+		background-repeat: none;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		background-size: cover;
+		-o-background-size: cover;
 
-	      height: auto;
-	      padding-bottom: 20px;
+		h1 {
+			font-size: 70px;
+			font-weight: 300;
+			text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+
+			padding-left: 70px;
+
+			color: #fff;
+
+			.big {
+				font-size: 100px;
+			}
+		}
 	}
 
-    .introBox {
-    	box-shadow: 5px 5px 5px #222;
-    }
+	#section-intro-text {
+		height: 50vh;
+
+		background: #222;
+
+	}
 	
 }

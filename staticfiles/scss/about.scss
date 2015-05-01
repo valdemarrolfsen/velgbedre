@@ -1,0 +1,59 @@
+#app-about {
+	
+	background: #eee;
+
+	#section-intro-image {
+		position: relative;
+		height: 50vh;
+
+		padding-top: 160px; 
+
+		box-shadow: 3px 20px 20px rgba(0,0,0,0.5);
+
+		background-attachment: scroll;
+		background-image: url(../../img/background/soulbottle-bg.jpg);
+		background-position: center center;
+		background-repeat: none;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		background-size: cover;
+		-o-background-size: cover;
+
+		h1 {
+			font-size: 70px;
+			font-weight: 300;
+			text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+
+			padding-left: 70px;
+
+			color: #fff;
+
+			.big {
+				font-size: 100px;
+			}
+		}
+	}
+
+	#section-intro-text {
+		height: 50vh;
+
+		background: #222;
+
+	}
+
+	.member {
+		width: 16.66666%;
+
+		background: #eee;
+
+		min-height: 700px;
+
+		float: left;
+
+		padding: 20px;
+
+		img {
+			width: 100%;
+		}
+	}
+}

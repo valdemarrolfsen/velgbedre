@@ -8,10 +8,17 @@ def frontpage_view(request):
 	companies = Company.objects.all()
 
 	if request.method == "POST":
-		sub = Subscriber()
-		sub.name = request.POST.get('name')
-		sub.email = request.POST.get('email')
-		sub.save()
+		if 'other_name' in request.POST:
+			let = Letter()
+			let.name = request.POST.get('name')
+			let.email = request.POST.get('email')
+			let.the_lucky_one = request.POST.get('other_name')
+			let.save()
+		else:
+			sub = Subscriber()
+			sub.name = request.POST.get('name')
+			sub.email = request.POST.get('email')
+			sub.save()
 		
 	return render(request, 'frontpage.html', {
 		'products':products,
