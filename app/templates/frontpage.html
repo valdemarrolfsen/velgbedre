@@ -4,9 +4,11 @@
 	<div id = "app-frontpage-introsite">
 		<section id = "section-intro-image">
 			<video autoplay loop muted poster="polina.jpg" id="bgvid">
-				<source src="{% static 'video/kulfilm.webm' %}" type="video/webm">
-				<source src="{% static 'video/kulfilm.mp4' %}" type="video/mov">
+				<source src="{% static 'video/velgbedre.webm' %}" type="video/webm">
+				<source src="{% static 'video/velgbedre.mp4' %}" type="video/mov">
 			</video>
+
+			<div class = "filter"></div>
 
 			<div class = "number-wrap">
 				<div class = "number">
@@ -24,13 +26,12 @@
 			</div>
 		</section>
 		<section id = "section-intro-text">
+			<h1>Hver gang du bruker penger, stemmer <strong class = "big">du</strong> på den verdenen du har lyst til å leve i.</h1>
+			<p>Velg Bedre gjør bærekraftige innkjøp enkelt, trykk her</p>
 			<div class = "down">
-				<h1>Hver gang du bruker penger, stemmer <strong class = "big">du</strong> på den verdenen du har lyst til å leve i.</h1>
-				<h2>Velg Bedre knytter sammen bedrifter og produsenter som bryr seg.</h2>
 				<a class = "page-scroll" href="#section-problem">
-					<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
+					<span class = "icon-arrow-down" aria-hidden = "true"></span>
 				</a>
-				<p>Velg Bedre gjør bærekraftige innkjøp enkelt, trykk her</p>
 			</div>
 		</section>
 		<section id = "section-problem">
@@ -42,7 +43,7 @@
 					</p>
 					<div class = "down">
 						<a class = "page-scroll" href="#section-solution">
-							<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
+							<span class = "icon-arrow-down" aria-hidden = "true"></span>
 						</a>
 					</div>	
 				</div>
@@ -57,7 +58,7 @@
 					</p>	
 					<div class = "down">
 						<a class = "page-scroll" href="#section-change">
-							<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
+							<span class = "icon-arrow-down" aria-hidden = "true"></span>
 						</a>
 					</div>
 				</div>
@@ -66,7 +67,7 @@
 		<section id = "section-change">
 			<h1>tre <strong class = "big">enkle</strong> steg</h1>
 			<div class = "icon-container" target="_blank">
-				<a href="https://www.facebook.com/velgbedre?fref=ts">
+				<a href="https://www.facebook.com/velgbedre?fref=ts" target="_blank">
 					<div class = "icon">
 						<span class = "glyphicon glyphicon-thumbs-up" aria-hidden = "true"></span>
 						<p>Lik oss</p>
@@ -83,7 +84,7 @@
 				</div>
 				<div class = "down">
 					<a class = "page-scroll" href="#section-supporters">
-						<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
+						<span class = "icon-arrow-down" aria-hidden = "true"></span>
 					</a>
 				</div>
 			</div>
@@ -99,17 +100,19 @@
 						</div>
 					</div>
 				{% endfor %}
-				<div class = "down">
-					<a class = "page-scroll" href="#section-press">
-						<span class = "glyphicon glyphicon-triangle-bottom" aria-hidden = "true"></span>
-					</a>
-				</div>
+			</div>
+			<div class = "down">
+				<a class = "page-scroll" href="#section-press">
+					<span class = "icon-arrow-down" aria-hidden = "true"></span>
+				</a>
 			</div>
 		</section>
 		<section id = "section-press">
 			<div class = "press-wrap">
 				<div class = "press"><img src="{% static 'img/press/kapital.jpg' %}" alt=""></div>
-				<div class = "press"><img src="{% static 'img/press/pengevirke.jpg' %}" alt=""></div>
+				<a href="https://www.cultura.no/Pengevirke/Pengevirke-nr-3---2014/Velg-bedre/" target="_blank">
+					<div class = "press"><img src="{% static 'img/press/pengevirke.jpg' %}" alt=""></div>
+				</a>
 				<div class = "press"><img src="{% static 'img/press/dusken.jpg' %}" alt=""></div>
 			</div>
 		</section>
@@ -118,10 +121,14 @@
 		</section>
 		<div id = "send_letter" class = "letter-wrap">
 			<div class = "letter">
-				<h1>Kjære NAVN</h1>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non.
-				</p>
+				<div class = "text-center">
+					<h1>Kjære NAVN</h1>
+					<p>
+						Velg Bedre er en bedrift som tilbyr bærekraftige innkjøp til bedrifter, og jeg synes vi i SELSKAP skal vurdere å kjøpe inn julegaver fra dem i år. Gå inn på www.velgbedre.no for å se hva de tilbyr, eller send en mail til hei@velgbedre.no for å avtale et uforpliktende møte.
+					</p>
+					<p>Ha en flott dag,</p>
+					<p>DITT NAVN</p>
+				</div>
 				<form action="" method="post">{% csrf_token %}
 					<div class = "row">
 						<div class = "col-md-6">
@@ -147,9 +154,9 @@
 		</div>
 		<div id = "join_newsletter" class = "letter-wrap">
 			<div class = "letter">
-				<h1>Kjære NAVN</h1>
+				<h1>Nyhetsbrev</h1>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec augue posuere, sodales erat sit amet, sagittis mauris. Fusce sit amet risus in mauris accumsan consequat eget eget odio. Vestibulum imperdiet mauris vel purus aliquet sollicitudin. In blandit finibus lectus, nec rhoncus ante pulvinar non.
+					Vi i Velg Bedre jobber hver eneste dag med å finne nye bærekraftige løsninger. La deg inspirere ved å abbonnere på vårt nyhetsbrev og hold deg oppdatert på valg som bygger opp under et bærekraftig verdensbilde.
 				</p>
 				<form action="" method = "post">{% csrf_token %} 
 					<div class = "form-holder">

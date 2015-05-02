@@ -1,3 +1,5 @@
+@import 'variables';
+
 #app-about {
 	
 	background: #eee;
@@ -32,28 +34,80 @@
 				font-size: 100px;
 			}
 		}
+
+		@media (max-width: $smallMediaSize) {
+			padding-top: 140px;
+			h1 {
+				font-size: 40px;
+				padding-left: 10px;
+
+				.big {
+					font-size: 50px;
+				}
+			}
+		}
 	}
 
 	#section-intro-text {
-		height: 50vh;
+		height: 35vh;
+
+		padding: 30px;
+		padding-top: 10px;
 
 		background: #222;
 
+		color: #fff;
+
+		h1 {
+			font-size: 50px;
+			font-weight: 300; 
+			text-transform: uppercase;
+		}
+
+		p {
+			margin-top: 20px;
+			font-size: 20px;
+			font-weight: 100;
+		}
+
+		@media (max-width: $smallMediaSize) {
+			height: auto;
+		}
+
 	}
 
-	.member {
-		width: 16.66666%;
+	#section-members {
 
-		background: #eee;
+		background: #222;
 
-		min-height: 700px;
-
-		float: left;
-
-		padding: 20px;
-
-		img {
+		.member {
 			width: 100%;
+
+			background: #eee;
+
+			min-height: 700px;
+
+			float: left;
+
+			padding: 20px;
+
+			background: #222;
+
+			p {
+				color: #fff;
+				font-size: 20px;
+				font-weight: 100;
+			}
+
+			h3 {
+				color: #fff;
+				text-transform: uppercase;
+				font-weight: 300;
+			}
+
+			img {
+				width: 100%;
+			}
 		}
 	}
 }

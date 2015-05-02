@@ -1,6 +1,4 @@
-/* Small media screen */
-
-$smallMediaSize : 768px;
+@import 'variables';
 
 #app-contact {
 
@@ -34,12 +32,64 @@ $smallMediaSize : 768px;
 				font-size: 100px;
 			}
 		}
+
+		@media (max-width: $smallMediaSize) {
+			padding-top: 140px;
+			h1 {
+				font-size: 40px;
+				padding-left: 10px;
+
+				.big {
+					font-size: 50px;
+				}
+			}
+		}
 	}
 
 	#section-intro-text {
-		height: 50vh;
+		height: 35vh;
+
+		padding: 30px;
 
 		background: #222;
+		color: #fff;
+
+		text-align: center;
+
+		h1 {
+			font-weight: 300;
+			font-size: 40px;
+		}
+
+		h2 {
+			font-size: 25px;
+			font-weight: 300;
+		}
+
+		span {
+			font-size: 30px;
+		}
+
+		.container {
+			margin-top: 50px;
+		}
+
+		@media (max-width: $smallMediaSize) {
+			height: auto;
+			
+			padding-top: 10px;
+
+			.container {
+				margin-top: 10px;
+			}
+			h2 {
+				font-size: 20px;
+			}
+
+			span {
+				margin-top: 30px;
+			}
+		}
 
 	}
 	

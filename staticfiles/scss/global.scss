@@ -1,42 +1,48 @@
-/* Section colors */
-
-$firstSection : rgb(216, 184, 90);
-$secondSection: rgb(242, 205, 61);
-$thirdSection : rgb(243, 223, 60);
-$fourthSection: rgb(255, 244, 89);
-
-
-$lightSection : #ddd;
-$darkSection  : #666;
-
-/* Small media screen */
-
-$smallMediaSize : 768px;
-$mediumMediaSize: 1250px;
-
-/* Fonts */
-$openSans : 'Open Sans Light', sans-serif;
-$brandon  : 'brandon', sans-serif;
-
-/* Nav color */
-$bgDefault      : #FFF;
-$bgHighlight    : #FFF;
-$colDefault     : #000000;
-$colHover       : rgb(216, 184, 90);
+@import 'variables';
 
 html, body {
     max-width: 100%;
     overflow-x: hidden;
-    font-family: $brandon;
+
+    font-family: $lato;
 }
 
 footer {
-  padding-left: 10px;
-  font-family: $openSans;
-  background: #e1e5e5;
+  padding: 30px;
+  background: #222;
 
   p {
+    font-size: 15px;  
+    text-align: center;
+    color: #ddd;
     margin: 0;
+    font-weight: 100;
+  }
+}
+
+#section-testemonial {
+  background: #222;
+  color: #999;
+
+  padding: 20px;
+
+  width: 100%;
+
+  h1 {
+    text-align: center;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: 100;
+  }
+
+  p {
+    font-weight: 100;
+  }
+
+  @media (max-width: $smallMediaSize) {
+    h1 {
+      font-size: 15px;
+    }
   }
 }
 
@@ -49,6 +55,8 @@ footer {
   .navbar-default {
       background: $bgDefault;
       border-color: $bgHighlight;
+      //background: rgba(0,0,0,0.1);
+      //border-color: rgba(0,0,0,0);
       border-radius: 0;
 
       -moz-transition: all 200ms ease;
@@ -62,9 +70,12 @@ footer {
       margin-left: auto;
       margin-right: auto;
 
+      padding-right: 80px;
+
       @media (max-width: $smallMediaSize) {
         width: 100%;
         height: auto;
+        padding-right: 10px; 
       }
 
       .navbar-brand {
@@ -73,7 +84,6 @@ footer {
           h5 {
             float: left;
             padding-top: 18px;
-            font-family: $openSans;
             font-size: 35px;
             color: #000;
             font-weight: 300;
@@ -108,12 +118,11 @@ footer {
                 font-size: 18px;
 
                 line-height: 80px;
-                font-family: $brandon;
                 height: 70px;
                 padding-top: 5px;
                 padding-right: 30px;
                 color: $colDefault;
-                font-weight: 100;
+                font-weight: 300;
                 letter-spacing: 1px;
 
                 text-transform: uppercase;
@@ -211,7 +220,6 @@ footer {
   }
 
   p {
-    font-family: $openSans;
     font-size: 20px;
     font-weight: 300;
     text-align: center;
