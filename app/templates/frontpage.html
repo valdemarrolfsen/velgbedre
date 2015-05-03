@@ -9,24 +9,25 @@
 			</video>
 
 			<div class = "filter"></div>
-
 			<div class = "number-wrap">
-				<div class = "number">
-					<h1>2000</h1>
-					<p>Mennesker</p>
-				</div>
-				<div class = "number">
-					<h1>8</h1>
-					<p>Selskaper</p>
-				</div>
-				<div class = "number">
-					<h1>300</h1>
-					<p>Bærekraftige valg</p>
-				</div>
+				<h1>Hver gang du bruker penger, stemmer <strong class = "big">du</strong> på den verdenen du har lyst til å leve i.</h1>
 			</div>
+			<!--<div class = "number-wrap">
+					<div class = "number">
+						<h1>2000</h1>
+						<p>Mennesker</p>
+					</div>
+					<div class = "number">
+						<h1>8</h1>
+						<p>Selskaper</p>
+					</div>
+					<div class = "number">
+						<h1>300</h1>
+						<p>Bærekraftige valg</p>
+					</div>
+				</div>-->
 		</section>
 		<section id = "section-intro-text">
-			<h1>Hver gang du bruker penger, stemmer <strong class = "big">du</strong> på den verdenen du har lyst til å leve i.</h1>
 			<p>Velg Bedre gjør bærekraftige innkjøp enkelt, trykk her</p>
 			<div class = "down">
 				<a class = "page-scroll" href="#section-problem">
@@ -82,11 +83,11 @@
 					<span class = "glyphicon glyphicon-envelope" aria-hidden = "true"></span>
 					<p>Nyhetsbrev</p>
 				</div>
-				<div class = "down">
-					<a class = "page-scroll" href="#section-supporters">
-						<span class = "icon-arrow-down" aria-hidden = "true"></span>
-					</a>
-				</div>
+			</div>
+			<div class = "down">
+				<a class = "page-scroll" href="#section-supporters">
+					<span class = "icon-arrow-down" aria-hidden = "true"></span>
+				</a>
 			</div>
 		</section>
 		<section id = "section-supporters">
@@ -124,7 +125,7 @@
 				<div class = "text-center">
 					<h1>Kjære NAVN</h1>
 					<p>
-						Velg Bedre er en bedrift som tilbyr bærekraftige innkjøp til bedrifter, og jeg synes vi i SELSKAP skal vurdere å kjøpe inn julegaver fra dem i år. Gå inn på www.velgbedre.no for å se hva de tilbyr, eller send en mail til hei@velgbedre.no for å avtale et uforpliktende møte.
+						Velg Bedre er en bedrift som tilbyr bærekraftige innkjøp til bedrifter, og jeg synes vi skal vurdere å kjøpe inn julegaver fra dem i år. Gå inn på www.velgbedre.no for å se hva de tilbyr, eller send en mail til hei@velgbedre.no for å avtale et uforpliktende møte.
 					</p>
 					<p>Ha en flott dag,</p>
 					<p>DITT NAVN</p>
@@ -132,11 +133,11 @@
 				<form action="" method="post">{% csrf_token %}
 					<div class = "row">
 						<div class = "col-md-6">
-							<h4>Ditt navn:</h4>
+							<h4>DITT NAVN:</h4>
 							<input type="text" name="name" required>
 						</div>
 						<div class = "col-md-6">
-							<h4>Navnet på den du vil tipse:</h4>
+							<h4>NAVN:</h4>
 							<input type="text" name="other_name" required>
 						</div>
 					</div>
