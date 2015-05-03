@@ -10,25 +10,11 @@
 
 			<div class = "filter"></div>
 			<div class = "number-wrap">
-				<h1>Hver gang du bruker penger, stemmer <strong class = "big">du</strong> på den verdenen du har lyst til å leve i.</h1>
+				<h1>"Hver gang du bruker penger, stemmer du på hvilke verden du har lyst til å leve i" - <strong class = "thick">Anna Lappé</strong></h1>
 			</div>
-			<!--<div class = "number-wrap">
-					<div class = "number">
-						<h1>2000</h1>
-						<p>Mennesker</p>
-					</div>
-					<div class = "number">
-						<h1>8</h1>
-						<p>Selskaper</p>
-					</div>
-					<div class = "number">
-						<h1>300</h1>
-						<p>Bærekraftige valg</p>
-					</div>
-				</div>-->
 		</section>
 		<section id = "section-intro-text">
-			<p>Velg Bedre gjør bærekraftige innkjøp enkelt, trykk her</p>
+			<h1>Ta et <strong>bærekraftig</strong> valg</h1>
 			<div class = "down">
 				<a class = "page-scroll" href="#section-problem">
 					<span class = "icon-arrow-down" aria-hidden = "true"></span>
@@ -38,7 +24,7 @@
 		<section id = "section-problem">
 			<div class = "row">
 				<div class = "col-md-5">
-					<h1>Kunsten å velge bedre</h1>
+					<h1>Handlekraft</h1>
 					<p>
 						Samfunnsansvarlige bedrifter har i dag et konkurransefortrinn i næringslivet. Den moderne forbruker stiller høyere og høyere forventninger til hva bedrifter utretter utover å drive virksomhet, men trender i norsk næringsliv viser at over halvparten av norske arbeidstakere ikke oppfatter at sin arbeidsgiver tar aktivt ansvar.
 					</p>
@@ -55,18 +41,33 @@
 				<div class = "col-md-6">
 					<h1>Vår tjeneste</h1>
 					<p>
-						Velg Bedre er en bedriftstjeneste som tilbyr bærekraftige premier og bedriftsgaver til bedrifter, organisasjoner og konferanser. Vi finner kvalitetsbevisste produsenter fra hele verden og knytter dem til vårt nettverk slik at vi kan levere de beste bærekraftige løsningene. Hver gang du bruker penger, stemmer du på den verdenen du ønsker å leve i.
+						Velg Bedre er en bedriftstjeneste som tilbyr bærekraftige premier og gaver til bedrifter, organisasjoner og konferanser. Vi finner kvalitetsbevisste produsenter fra hele verden og knytter dem til vårt nettverk slik at vi kan levere de beste bærekraftige løsningene. Hver gang du bruker penger, stemmer du på den verdenen du ønsker å leve i.
 					</p>	
 					<div class = "down">
-						<a class = "page-scroll" href="#section-change">
+						<a class = "page-scroll" href="#section-supporters">
 							<span class = "icon-arrow-down" aria-hidden = "true"></span>
 						</a>
 					</div>
 				</div>
 			</div>
 		</section>
+		<section id = "section-supporters">
+			<h1>våre <strong>unike</strong> historier</h1>
+			<div class = "product-wrap">
+				{% for c in companies %}
+					<div id = "{{c.id}}" class = "product" style="background-image: url('{{c.logo.url}}');">
+						
+					</div>
+				{% endfor %}
+			</div>
+			<div class = "down">
+				<a class = "page-scroll" href="#section-change">
+					<span class = "icon-arrow-down" aria-hidden = "true"></span>
+				</a>
+			</div>
+		</section>
 		<section id = "section-change">
-			<h1>tre <strong class = "big">enkle</strong> steg</h1>
+			<h1>tre <strong>enkle</strong> steg</h1>
 			<div class = "icon-container" target="_blank">
 				<a href="https://www.facebook.com/velgbedre?fref=ts" target="_blank">
 					<div class = "icon">
@@ -85,24 +86,6 @@
 				</div>
 			</div>
 			<div class = "down">
-				<a class = "page-scroll" href="#section-supporters">
-					<span class = "icon-arrow-down" aria-hidden = "true"></span>
-				</a>
-			</div>
-		</section>
-		<section id = "section-supporters">
-			<h1>bedrifter som <strong class = "big">allerede</strong> velger bærekraftig</h1>
-			<div class = "product-wrap">
-				{% for c in companies %}
-					<div class = "product" style="background-image: url('{{c.logo.url}}');">
-						<div class = "info">
-							<h3>{{c.name}}</h3>
-							<p>{{c.description}}</p>
-						</div>
-					</div>
-				{% endfor %}
-			</div>
-			<div class = "down">
 				<a class = "page-scroll" href="#section-press">
 					<span class = "icon-arrow-down" aria-hidden = "true"></span>
 				</a>
@@ -110,11 +93,15 @@
 		</section>
 		<section id = "section-press">
 			<div class = "press-wrap">
-				<div class = "press"><img src="{% static 'img/press/kapital.jpg' %}" alt=""></div>
+				<a href="{% static 'pdf/kapital.pdf' %}" target="_blank">
+					<div class = "press"><img src="{% static 'img/press/kapital.jpg' %}" alt=""></div>
+				</a>
 				<a href="https://www.cultura.no/Pengevirke/Pengevirke-nr-3---2014/Velg-bedre/" target="_blank">
 					<div class = "press"><img src="{% static 'img/press/pengevirke.jpg' %}" alt=""></div>
 				</a>
-				<div class = "press"><img src="{% static 'img/press/dusken.jpg' %}" alt=""></div>
+				<a href="http://dusken.no/artikkel/24340/velg-bedre/" target="_blank">
+					<div class = "press"><img src="{% static 'img/press/dusken.jpg' %}" alt=""></div>
+				</a>
 			</div>
 		</section>
 		<section id = "section-press-text">
@@ -172,5 +159,25 @@
 				</form>
 			</div>
 		</div>
+		{% for c in companies %}
+			<div id = "box{{c.id}}" class = "letter-wrap">
+				<div class = "letter">
+					<h1>{{c.name}}</h1>
+					<div class = "row">
+						<div class = "col-md-6">
+							<img src="{{c.product.url}}" alt="{{c.name}}">
+						</div>
+						<div class = "col-md-6">
+							<p>{{c.description}}</p>
+						</div>
+					</div>
+					<div class = "row">
+						<div class = "col-md-12 text-center">
+							{{c.testemonial}}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
 	</div>
 {% endblock content %}

@@ -8,12 +8,12 @@
 		position: relative;
 		height: 60vh;
 
-		padding-top: 160px; 
+		padding-top: 43vh; 
 
 		box-shadow: 3px 20px 20px rgba(0,0,0,0.5);
 
 		background-attachment: scroll;
-		background-image: url(../../img/background/soulbottle-bg.jpg);
+		background-image: url(../../img/background/vb-forside.jpg);
 		background-position: center center;
 		background-repeat: none;
 		-webkit-background-size: cover;
@@ -22,17 +22,15 @@
 		-o-background-size: cover;
 
 		h1 {
-			font-size: 70px;
-			font-weight: 300;
+			font-size: 80px;
+			font-weight: 100;
 			text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
 
 			padding-left: 70px;
 
-			color: #fff;
+			text-transform: uppercase;
 
-			.big {
-				font-size: 100px;
-			}
+			color: #fff;
 		}
 
 		@media (max-width: $smallMediaSize) {

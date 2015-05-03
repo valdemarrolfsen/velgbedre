@@ -104,36 +104,6 @@
 
 		<script>
 			$(function() {
-				$('#vote').click(function () {
-					$('.vote').css({"height":"300px"});
-					$('.mail').css({"height":"0px"});
-					$('.tips').css({"height":"0px"});
-
-					$('#vote').addClass('active');
-					$('#send_mail').removeClass('active');
-					$('#tips').removeClass('active');
-
-
-				})
-				$('#tips').click(function () {
-					$('.vote').css({"height":"0px"});
-					$('.mail').css({"height":"0px"});
-					$('.tips').css({"height":"300px"});
-
-					$('#vote').removeClass('active');
-					$('#send_mail').removeClass('active');
-					$('#tips').addClass('active');
-				})
-				$('#send_mail').click(function () {
-					$('.vote').css({"height":"0px"});
-					$('.mail').css({"height":"300px"});
-					$('.tips').css({"height":"0px"});
-
-					$('#vote').removeClass('active');
-					$('#send_mail').addClass('active');
-					$('#tips').removeClass('active');
-				})
-
 				$('#show_letter').click(function() {
 					event.stopPropagation();
 					$('#send_letter').css({'display':'block'});
@@ -152,12 +122,15 @@
 					$('.letter-wrap').css({'display':'none'});
 				})
 
-				$('.supporter').click(function () {
-					var id = $(this).attr('id');
-					var newid = '#info'+id;
-					$('#supporters').find('.more-info').removeClass("more-info").addClass("hidden"); 
-					$(newid).removeClass("hidden").addClass('more-info');
-				})
+				{% if companies %}
+					{% for c in companies %}
+						$('#' + {{c.id}}).click(function() {
+							$('#box'+{{c.id}}).css({'display':'block'});
+							event.stopPropagation();
+						})
+					{% endfor %}
+				{% endif %}
+
 			})
 		</script>
 

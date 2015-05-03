@@ -20,7 +20,9 @@ class Product(models.Model):
 class Company(models.Model):
 	name = models.CharField(max_length=100)
 	description = models.TextField(blank=True, null=True)
+	testemonial = models.TextField(blank=True, null=True)
 	logo = models.ImageField(upload_to='logos/%Y/%m/%d')
+	product = models.ImageField(upload_to='products/%Y/%m/%d')
 
 	class Meta:
 		verbose_name = "Company"
