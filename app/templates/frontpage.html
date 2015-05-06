@@ -3,9 +3,10 @@
 {% block content %}
 	<div id = "app-frontpage-introsite">
 		<section id = "section-intro-image">
-			<video autoplay loop muted poster="polina.jpg" id="bgvid">
+			<video autoplay loop muted poster="{% static 'img/background/lstn-bg.jpg' %}" id="bgvid">
+				<source src="{% static 'video/velgbedre.mp4' %}">
 				<source src="{% static 'video/velgbedre.webm' %}" type="video/webm">
-				<source src="{% static 'video/velgbedre.mp4' %}" type="video/mov">
+				<source src="{% static 'video/velgbedre.mp4' %}" type="video/mp4">
 			</video>
 
 			<div class = "filter"></div>
