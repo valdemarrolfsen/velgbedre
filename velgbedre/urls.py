@@ -11,6 +11,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('app.urls')),
+    url(r'^', include('company_service.urls')),
 )
 
 if settings.DEBUG:

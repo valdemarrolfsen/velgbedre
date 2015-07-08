@@ -1,0 +1,457 @@
+@import 'variables';
+
+#company_service-frontpage {
+
+	.add-product {
+		position: fixed;
+		bottom: 30px;
+		right: 30px;
+
+		width: 300px;
+		height: 50px;
+
+		z-index: 90;
+
+		background: #333;
+
+		box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+
+		cursor: pointer;
+
+		&:hover {
+			background: #444;
+		}
+
+		span {
+			font-size: 24px;
+			color: #fff;
+			padding: 12px;
+
+			float: left;
+		}
+
+		p {
+			padding: 9px;
+			font-size: 20px;
+			font-weight: 300;
+			text-transform: uppercase;
+			color: #fff;
+		}
+	}
+
+	#section-intro-image {
+		position: relative;
+		height: 60vh;
+
+		padding-top: 43vh; 
+
+		box-shadow: 3px 10px 20px rgba(0,0,0,0.5);
+
+		background-attachment: scroll;
+		//background-image: url(../../img/products/elvis-and-kresse.jpg);
+		background-position: center center;
+		background-repeat: none;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		background-size: cover;
+		-o-background-size: cover;
+
+		h1 {
+			font-size: 60px;
+			font-weight: 100;
+			text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+
+			text-transform: uppercase;
+
+			padding-left: 70px;
+
+			color: #fff;
+
+			.big {
+				font-size: 80px;
+			}
+		}
+
+		@media (max-width: $smallMediaSize) {
+			padding-top: 80px;
+			height: 40vh;
+			h1 {
+				font-size: 40px;
+				padding-left: 10px;
+
+				.big {
+					font-size: 50px;
+				}
+			}
+		}
+	}
+
+	#section-product {
+		width: 100%;
+		min-height: 150vh;
+
+		padding: 40px;
+		h1 {
+
+			font-size: 70px;
+			font-weight: 300;
+			text-transform: uppercase;
+		}
+
+		.content {
+			width: 60%;
+
+			float: left;
+
+			p {
+				font-size: 18px;
+			}
+		}
+
+		.other-info {
+			width: 40%;
+
+			float: right;
+
+			padding: 20px;
+			padding-left: 100px;
+
+
+			h1 {
+				font-size: 26px;
+			}
+
+			.picture-container {
+				width: 100%;
+				height: 300px;
+				
+				.picture {
+					width: 80px;
+					height: 80px;
+
+					margin: 10px;
+
+					border: 1px solid #bbb;
+
+					float: left;
+
+					display: inline-block;
+					background-position: center center;
+					background-size: cover;
+				}
+			}
+
+			.info-container {
+				width: 100%;
+				height: 200px;
+
+				border-top: 2px solid #555;
+
+				padding-left: 20px;
+
+				p {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+
+	.picture-slider {
+		position: fixed;
+		top: 0;
+		left: 0;
+
+		width: 100%;
+		height: 100vh;
+
+		z-index: 100;
+
+		background: rgba(0,0,0,0.6);
+
+		.slider-outer {
+			position: absolute;
+			left: 50%;
+			top: 10%;
+
+			width: 70%;
+			height: 80%;
+
+			.slider-inner {
+				position: relative;
+				left: -50%;
+
+				height: 100%;
+				width: 100%;
+
+				background: white;
+
+				.close {
+					position: relative;
+					top: -30px;
+					right: -30px;
+
+					width: 60px;
+					height: 60px;
+
+					border-radius: 100%;
+
+					background: #222;
+					opacity: 1;
+
+					z-index: 200;
+
+					box-shadow: 0px 0px 5px #666;
+
+					&:hover {
+						background: #333;
+					}
+
+					.lr {
+						display: block;
+						margin: 10px auto;
+					    z-index: 101;
+					    width: 1px;
+					    height: 40px;
+					    background-color: #eee;
+					    -webkit-transform: rotate(45deg);
+					    -ms-transform: rotate(45deg);
+					    transform: rotate(45deg);
+
+					    .rl {
+						    z-index: 101;
+						    width: 1px;
+						    height: 40px;
+						    background-color: #eee;
+						    -webkit-transform: rotate(90deg);
+						    -ms-transform: rotate(90deg);
+						    transform: rotate(90deg);
+						}
+					}
+				}
+
+				.carousel {
+					height: 100%;
+
+					.carousel-inner {
+						position: absolute;
+						top: 0px;
+						height: 100%;
+
+						.item {
+							height: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#company_service-intro {
+	width: 100%;
+	height: 100vh;
+
+	display: inline-block;
+    background-position: center center;
+    background-size: cover;
+
+    .intro {
+    	width: 60%;
+		
+		padding: 20px;
+		padding-top: 10vh;
+
+		display: block;
+    	margin: 0 auto;
+
+    	h1 {
+    		font-size: 40px;
+    		font-weight: 300;
+
+    		color: #fff;
+    	}
+
+    	p {
+    		font-size: 20px;
+    		font-weight: 300;
+
+    		color: #fff;
+    	}
+    }
+
+    .register {
+    	width: 60%;
+    	height: 40vh;
+		
+		padding-top: 20px;
+
+		display: block;
+    	margin: 0 auto;
+
+    	input, button {
+    		width: 48%;
+    		height: 60px;
+
+    		margin: 20px 1%;
+
+    		float: left;
+
+    		border: 0;
+
+    		font-size: 20px;
+    		font-weight: 300;
+    	}
+
+    	input {
+			background: #eee;
+    		padding: 20px;
+    	}
+
+    	button {
+    		background: #222;
+    		color: #fff;
+    	}
+
+    	.short {
+    		width: 23%
+    	}
+    }
+}
+
+#company_service-wishlist {
+	width: 100%;
+	height: 100vh;
+
+	display: inline-block;
+    background-position: center center;
+    background-size: cover;
+
+    .add-product {
+		position: fixed;
+		bottom: 30px;
+		right: 30px;
+
+		width: 300px;
+		height: 50px;
+
+		z-index: 200;
+
+		background: #333;
+
+		box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+
+		cursor: pointer;
+
+		&:hover {
+			background: #444;
+		}
+
+		span {
+			font-size: 24px;
+			color: #fff;
+			padding: 12px;
+
+			float: left;
+		}
+
+		p {
+			padding: 9px;
+			font-size: 20px;
+			font-weight: 300;
+			text-transform: uppercase;
+			color: #fff;
+		}
+	}
+	
+	.intro {
+    	width: 60%;
+		
+		padding: 20px;
+		padding-top: 10vh;
+
+		display: block;
+    	margin: 0 auto;
+
+    	h1 {
+    		font-size: 40px;
+    		font-weight: 300;
+
+    		color: #fff;
+    	}
+
+    	p {
+    		font-size: 20px;
+    		font-weight: 300;
+
+    		color: #fff;
+    	}
+    }
+
+	.wishlist {
+		width: 40%;
+		margin-top: 20px;
+
+		margin: 0 auto;
+
+		.wishlist-product {
+			width: 100%;
+			height: 100px;
+
+			margin-bottom: 10px;
+
+			.wishlist-product-image {
+				position: relative;
+				left: 40px;
+
+				height: 100px;
+				width: 100px;
+
+				z-index: 2;
+
+				display: inline-block;
+			    background-position: center center;
+			    background-size: cover;
+
+			    box-shadow: 1px 1px 3px #333;
+			    border: 1px solid #333;
+
+			    opacity: 0.9;
+			}
+
+			.wishlist-product-text {
+				position: relative;
+				top: -85px;
+
+				width: 100%;
+				height: 60px;
+
+				z-index: 1;
+
+				background: #333;
+				padding-left: 160px;
+				padding-top: 15px;
+
+				p {
+					color: #fff;
+					font-size: 20px;
+    				font-weight: 300;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

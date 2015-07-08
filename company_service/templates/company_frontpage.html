@@ -1,0 +1,196 @@
+{% extends 'company_main.html' %}
+{% load staticfiles %}
+{% block content %}
+<div id = "company_service-frontpage">
+	<div class="add-product">
+		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+		<p>Legg til i Ønskeliste</p>
+	</div>
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="1000000">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			{% for product in products %}
+				{% if forloop.first %}
+					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+				{% else %}
+					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}"></li>
+				{% endif %}
+			{% endfor %}
+		</ol>
+
+	  <!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			{% for product in products %}
+				{% if forloop.first %}
+					<div class="item active">
+						<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
+							<h1>{{product.name}}</h1>
+						</section>
+					</div>
+				{% else %}
+					<div class="item">
+						<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
+							<h1>{{product.name}}</h1>
+						</section>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		<!-- Controls -->
+		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" id = "carousel-left" >
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" id = "carousel-right">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+	<section id ="section-product">
+		{% for product in products %}
+			<div id = "product{{ forloop.counter0 }}">
+				<div class="content">
+					<h1>{{product.name}}</h1>
+					<p>{{product.description}}</p>
+				</div>
+				<div class="other-info">
+					<div class = "picture-container">
+						<h1>Flere bilder</h1>
+						{% for image in product.get_images %}
+							<div class = "picture" style="background-image: url({{image}});"></div>
+						{% endfor %}
+					</div>
+					<div class="info-container">
+						<h1>Hvem</h1>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis ex sit amet nisl commodo condimentum. Sed bibendum mattis dignissim. Curabitur neque dolor, elementum vitae convallis at, mollis ac nisl.
+						</p>
+					</div>
+					<div class="info-container">
+						<h1>Hvordan</h1>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis ex sit amet nisl commodo condimentum. Sed bibendum mattis dignissim. Curabitur neque dolor, elementum vitae convallis at, mollis ac nisl.
+						</p>
+					</div>
+					<div class="info-container">
+						<h1>Hvorfor</h1>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis ex sit amet nisl commodo condimentum. Sed bibendum mattis dignissim. Curabitur neque dolor, elementum vitae convallis at, mollis ac nisl.
+						</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</section>
+	<section id = "section-testemonial">
+		<h1>
+			"Velg Bedre gjorde det enkelt å velge gaver til de ansatte rundt juletider. Spørsmål underveis ble raskt besvart. Julegavene ble levert ferdig innpakket med flotte kort - og jeg satt igjen med følelsen av å ha spart tid OG tatt et bedre valg!"
+		</h1>
+		<p>- Gry Tørresdal, Koordinator Infotech</p>
+	</section>
+	<div class = "picture-slider" id = "picture-slider">
+		<div class= "slider-outer">
+			<div class= "slider-inner">
+				<div class= "close" id = "close-slider">
+					<div class="lr">
+	                    <div class="rl"></div>
+	                </div>
+				</div>
+
+				<div id="picture-carousel" class="carousel slide" data-ride="carousel" data-interval="1000000">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						{% for product in products %}
+							{% if forloop.first %}
+								<li data-target="#picture-carousel" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+							{% else %}
+								<li data-target="#picture-carousel" data-slide-to="{{ forloop.counter0 }}"></li>
+							{% endif %}
+						{% endfor %}
+					</ol>
+
+				  <!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						{% for product in products %}
+							{% if forloop.first %}
+								<div class="item active">
+									<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
+										<h1>{{product.name}}</h1>
+									</section>
+								</div>
+							{% else %}
+								<div class="item">
+									<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
+										<h1>{{product.name}}</h1>
+									</section>
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+
+					<!-- Controls -->
+					<a class="left carousel-control" href="#picture-carousel" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#picture-carousel" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}
+
+{% block extraJS %}
+<script>
+
+	var selected_product;
+	var num_products;
+
+	$(document).ready(function() {
+
+		selected_product = 0;
+		num_products = Number({{products.count}});
+
+		$('#picture-slider').hide();
+
+		for (var i = 1; i<num_products; i++)
+			$('#product' + i).hide();
+	})
+
+	$('.picture').click(function() {
+		$('#picture-slider').fadeIn();
+	})
+
+	$('#close-slider').click(function() {
+		$('#picture-slider').fadeOut();
+	})
+
+	$('#carousel-left').click(function() {
+		$('#product' + selected_product).fadeOut();
+
+		if (selected_product <= 0)
+			selected_product = num_products-1;
+		else
+			selected_product -= 1;
+
+		$('#product' + selected_product).fadeIn();
+	})
+
+	$('#carousel-right').click(function() {
+		$('#product' + selected_product).fadeOut();
+
+		if (selected_product < num_products-1)
+			selected_product += 1;
+		else
+			selected_product = 0;
+
+		$('#product' + selected_product).fadeIn();
+	})
+</script>
+{% endblock extraJS %}

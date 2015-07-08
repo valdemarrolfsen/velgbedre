@@ -5,3 +5,6 @@ staticroot/
 media/
 venv/
 settings.py
+
+app/migrations/
+company_service/migrations/

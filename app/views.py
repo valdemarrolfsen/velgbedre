@@ -30,6 +30,3 @@ def about_view(request):
 
 def contact_view(request):
 	return render(request, 'contact.html')
-
-def order_view(request):
-	return render(request, 'order.html')

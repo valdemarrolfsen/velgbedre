@@ -1,0 +1,57 @@
+{% extends 'company_main.html' %}
+{% load staticfiles %}
+{% block content %}
+	<div id = "company_service-wishlist" style="background-image: url('{% static 'img/background/present.jpg' %}');">
+		<div class="add-product">
+			<span class="glyphicon glyphicon-gift" aria-hidden="true"></span>
+			<p>Send inn ønskeliste</p>
+		</div>
+		<div class="intro">
+			<h1>På tide å ta et valg</h1>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis ex sit amet nisl commodo condimentum. Sed bibendum mattis dignissim. Curabitur neque dolor, elementum vitae convallis at, mollis ac nisl. Suspendisse potenti. Curabitur euismod sem eu purus dapibus pulvinar. Vivamus leo elit, egestas vitae nisl sit amet, facilisis venenatis dui.
+			</p>
+		</div>
+		<div class="wishlist">
+			<div class="top-three" id = "drag1" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<div class="wishlist-product" draggable="true" ondragstart="drag(event)">
+					<div class="wishlist-product-image" style="background-image: url('{% static 'img/products/lstn.png' %}');"></div>
+					<div class="wishlist-product-text">
+						<p>Lste Headphones</p>
+					</div>
+				</div>
+				<div class="wishlist-product" id = "drag2" draggable="true" ondragstart="drag(event)">
+					<div class="wishlist-product-image" style="background-image: url('{% static 'img/products/lommebok.png' %}');"></div>
+					<div class="wishlist-product-text">
+						<p>Elvis & Kresse Lommebok</p>
+					</div>
+				</div>
+				<div class="wishlist-product" id = "drag3" draggable="true" ondragstart="drag(event)">
+					<div class="wishlist-product-image" style="background-image: url('{% static 'img/products/bboombox.png' %}');"></div>
+					<div class="wishlist-product-text">
+						<p>Berlin Boombox</p>
+					</div>
+				</div>
+			</div>
+			<div class="rest">
+				
+			</div>
+		</div>
+	</div>
+
+<script>
+	function allowDrop(ev) {
+	    ev.preventDefault();
+	}
+
+	function drag(ev) {
+	    ev.dataTransfer.setData("text", ev.target.id);
+	}
+
+	function drop(ev) {
+	    ev.preventDefault();
+	    var data = ev.dataTransfer.getData("text");
+	    ev.target.appendChild(document.getElementById(data));
+	}
+</script>
+{% endblock content %}
