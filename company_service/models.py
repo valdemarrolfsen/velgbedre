@@ -99,6 +99,10 @@ class Product(models.Model):
 	name = models.CharField(max_length=100)
 	description = models.TextField()
 
+	who = models.TextField()
+	how = models.TextField()
+	why = models.TextField()
+
 	background = models.ImageField(upload_to='products/%Y/%m/%d')
 
 	def get_images(self):

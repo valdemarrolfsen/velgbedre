@@ -58,26 +58,20 @@
 					<div class = "picture-container">
 						<h1>Flere bilder</h1>
 						{% for image in product.get_images %}
-							<div class = "picture" style="background-image: url({{image}});"></div>
+							<div class = "picture" style="background-image: url({{image}});" data-picture = "{{forloop.counter0}}"></div>
 						{% endfor %}
 					</div>
 					<div class="info-container">
 						<h1>Hvem</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis ex sit amet nisl commodo condimentum. Sed bibendum mattis dignissim. Curabitur neque dolor, elementum vitae convallis at, mollis ac nisl.
-						</p>
+						<p>{{product.who}}</p>
 					</div>
 					<div class="info-container">
 						<h1>Hvordan</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis ex sit amet nisl commodo condimentum. Sed bibendum mattis dignissim. Curabitur neque dolor, elementum vitae convallis at, mollis ac nisl.
-						</p>
+						<p>{{product.how}}</p>
 					</div>
 					<div class="info-container">
 						<h1>Hvorfor</h1>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis ex sit amet nisl commodo condimentum. Sed bibendum mattis dignissim. Curabitur neque dolor, elementum vitae convallis at, mollis ac nisl.
-						</p>
+						<p>{{product.why}}</p>
 					</div>
 				</div>
 			</div>
@@ -89,52 +83,48 @@
 		</h1>
 		<p>- Gry Tørresdal, Koordinator Infotech</p>
 	</section>
-	<div class = "picture-slider" id = "picture-slider">
+	{% for product in products %}
+	<div class = "picture-slider" id = "picture-slider{{forloop.counter0}}">
 		<div class= "slider-outer">
 			<div class= "slider-inner">
-				<div class= "close" id = "close-slider">
+				<div class= "close">
 					<div class="lr">
 	                    <div class="rl"></div>
 	                </div>
 				</div>
-
-				<div id="picture-carousel" class="carousel slide" data-ride="carousel" data-interval="1000000">
+				<div id="picture-carousel{{forloop.counter0}}" class="carousel slide" data-ride="carousel" data-interval="1000000">
 					<!-- Indicators -->
 					<ol class="carousel-indicators">
-						{% for product in products %}
+						{% for image in product.get_images %}
 							{% if forloop.first %}
-								<li data-target="#picture-carousel" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+								<li data-target="#picture-carousel{{forloop.parentloop.counter0}}" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
 							{% else %}
-								<li data-target="#picture-carousel" data-slide-to="{{ forloop.counter0 }}"></li>
+								<li data-target="#picture-carousel{{forloop.parentloop.counter0}}" data-slide-to="{{ forloop.counter0 }}"></li>
 							{% endif %}
 						{% endfor %}
 					</ol>
 
 				  <!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
-						{% for product in products %}
+						{% for image in product.get_images %}
 							{% if forloop.first %}
-								<div class="item active">
-									<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
-										<h1>{{product.name}}</h1>
-									</section>
+								<div class="item picture{{forloop.counter0}} active">
+									<section id = "section-intro-image" style = "background-image: url({{image}});"></section>
 								</div>
 							{% else %}
-								<div class="item">
-									<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
-										<h1>{{product.name}}</h1>
-									</section>
+								<div class="item picture{{forloop.counter0}}">
+									<section id = "section-intro-image" style = "background-image: url({{image}});"></section>
 								</div>
 							{% endif %}
 						{% endfor %}
 					</div>
 
 					<!-- Controls -->
-					<a class="left carousel-control" href="#picture-carousel" role="button" data-slide="prev">
+					<a class="left carousel-control" href="#picture-carousel{{forloop.counter0}}" role="button" data-slide="prev">
 						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 						<span class="sr-only">Previous</span>
 					</a>
-					<a class="right carousel-control" href="#picture-carousel" role="button" data-slide="next">
+					<a class="right carousel-control" href="#picture-carousel{{forloop.counter0}}" role="button" data-slide="next">
 						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 						<span class="sr-only">Next</span>
 					</a>
@@ -142,6 +132,7 @@
 			</div>
 		</div>
 	</div>
+	{% endfor %}
 </div>
 
 {% endblock content %}
@@ -157,18 +148,23 @@
 		selected_product = 0;
 		num_products = Number({{products.count}});
 
-		$('#picture-slider').hide();
+		$('#picture-slider0').hide();
 
-		for (var i = 1; i<num_products; i++)
+		for (var i = 1; i<num_products; i++) {
+			$('#picture-slider' + i).hide();
 			$('#product' + i).hide();
+		}
 	})
 
 	$('.picture').click(function() {
-		$('#picture-slider').fadeIn();
+		var picture = $(this).data('picture');
+		$('#picture-slider' + selected_product).fadeIn();
+		$('#picture-carousel' + selected_product + ' .carousel-inner .picture' + picture).addClass('active');
 	})
 
-	$('#close-slider').click(function() {
-		$('#picture-slider').fadeOut();
+	$('.close').click(function() {
+		$('#picture-slider' + selected_product).fadeOut();
+		$('#picture-carousel' + selected_product + ' .carousel-inner .item').removeClass('active');
 	})
 
 	$('#carousel-left').click(function() {
