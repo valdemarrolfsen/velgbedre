@@ -40,6 +40,26 @@ class MyUserManager(BaseUserManager):
 		u.save(using=self._db)
 		return u
 
+class Company(models.Model):
+	code = models.CharField(max_length=50)
+	name = models.CharField(max_length=100)
+	greeting = models.TextField()
+	email = models.CharField(max_length=100)
+
+	logo = models.ImageField(upload_to='company_logo/%Y/%m/%d')
+	background = models.ImageField(upload_to='company_background/%y/%m/%d')
+
+	def get_products(self):
+		relations = CompanyProductRelation.objects.filter(company=self)
+		products = []
+
+		for relation in relations:
+			products.append(relation.product)
+
+		return products
+
+
+
 
 class UserProfile(AbstractBaseUser):
 	email = models.EmailField(
@@ -54,6 +74,8 @@ class UserProfile(AbstractBaseUser):
 	post_place = models.CharField(max_length=50)
 	is_active = models.BooleanField(default=False)
 	is_admin = models.BooleanField(default=False)
+
+	company = models.ForeignKey(Company, null=True, blank=True)
 
 	objects = MyUserManager()
 
@@ -87,14 +109,6 @@ class UserProfile(AbstractBaseUser):
 		# For now: All admins are staff
 		return self.is_admin
 
-class Company(models.Model):
-	name = models.CharField(max_length=100)
-	greeting = models.TextField()
-	email = models.CharField(max_length=100)
-
-	logo = models.ImageField(upload_to='company_logo/%Y/%m/%d')
-	background = models.ImageField(upload_to='company_background/%y/%m/%d')
-
 class Product(models.Model):
 	name = models.CharField(max_length=100)
 	description = models.TextField()
@@ -115,6 +129,12 @@ class Product(models.Model):
 
 		return img_urls
 
+
+class CompanyProductRelation(models.Model):
+	company = models.ForeignKey(Company)
+	product = models.ForeignKey(Product)
+
+
 class Wish(models.Model):
 	product = models.ForeignKey(Product)
 	user = models.ForeignKey(UserProfile)
@@ -125,6 +145,7 @@ class ProductImage(models.Model):
 	name = models.CharField(max_length=50)
 	product = models.ForeignKey(Product)
 	image = models.ImageField(upload_to='images/%Y/%m/%d')
+
 
 
 

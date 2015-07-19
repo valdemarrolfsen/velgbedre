@@ -22,6 +22,8 @@
 			<!-- Optional theme -->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
+			<link rel="stylesheet" href="{% static 'css/sweetalert.css' %}">
+
 			<!-- Fonts -->
 			<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 			<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
@@ -33,8 +35,7 @@
 		{% endblock head %}
 	</head>
 
-	<body id="page-top">
-		
+	<body id="testfront">
 		{% block content %}{% endblock content %}
 
 		<footer>
@@ -47,11 +48,15 @@
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 		<!-- Chart -->
 		<script src="{% static 'js/chart.js' %}"></script>
 		<script src="{% static 'js/chartLogic.js' %}"></script>
 		<script src = "{% static 'js/scrolling.js' %}"></script>
 		<script src = "{% static 'js/countdown.js' %}"></script>
+		<script src = "{% static 'js/sweetalert-dev.js' %}"></script>
+		<script src="{% static 'js/company_service.js' %}"></script>
 
 		{% block extraJS %}
 		{% endblock extraJS %}

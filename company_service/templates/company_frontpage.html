@@ -2,18 +2,22 @@
 {% load staticfiles %}
 {% block content %}
 <div id = "company_service-frontpage">
-	<div class="add-product">
-		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-		<p>Legg til i Ønskeliste</p>
+	<div class="navigation-buttons" id="go-to-wishlist">
+		<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+		<p>Gå til ønskeliste</p>
 	</div>
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="1000000">
+		<div class="add-product" id="add-product">
+			<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+			<p>Legg til i Ønskeliste</p>
+		</div>
 		<!-- Indicators -->
-		<ol class="carousel-indicators">
+		<ol class="carousel-indicators" id="carousel-indicators">
 			{% for product in products %}
 				{% if forloop.first %}
-					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active" style = "background-image: url({{product.background.url}});"></li>
 				{% else %}
-					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" style = "background-image: url({{product.background.url}});"></li>
 				{% endif %}
 			{% endfor %}
 		</ol>
@@ -49,7 +53,7 @@
 	</div>
 	<section id ="section-product">
 		{% for product in products %}
-			<div id = "product{{ forloop.counter0 }}">
+			<div id = "product{{ forloop.counter0 }}" data-productid = "{{ product.id }}">
 				<div class="content">
 					<h1>{{product.name}}</h1>
 					<p>{{product.description}}</p>
@@ -88,9 +92,7 @@
 		<div class= "slider-outer">
 			<div class= "slider-inner">
 				<div class= "close">
-					<div class="lr">
-	                    <div class="rl"></div>
-	                </div>
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</div>
 				<div id="picture-carousel{{forloop.counter0}}" class="carousel slide" data-ride="carousel" data-interval="1000000">
 					<!-- Indicators -->
@@ -135,58 +137,64 @@
 	{% endfor %}
 </div>
 
+<div id="intro-message">
+	<div class="message">
+		<div class= "close" id="intro-close">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		</div>
+		<div id="intro" class="carousel slide" data-ride="carousel" data-interval="1000000">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">	
+				<li data-target="#intro" data-slide-to="0" class="active"></li>
+				<li data-target="#intro" data-slide-to="1"></li>
+			</ol>
+
+		  <!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<h1>One</h1>
+				</div>
+				<div class="item">
+					<h1>Two</h1>
+				</div>
+			</div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#intro" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#intro" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+</div>
+{% csrf_token %}
+
 {% endblock content %}
 
 {% block extraJS %}
 <script>
+   var numProducts = Number({{numProducts }});
+   var wishlist = {{wishlist}};
 
-	var selected_product;
-	var num_products;
+   var selectedProduct;
 
-	$(document).ready(function() {
-
-		selected_product = 0;
-		num_products = Number({{products.count}});
+   $(document).ready(function() {
+		selectedProduct = 0;
 
 		$('#picture-slider0').hide();
+		$('#do-post').hide();
+		$('#go-to-wishlist').hide();
 
-		for (var i = 1; i<num_products; i++) {
+		for (var i = 1; i<numProducts; i++) {
 			$('#picture-slider' + i).hide();
 			$('#product' + i).hide();
 		}
-	})
 
-	$('.picture').click(function() {
-		var picture = $(this).data('picture');
-		$('#picture-slider' + selected_product).fadeIn();
-		$('#picture-carousel' + selected_product + ' .carousel-inner .picture' + picture).addClass('active');
-	})
-
-	$('.close').click(function() {
-		$('#picture-slider' + selected_product).fadeOut();
-		$('#picture-carousel' + selected_product + ' .carousel-inner .item').removeClass('active');
-	})
-
-	$('#carousel-left').click(function() {
-		$('#product' + selected_product).fadeOut();
-
-		if (selected_product <= 0)
-			selected_product = num_products-1;
-		else
-			selected_product -= 1;
-
-		$('#product' + selected_product).fadeIn();
-	})
-
-	$('#carousel-right').click(function() {
-		$('#product' + selected_product).fadeOut();
-
-		if (selected_product < num_products-1)
-			selected_product += 1;
-		else
-			selected_product = 0;
-
-		$('#product' + selected_product).fadeIn();
-	})
+		toggleSelectButton($('#add-product'));
+   })
 </script>
 {% endblock extraJS %}

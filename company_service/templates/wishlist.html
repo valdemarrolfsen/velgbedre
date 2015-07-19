@@ -2,9 +2,9 @@
 {% load staticfiles %}
 {% block content %}
 	<div id = "company_service-wishlist" style="background-image: url('{% static 'img/background/present.jpg' %}');">
-		<div class="add-product">
+		<div class="add-product" id ="save-wishlist">
 			<span class="glyphicon glyphicon-gift" aria-hidden="true"></span>
-			<p>Send inn ønskeliste</p>
+			<p>Lagre ønskeliste</p>
 		</div>
 		<div class="intro">
 			<h1>På tide å ta et valg</h1>
@@ -13,45 +13,35 @@
 			</p>
 		</div>
 		<div class="wishlist">
-			<div class="top-three" id = "drag1" ondrop="drop(event)" ondragover="allowDrop(event)">
-				<div class="wishlist-product" draggable="true" ondragstart="drag(event)">
-					<div class="wishlist-product-image" style="background-image: url('{% static 'img/products/lstn.png' %}');"></div>
+			<ul class="top-three" id="sortable">
+				{% for wish in wishlist %}
+				  <li id = "{{wish.product.id}}" class="ui-state-default wishlist-product">
+				  	<div class="wishlist-product-image" style="background-image: url('{{ wish.product.background.url}}');"></div>
 					<div class="wishlist-product-text">
-						<p>Lste Headphones</p>
+						<p>{{wish.product.name}}</p>
 					</div>
-				</div>
-				<div class="wishlist-product" id = "drag2" draggable="true" ondragstart="drag(event)">
-					<div class="wishlist-product-image" style="background-image: url('{% static 'img/products/lommebok.png' %}');"></div>
-					<div class="wishlist-product-text">
-						<p>Elvis & Kresse Lommebok</p>
-					</div>
-				</div>
-				<div class="wishlist-product" id = "drag3" draggable="true" ondragstart="drag(event)">
-					<div class="wishlist-product-image" style="background-image: url('{% static 'img/products/bboombox.png' %}');"></div>
-					<div class="wishlist-product-text">
-						<p>Berlin Boombox</p>
-					</div>
-				</div>
-			</div>
+				  </li>
+				{% endfor %}
+			</ul>
 			<div class="rest">
 				
 			</div>
 		</div>
 	</div>
+{% endblock content %}
+
+{% block extraJS %}
 
 <script>
-	function allowDrop(ev) {
-	    ev.preventDefault();
-	}
+$(function() {
+	$( "#sortable" ).sortable();
+	$( "#sortable" ).disableSelection();
 
-	function drag(ev) {
-	    ev.dataTransfer.setData("text", ev.target.id);
-	}
-
-	function drop(ev) {
-	    ev.preventDefault();
-	    var data = ev.dataTransfer.getData("text");
-	    ev.target.appendChild(document.getElementById(data));
-	}
+	$('#save-wishlist').click(function() {
+		var sortedIDs = $("#sortable").sortable("toArray");
+		console.log(sortedIDs);
+		saveWishlist(sortedIDs);
+	})
+});
 </script>
-{% endblock content %}
+{% endblock extraJS %}

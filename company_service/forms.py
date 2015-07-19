@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django import forms
+from .mail_sender import Mail_sender
 from .models import *
 import random
 
@@ -33,14 +34,20 @@ class UserProfileForm(forms.ModelForm):
             raise forms.ValidationError('Emailen "%s" er allerede i bruk.' % email)
         return cleaned_data
 
-    def save(self, commit=True):
+    def save(self, company, commit=True):
         # Save the provided password in hashed format
         user = super(UserProfileForm, self).save(commit=False)
-        user.set_password(generate_random())
+        password = generate_random()
+
+        user.set_password(password)
+        user.company = company
         user.email = user.email.lower()
 
         if commit:
             user.save()
+            Mail_sender.send_welcome_mail(user, password)
+
+            user = authenticate(username=user.email.lower(), password=password)
 
         return user
 
