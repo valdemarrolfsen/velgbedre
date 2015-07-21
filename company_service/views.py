@@ -26,6 +26,7 @@ def intro_view(request, code):
 		userForm = UserProfileForm()
 
 	return render(request, 'intro.html', {
+		'company':company,
 		'userForm':userForm
 	})
 
@@ -82,9 +83,14 @@ def frontpage_view(request):
 		'numProducts': numProducts
 	})
 
+@login_required
 def wishlist_view(request):
 	wishlist = Wish.objects.filter(user=request.user)
+	company = request.user.company
+
+
 	return render(request, 'wishlist.html', {
-		'wishlist' : wishlist
+		'wishlist' : wishlist,
+		'company' : company
 	})
 

@@ -58,10 +58,16 @@
 			
 			.carousel-control {
 				background-image: none;
+				color: #000;
 			}
 
-			.carousel-control {
-				color: #000;
+			.carousel-inner {
+				.item {
+					.effect {
+						width: 33.3333%;
+						float: left;
+					}
+				}
 			}
 
 		}
@@ -477,35 +483,71 @@
     background-position: center center;
     background-size: cover;
 
+    .logo {
+    	position: absolute;
+    	bottom: 30px;
+    	right: 30px;
+
+    	width: 200px;
+
+    	padding: 15px 20px;
+
+    	background: #eee;
+
+    	img {
+    		width: 100%;
+    	}
+    }
+
+    .cover {
+    	position: fixed;
+    	top: 0;
+    	left: 0;
+
+    	z-index: 0;
+
+    	width: 100%;
+    	height: 100vh;
+
+    	background: rgba(0,0,0,0.5);
+    }
+
     .intro {
+    	position: relative;
+
+    	z-index: 1;
+
     	width: 60%;
 		
 		padding: 20px;
-		padding-top: 10vh;
+		padding-top: 5vh;
 
 		display: block;
     	margin: 0 auto;
 
+    	text-shadow: 0 1px 10px rgba(0,0,0,.5);
+
     	h1 {
     		font-size: 40px;
-    		font-weight: 300;
-
+    		font-weight: 900;
     		color: #fff;
     	}
 
     	p {
     		font-size: 20px;
-    		font-weight: 300;
+    		font-weight: 500;
 
     		color: #fff;
     	}
     }
 
     .register {
+    	position: relative;
+
+    	z-index: 1;
+
     	width: 60%;
     	height: 40vh;
-		
-		padding-top: 20px;
 
 		display: block;
     	margin: 0 auto;
@@ -542,7 +584,7 @@
 
 #company_service-wishlist {
 	width: 100%;
-	height: 100vh;
+	min-height: 120vh;
 
 	display: inline-block;
     background-position: center center;
@@ -585,12 +627,28 @@
 			color: #fff;
 		}
 	}
+
+	.cover {
+    	position: fixed;
+    	top: 0;
+    	left: 0;
+
+    	z-index: 0;
+
+    	width: 100%;
+    	height: 100vh;
+
+    	background: rgba(0,0,0,0.5);
+    }
 	
 	.intro {
+		position: relative;
+		z-index: 1;
+
     	width: 60%;
 		
 		padding: 20px;
-		padding-top: 10vh;
+		padding-top: 5vh;
 
 		display: block;
     	margin: 0 auto;
@@ -611,6 +669,8 @@
     }
 
 	.wishlist {
+		position: relative;
+		z-index: 1;
 		width: 40%;
 		margin-top: 20px;
 
@@ -618,22 +678,29 @@
 
 		ul {
 			list-style-type: none;
+			padding: 0;
 		}
 
 		.wishlist-product {
 			width: 100%;
-			height: 100px;
+			height: 80px;
 
 			cursor: pointer;
 
+			background: #eee;
+
+			margin-bottom: 20px;
+
 			.wishlist-product-image {
 				position: relative;
-				left: 40px;
+				left: 0px;
 
-				height: 100px;
-				width: 100px;
+				height: 80px;
+				width: 80px;
 
 				z-index: 2;
+
+				float: left;
 
 				display: inline-block;
 			    background-position: center center;
@@ -647,21 +714,27 @@
 
 			.wishlist-product-text {
 				position: relative;
-				top: -85px;
 
 				width: 100%;
-				height: 60px;
+				height: 80px;
 
 				z-index: 1;
-
-				background: #333;
-				padding-left: 160px;
-				padding-top: 15px;
+				padding: 25px;
+				padding-left: 100px;
 
 				p {
-					color: #fff;
+					color: #222;
 					font-size: 20px;
     				font-weight: 300;
+    				float: left;
+				}
+
+				span {
+					padding-top: 3px;
+
+					font-size: 20px;
+					color: #444;
+					float: right;
 				}
 			}
 		}

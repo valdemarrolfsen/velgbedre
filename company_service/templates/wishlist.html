@@ -1,10 +1,15 @@
 {% extends 'company_main.html' %}
 {% load staticfiles %}
 {% block content %}
-	<div id = "company_service-wishlist" style="background-image: url('{% static 'img/background/present.jpg' %}');">
+	<div id = "company_service-wishlist" style="background-image: url('{{company.background.url}}');">
+		<div class="cover"></div>
 		<div class="add-product" id ="save-wishlist">
 			<span class="glyphicon glyphicon-gift" aria-hidden="true"></span>
 			<p>Lagre ønskeliste</p>
+		</div>
+		<div class="add-product" id ="close-window">
+			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			<p>Avslutt velgeren</p>
 		</div>
 		<div class="intro">
 			<h1>På tide å ta et valg</h1>
@@ -19,13 +24,11 @@
 				  	<div class="wishlist-product-image" style="background-image: url('{{ wish.product.background.url}}');"></div>
 					<div class="wishlist-product-text">
 						<p>{{wish.product.name}}</p>
+						<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
 					</div>
 				  </li>
 				{% endfor %}
 			</ul>
-			<div class="rest">
-				
-			</div>
 		</div>
 	</div>
 {% endblock content %}
@@ -37,11 +40,41 @@ $(function() {
 	$( "#sortable" ).sortable();
 	$( "#sortable" ).disableSelection();
 
+	$('#close-window').hide();
+
 	$('#save-wishlist').click(function() {
 		var sortedIDs = $("#sortable").sortable("toArray");
-		console.log(sortedIDs);
 		saveWishlist(sortedIDs);
-	})
+		$(this).fadeOut();
+		$('#close-window').fadeIn();
+	});
+
+	$('#close-window').click(function() {
+		swal({
+			title: "Er du sikker?",
+			text: "Ved å gå videre vil du avslutte gavevelgeren",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonText: "Lukk vindu",
+			cancelButtonText: "Gå tilbake",
+			closeOnConfirm: false,
+			closeOnCancel: false },
+			function(isConfirm){
+				if (isConfirm) {
+					window.location.replace("http://www.velgbedre.no");
+				} else {
+					swal({   
+						title: "Avbrutt",
+						type: "error",
+						timer: 1500,
+						showConfirmButton: false 
+					});
+					$('#save-wishlist').fadeIn();
+					$('#close-window').fadeOut();
+				}
+			});
+	});
+
 });
 </script>
 {% endblock extraJS %}

@@ -1,11 +1,15 @@
 {% extends 'company_main.html' %}
 {% load staticfiles %}
 {% block content %}
-	<div id="company_service-intro" style="background-image: url('{% static 'img/background/present.jpg' %}');">
+	<div id="company_service-intro" style="background-image: url('{{company.background.url}}');">
+		<div class="cover"></div>
+		<div class="logo">
+			<img src="{{company.logo.url}}" alt="">
+		</div>
 		<div class="intro">
 			<h1>Takk for jobben du gjør!</h1>
 			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis ex sit amet nisl commodo condimentum. Sed bibendum mattis dignissim. Curabitur neque dolor, elementum vitae convallis at, mollis ac nisl. Suspendisse potenti. Curabitur euismod sem eu purus dapibus pulvinar. Vivamus leo elit, egestas vitae nisl sit amet, facilisis venenatis dui.
+				{{company.greeting}}
 			</p>
 		</div>
 		<div class="register">
