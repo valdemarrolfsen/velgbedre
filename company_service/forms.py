@@ -45,7 +45,7 @@ class UserProfileForm(forms.ModelForm):
         user.email = user.email.lower()
 
         if commit:
-            user = user.save()
+            user.save()
             Mail_sender.send_welcome_mail(user, password)
 
             user = authenticate(username=user.email.lower(), password=password)
