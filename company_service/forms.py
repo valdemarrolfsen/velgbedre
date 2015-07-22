@@ -40,6 +40,7 @@ class UserProfileForm(forms.ModelForm):
         password = generate_random()
 
         user.set_password(password)
+        user.is_active = True
         user.company = company
         user.email = user.email.lower()
 
