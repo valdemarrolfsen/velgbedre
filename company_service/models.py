@@ -20,6 +20,7 @@ class MyUserManager(BaseUserManager):
 			post_place=post_place
 		)
 
+		user.is_active = True
 		user.set_password(password)
 		user.save(using=self._db)
 
