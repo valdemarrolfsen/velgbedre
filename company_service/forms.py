@@ -45,12 +45,11 @@ class UserProfileForm(forms.ModelForm):
         user.email = user.email.lower()
 
         if commit:
-            user.save()
+            user = user.save()
             Mail_sender.send_welcome_mail(user, password)
 
             user = authenticate(username=user.email.lower(), password=password)
-
-        return user
+            return user
 
 
 class LoginForm(forms.Form):
