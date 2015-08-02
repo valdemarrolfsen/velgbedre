@@ -130,6 +130,10 @@ class Product(models.Model):
 
 		return img_urls
 
+	def get_types(self):
+		return Type.objects.filter(product=self)
+
+
 
 class CompanyProductRelation(models.Model):
 	company = models.ForeignKey(Company)
@@ -139,6 +143,7 @@ class CompanyProductRelation(models.Model):
 class Wish(models.Model):
 	product = models.ForeignKey(Product)
 	user = models.ForeignKey(UserProfile)
+	productType = models.IntegerField()
 
 	priority = models.IntegerField()
 
@@ -146,6 +151,11 @@ class ProductImage(models.Model):
 	name = models.CharField(max_length=50)
 	product = models.ForeignKey(Product)
 	image = models.ImageField(upload_to='images/%Y/%m/%d')
+
+class Type(models.Model):
+	name = models.CharField(max_length=50)
+	product = models.ForeignKey(Product)
+
 
 
 

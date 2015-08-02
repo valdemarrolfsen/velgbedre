@@ -1,6 +1,7 @@
 var addProduct;
 var saveWishlist;
 var getCookie;
+var selectedInfobox;
 
 $(document).ready(function() {
 
@@ -8,7 +9,7 @@ $(document).ready(function() {
 		var productId = $('#product' + selectedProduct).data("productid");
 		var index = $.inArray(productId, wishlist);
 
-		if (index<0)
+		if (index < 0)
 			wishlist.push(productId);
 		else
 			wishlist.splice(index, 1);
@@ -102,6 +103,9 @@ $('.close').click(function() {
 })
 
 $('#carousel-left').click(function() {
+
+	selectedType = -1;
+
 	$('#product' + selectedProduct).fadeOut();
 
 	if (selectedProduct <= 0)
@@ -115,6 +119,8 @@ $('#carousel-left').click(function() {
 })
 
 $('#carousel-right').click(function() {
+	selectedType = -1;
+	
 	$('#product' + selectedProduct).fadeOut();
 
 	if (selectedProduct < numProducts-1)
@@ -145,3 +151,71 @@ $('#intro-message').click(function(e) {
 	if (e.target == this)
 		$('#intro-message').fadeOut();
 })
+
+// ------------- Product types -------------
+$('#productTypes').change(function() {
+	selectedType = $('#productTypes option:selected').data("type");
+
+	console.log($('#productTypes option:selected').data("type"));
+});
+
+// ------------- Infoboxes ---------------
+$('#first-icon').click(function() {
+	var pos = $(this).offset();
+
+	if (selectedInfobox == 1) {
+		$('.infobox').fadeOut();
+		$('.pointer').hide();
+		selectedInfobox = 0;
+
+		return
+	}
+
+	selectedInfobox = 1;
+
+	$('.infobox').css({'top':pos.top - 500});
+	$('.pointer').css({'left':pos.left + 50});
+
+	$('.infobox').fadeIn();
+	$('.pointer').show();
+
+});
+
+$('#second-icon').click(function() {
+	var pos = $(this).offset();
+
+	if (selectedInfobox == 2) {
+		$('.infobox').fadeOut();
+		$('.pointer').hide();
+		selectedInfobox = 0;
+		return
+	}
+
+	selectedInfobox = 2;
+
+	$('.infobox').css({'top':pos.top - 500});
+	$('.pointer').css({'left':pos.left + 50});
+
+	$('.pointer').show();
+	$('.infobox').fadeIn();
+});
+
+$('#third-icon').click(function() {
+	var pos = $(this).offset();
+
+	if (selectedInfobox == 3) {
+		$('.infobox').fadeOut();
+		$('.pointer').hide();
+		selectedInfobox = 0;
+		return
+	}
+
+	selectedInfobox = 3;
+
+	$('.infobox').css({'top':pos.top - 500});
+	$('.pointer').css({'left':pos.left + 50});
+
+	$('.infobox').fadeIn();
+	$('.pointer').show();
+
+});

@@ -57,6 +57,13 @@
 				<div class="content">
 					<h1>{{product.name}}</h1>
 					<p>{{product.description}}</p>
+					<div class="icons">
+						<div class="icon" id="first-icon"></div>
+						<div class="icon" id="second-icon"></div>
+						<div class="icon" id="third-icon"></div>
+						<div class="infobox"><h1>One</h1></div>
+						<div class = "pointer"></div>
+					</div>
 				</div>
 				<div class="other-info">
 					<div class = "picture-container">
@@ -66,16 +73,12 @@
 						{% endfor %}
 					</div>
 					<div class="info-container">
-						<h1>Hvem</h1>
-						<p>{{product.who}}</p>
-					</div>
-					<div class="info-container">
-						<h1>Hvordan</h1>
-						<p>{{product.how}}</p>
-					</div>
-					<div class="info-container">
-						<h1>Hvorfor</h1>
-						<p>{{product.why}}</p>
+						<p>Type:</p>
+						<select name="productTypes" id="productTypes">
+							{% for type in product.get_types %}
+								<option data-type="{{ type.id }}">{{type.name}}</option>
+							{% endfor %}
+						</select>
 					</div>
 				</div>
 			</div>
@@ -248,10 +251,11 @@
 
 {% block extraJS %}
 <script>
-   var numProducts = Number({{numProducts }});
+   var numProducts = Number({{numProducts}});
    var wishlist = {{wishlist}};
 
    var selectedProduct;
+   var selectedType;
 
    $(document).ready(function() {
 		selectedProduct = 0;
@@ -259,6 +263,9 @@
 		$('#picture-slider0').hide();
 		$('#do-post').hide();
 		$('#go-to-wishlist').hide();
+		$('.infobox').hide();
+		$('.pointer').hide();
+
 
 		for (var i = 1; i<numProducts; i++) {
 			$('#picture-slider' + i).hide();

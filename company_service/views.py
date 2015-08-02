@@ -88,7 +88,6 @@ def wishlist_view(request):
 	wishlist = Wish.objects.filter(user=request.user)
 	company = request.user.company
 
-
 	return render(request, 'wishlist.html', {
 		'wishlist' : wishlist,
 		'company' : company
