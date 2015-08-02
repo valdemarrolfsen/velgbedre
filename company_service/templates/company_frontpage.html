@@ -58,9 +58,16 @@
 					<h1>{{product.name}}</h1>
 					<p>{{product.description}}</p>
 					<div class="icons">
-						<div class="icon" id="first-icon"></div>
-						<div class="icon" id="second-icon"></div>
-						<div class="icon" id="third-icon"></div>
+						<h1>Trippel bunnlinje</h1>
+						<div class="icon" id="first-icon">
+							<img src="{% static 'img/icons/company_service/coins.svg' %}" alt="">
+						</div>
+						<div class="icon" id="second-icon">
+							<img src="{% static 'img/icons/company_service/earth.svg' %}" alt="">
+						</div>
+						<div class="icon" id="third-icon">
+							<img src="{% static 'img/icons/company_service/loving.svg' %}" alt="">
+						</div>
 						<div class="infobox"><h1>One</h1></div>
 						<div class = "pointer"></div>
 					</div>
@@ -285,6 +292,10 @@
 		// ------------- Product types -------------
 		$('#productTypes' + selectedProduct).change(function() {
 			selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
+
+			$('#add-product').removeClass('selected');
+			$('#add-product').addClass('updateble');
+			$('#add-product').html("<span class='glyphicon glyphicon-heart' aria-hidden='true'></span><p>Oppdater ønskeliste</p>");
 		});
    })
 </script>

@@ -24,9 +24,11 @@ $(document).ready(function() {
  
 		if (isInList && !button.hasClass('selected')) {
 			button.addClass('selected');
+			button.removeClass('updateble');
 			button.html("<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><p>Produkt lagt til</p>");
 		} else if (!isInList) {
 			button.removeClass('selected');
+			button.removeClass('updateble');
 			button.html("<span class='glyphicon glyphicon-heart' aria-hidden='true'></span><p>Legg til i Ønskeliste</p>");
 		}
 	}
@@ -191,7 +193,7 @@ $('#first-icon').click(function() {
 	selectedInfobox = 1;
 
 	$('.infobox').css({'top':pos.top - 500});
-	$('.pointer').css({'left':pos.left + 50});
+	$('.pointer').css({'left':pos.left + 70});
 
 	$('.infobox').fadeIn();
 	$('.pointer').show();
@@ -211,7 +213,7 @@ $('#second-icon').click(function() {
 	selectedInfobox = 2;
 
 	$('.infobox').css({'top':pos.top - 500});
-	$('.pointer').css({'left':pos.left + 50});
+	$('.pointer').css({'left':pos.left + 70});
 
 	$('.pointer').show();
 	$('.infobox').fadeIn();
@@ -230,7 +232,7 @@ $('#third-icon').click(function() {
 	selectedInfobox = 3;
 
 	$('.infobox').css({'top':pos.top - 500});
-	$('.pointer').css({'left':pos.left + 50});
+	$('.pointer').css({'left':pos.left + 70});
 
 	$('.infobox').fadeIn();
 	$('.pointer').show();
