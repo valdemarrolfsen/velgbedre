@@ -143,7 +143,7 @@ class CompanyProductRelation(models.Model):
 class Wish(models.Model):
 	product = models.ForeignKey(Product)
 	user = models.ForeignKey(UserProfile)
-	productType = models.IntegerField()
+	productType = models.IntegerField(null=True, blank=True)
 
 	priority = models.IntegerField()
 

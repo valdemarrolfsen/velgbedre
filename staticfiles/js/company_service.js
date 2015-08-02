@@ -156,7 +156,7 @@ $('#intro-message').click(function(e) {
 $('#productTypes').change(function() {
 	selectedType = $('#productTypes option:selected').data("type");
 
-	console.log($('#productTypes option:selected').data("type"));
+	console.log(selectedType);
 });
 
 // ------------- Infoboxes ---------------

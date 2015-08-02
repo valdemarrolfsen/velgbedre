@@ -47,7 +47,6 @@ def frontpage_view(request):
 			oldWishesCopy.append(wish)
 
 		oldWishes.delete()
-
 		try:
 			data = json.loads(request.POST['data'])
 
