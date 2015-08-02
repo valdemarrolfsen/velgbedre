@@ -74,9 +74,9 @@
 					</div>
 					<div class="info-container">
 						<p>Type:</p>
-						<select name="productTypes" id="productTypes">
+						<select name="productTypes" id="productTypes{{forloop.counter0}}">
 							{% for type in product.get_types %}
-								<option data-type="{{ type.id }}">{{type.name}}</option>
+								<option value="{{ type.id }}">{{type.name}}</option>
 							{% endfor %}
 						</select>
 					</div>
@@ -252,7 +252,15 @@
 {% block extraJS %}
 <script>
    var numProducts = Number({{numProducts}});
-   var wishlist = {{wishlist}};
+
+   var wishlist = [];
+
+   {% for wish in wishlist %}
+   		wishlist.push({
+   			'product':{{wish.product}},
+   			'type':{{wish.type}}
+   		});	
+   {% endfor %}
 
    var selectedProduct;
    var selectedType;
@@ -273,6 +281,11 @@
 		}
 
 		toggleSelectButton($('#add-product'));
+
+		// ------------- Product types -------------
+		$('#productTypes' + selectedProduct).change(function() {
+			selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
+		});
    })
 </script>
 {% endblock extraJS %}

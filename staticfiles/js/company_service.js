@@ -5,23 +5,23 @@ var selectedInfobox;
 
 $(document).ready(function() {
 
-	addProduct = function() {
-		var productId = $('#product' + selectedProduct).data("productid");
-		var index = $.inArray(productId, wishlist);
-
-		if (index < 0)
-			wishlist.push(productId);
-		else
-			wishlist.splice(index, 1);
-	}
+	selectedType = $('#productTypes' + selectedProduct).val();
 
 	toggleSelectButton = function(button) {
 		var productId = $('#product' + selectedProduct).data("productid");
 
-		var isInList = ($.inArray(productId, wishlist)>=0);
+		var isInList = false;
 
-		console.log(isInList);
+		wishlist.forEach(function(entry) {
+			if (productId==entry.product) {
+				isInList = true;
+				selectedType = entry.type;
+			}
+		});
 
+
+		$('#productTypes' + selectedProduct).val(selectedType);
+ 
 		if (isInList && !button.hasClass('selected')) {
 			button.addClass('selected');
 			button.html("<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><p>Produkt lagt til</p>");
@@ -31,7 +31,9 @@ $(document).ready(function() {
 		}
 	}
 
-	saveWishlist = function(list) {
+	pushProduct = function() {
+
+		var productId = $('#product' + selectedProduct).data("productid");
 
 		//Add csrf-token 
 		$.ajaxSetup({
@@ -48,15 +50,39 @@ $(document).ready(function() {
 			type: 'POST',
 			url: 'frontpage',
 			data: {	
-				'data': JSON.stringify({wishlist : list}, null, 2)
+				'productId' : productId,
+				'typeId' : selectedType
 			},
-			success: function() {
+			success: function(response) {
+				if (response=='delete') {
+					var index;
+
+					wishlist.forEach(function(entry, i) {
+						if (productId==entry.product) {
+							index = i;
+						}
+					});
+
+					wishlist.splice(index, 1);
+
+				} else if (response=='new')
+					wishlist.push({'product' : productId, 'type' : selectedType});
+				else {
+					wishlist.forEach(function(entry) { 
+						if (entry.product == productId)
+							entry.type = selectedType
+					});
+				}
+
 				swal({   
 					title: "Ønskeliste lagret!",
 					type: "success",
 					timer: 1500,
 					showConfirmButton: false 
 				});
+
+				console.log(selectedType);
+				toggleSelectButton($('#add-product'));
 			}
 
 		});
@@ -80,10 +106,7 @@ $(document).ready(function() {
 })
 
 $('#add-product').click( function() {
-	addProduct();
-	toggleSelectButton($('#add-product'));
-	console.log(wishlist);
-	saveWishlist(wishlist)
+	pushProduct();
 	$('#go-to-wishlist').fadeIn();
 });
 
@@ -104,8 +127,6 @@ $('.close').click(function() {
 
 $('#carousel-left').click(function() {
 
-	selectedType = -1;
-
 	$('#product' + selectedProduct).fadeOut();
 
 	if (selectedProduct <= 0)
@@ -116,10 +137,11 @@ $('#carousel-left').click(function() {
 	toggleSelectButton($('#add-product'));
 
 	$('#product' + selectedProduct).fadeIn();
+
+	selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
 })
 
 $('#carousel-right').click(function() {
-	selectedType = -1;
 	
 	$('#product' + selectedProduct).fadeOut();
 
@@ -131,6 +153,8 @@ $('#carousel-right').click(function() {
 	toggleSelectButton($('#add-product'));
 
 	$('#product' + selectedProduct).fadeIn();
+
+	selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
 })
 
 $('#carousel-indicators li').click(function() {
@@ -151,13 +175,6 @@ $('#intro-message').click(function(e) {
 	if (e.target == this)
 		$('#intro-message').fadeOut();
 })
-
-// ------------- Product types -------------
-$('#productTypes').change(function() {
-	selectedType = $('#productTypes option:selected').data("type");
-
-	console.log(selectedType);
-});
 
 // ------------- Infoboxes ---------------
 $('#first-icon').click(function() {

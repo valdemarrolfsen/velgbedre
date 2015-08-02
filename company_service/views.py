@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 import json
 
 from .forms import *
@@ -40,33 +41,31 @@ def frontpage_view(request):
 	if request.method == 'POST':
 		oldWishes = Wish.objects.filter(user=request.user)
 
-		#Not to smooth using this in case the system crashes when the new wishes is applied
-		oldWishesCopy = []
-
-		for wish in oldWishes:
-			oldWishesCopy.append(wish)
-
-		oldWishes.delete()
 		try:
-			data = json.loads(request.POST['data'])
+			product = Product.objects.get(pk=request.POST['productId'])
+			selectedType = Type.objects.get(pk=request.POST['typeId'])
 
-			wishlist = data['wishlist']
-			
-			for i in range(len(wishlist)):
+			try:
+				wish = Wish.objects.get(product=product, user=request.user)
+			except:
 				wish = Wish()
 				wish.user = request.user
-
-				try:
-					wish.product = Product.objects.get(pk=wishlist[i])
-				except Exception as e:
-					print('My exception occurred, value:', e)
-
-				wish.priority = i + 1
+				wish.product = product
+				wish.productType = selectedType.id
+				wish.priority = len(oldWishes) + 1
 				wish.save()
-		except:
-			for wish in oldWishesCopy:
-				wish.save()
+				return HttpResponse(content="new", status=200)
 
+			if wish.productType == selectedType.id:
+				wish.delete()
+				return HttpResponse(content="delete", status=200)
+			else:
+				wish.productType = selectedType.id
+				wish.save()
+				return HttpResponse(content="update", status=200)
+
+		except Exception as e:
+			return HttpResponse(content="Wishlist failed to update", status=500)
 	else:
 		#If nothing is posted user gets old wishes if there are any
 		wishes = Wish.objects.filter(user=request.user)
@@ -74,7 +73,10 @@ def frontpage_view(request):
 		wishlist = []
 
 		for wish in wishes:
-			wishlist.append(wish.product.id)
+			wishlist.append({
+				'product' : wish.product.id,
+				'type' : wish.productType
+			})
 
 	return render(request, 'company_frontpage.html', {
 		'products':products,
