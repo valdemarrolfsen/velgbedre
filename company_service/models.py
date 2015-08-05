@@ -112,11 +112,18 @@ class UserProfile(AbstractBaseUser):
 
 class Product(models.Model):
 	name = models.CharField(max_length=100)
+	small_description = models.TextField()
 	description = models.TextField()
 
-	who = models.TextField()
-	how = models.TextField()
-	why = models.TextField()
+	employment = models.TextField()
+	location = models.TextField()
+	cooperation = models.TextField()
+	wages = models.TextField()
+	economic_distribution = models.TextField()
+	ownership = models.TextField()
+	material_selection = models.TextField()
+	environmental_impact = models.TextField()
+	certification = models.TextField()
 
 	background = models.ImageField(upload_to='products/%Y/%m/%d')
 
