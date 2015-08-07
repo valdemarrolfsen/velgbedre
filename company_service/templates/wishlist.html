@@ -20,7 +20,7 @@
 		<div class="wishlist">
 			<ul class="top-three" id="sortable">
 				{% for wish in wishlist %}
-				  <li id = "{{wish.product.id}}" class="ui-state-default wishlist-product">
+				  <li id = "{{wish.id}}" class="ui-state-default wishlist-product">
 				  	<div class="wishlist-product-image" style="background-image: url('{{ wish.product.background.url}}');"></div>
 					<div class="wishlist-product-text">
 						<p>{{wish.product.name}}</p>
@@ -44,7 +44,7 @@ $(function() {
 
 	$('#save-wishlist').click(function() {
 		var sortedIDs = $("#sortable").sortable("toArray");
-		saveWishlist(sortedIDs);
+		pushWishlist(sortedIDs);
 		$(this).fadeOut();
 		$('#close-window').fadeIn();
 	});

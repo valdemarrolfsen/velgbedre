@@ -86,8 +86,21 @@ def frontpage_view(request):
 
 @login_required
 def wishlist_view(request):
-	wishlist = Wish.objects.filter(user=request.user)
+	wishlist = Wish.objects.filter(user=request.user).order_by('priority')
 	company = request.user.company
+
+	if request.method == 'POST':
+		try:
+			wishlist = json.loads(request.POST['wishlist'])
+
+			for i in range(len(wishlist)):
+				print(int(wishlist[i]))
+				wish = Wish.objects.get(pk=int(wishlist[i]))
+				wish.priority = i+1
+				wish.save()
+
+		except Exception as e:
+			print(e)
 
 	return render(request, 'wishlist.html', {
 		'wishlist' : wishlist,

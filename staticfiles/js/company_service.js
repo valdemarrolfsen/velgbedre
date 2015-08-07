@@ -5,8 +5,6 @@ var selectedInfobox;
 
 $(document).ready(function() {
 
-	selectedType = $('#productTypes' + selectedProduct).val();
-
 	toggleSelectButton = function(button) {
 		var productId = $('#product' + selectedProduct).data("productid");
 
@@ -83,8 +81,38 @@ $(document).ready(function() {
 					showConfirmButton: false 
 				});
 
-				console.log(selectedType);
 				toggleSelectButton($('#add-product'));
+			}
+
+		});
+	}
+
+	pushWishlist = function(wishlist) {
+
+		//Add csrf-token 
+		$.ajaxSetup({
+		    beforeSend: function(xhr, settings) {
+		        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+		            // Only send the token to relative URLs i.e. locally.
+		            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+		        }
+		    }
+		});
+
+		//[TODO] Should get url from django template tag
+		$.ajax({
+			type: 'POST',
+			url: 'wishlist',
+			data: {	
+				'wishlist' : JSON.stringify(wishlist, null, 2)
+			},
+			success: function() {
+				swal({   
+					title: "Ønskeliste lagret!",
+					type: "success",
+					timer: 1500,
+					showConfirmButton: false 
+				});
 			}
 
 		});

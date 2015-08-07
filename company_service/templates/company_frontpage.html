@@ -55,13 +55,13 @@
 				<div class="first-part">
 					<div class="content">
 						<h1>{{product.name}}</h1>
-						<p><strong>Setning som får frem essensen i hvorfor dette produktet skaper god samvittighet!</strong></p>
+						<p><strong>{{product.small_description}}</strong></p>
 						<ul>
 							<li>Bulletpoint 1</li>
 							<li>Bulletpoint 2</li>
 							<li>Bulletpoint 3</li>
 						</ul>
-						<p>{{product.description}}</p>
+						<p>{{product.first_description}}</p>
 					</div>
 					<div class="other-info">
 						<div class = "picture-container">
@@ -86,72 +86,72 @@
 				</div>
 				<div class="second-part">
 					<div class="center-box">
-						<h1>Overskrift</h1>
+						<h1>{{product.name}}</h1>
 						<p>
-							Ved å velge Berlin Boombox bidrar du til lokal produksjon av energieffektive produkter. Høytaleren er laget av resirkulert papp, og inneholder kun en liten mengde elektronisk avfall. På kjøpet vil du også bidra til personlig og faglig utvikling for mennesker med nedsatt funksjonsevne og bla blablaabla blaaa bla.
+							{{product.second_description}}
 						</p>
 					</div>
 					<div class="small-content-box">
 						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
 						<h2>SYSSELSETTING</h2>
 						<p>
-							2 personer jobber i selve Berlin Boombox, utenom dette er det ca. 15-20 personer involvert i å produsere delene til Boombox’ene.
+							{{product.employment}}
 						</p>
 					</div>
 					<div class="small-content-box">
 						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
 						<h2>SYSSELSETTING</h2>
 						<p>
-							2 personer jobber i selve Berlin Boombox, utenom dette er det ca. 15-20 personer involvert i å produsere delene til Boombox’ene.
+							{{product.location}}
 						</p>
 					</div>
 					<div class="small-content-box">
 						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
 						<h2>SYSSELSETTING</h2>
 						<p>
-							2 personer jobber i selve Berlin Boombox, utenom dette er det ca. 15-20 personer involvert i å produsere delene til Boombox’ene.
+							{{product.cooperation}}
 						</p>
 					</div>
 					<div class="small-content-box">
 						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
 						<h2>SYSSELSETTING</h2>
 						<p>
-							2 personer jobber i selve Berlin Boombox, utenom dette er det ca. 15-20 personer involvert i å produsere delene til Boombox’ene.
+							{{product.wages}}
 						</p>
 					</div>
 					<div class="small-content-box">
 						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
 						<h2>SYSSELSETTING</h2>
 						<p>
-							2 personer jobber i selve Berlin Boombox, utenom dette er det ca. 15-20 personer involvert i å produsere delene til Boombox’ene.
+							{{product.economic_distribution}}
 						</p>
 					</div>
 					<div class="small-content-box">
 						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
 						<h2>SYSSELSETTING</h2>
 						<p>
-							2 personer jobber i selve Berlin Boombox, utenom dette er det ca. 15-20 personer involvert i å produsere delene til Boombox’ene.
+							{{product.ownership}}
 						</p>
 					</div>
 					<div class="small-content-box">
 						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
 						<h2>SYSSELSETTING</h2>
 						<p>
-							2 personer jobber i selve Berlin Boombox, utenom dette er det ca. 15-20 personer involvert i å produsere delene til Boombox’ene.
+							{{product.material_selection}}
 						</p>
 					</div>
 					<div class="small-content-box">
 						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
 						<h2>SYSSELSETTING</h2>
 						<p>
-							2 personer jobber i selve Berlin Boombox, utenom dette er det ca. 15-20 personer involvert i å produsere delene til Boombox’ene.
+							{{product.environmental_impact}}
 						</p>
 					</div>
 					<div class="small-content-box">
 						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
 						<h2>SYSSELSETTING</h2>
 						<p>
-							2 personer jobber i selve Berlin Boombox, utenom dette er det ca. 15-20 personer involvert i å produsere delene til Boombox’ene.
+							{{product.certification}}
 						</p>
 					</div>
 				</div>
@@ -342,6 +342,8 @@
 
    $(document).ready(function() {
 		selectedProduct = 0;
+
+		selectedType = $('#productTypes' + selectedProduct).val();
 
 		$('#picture-slider0').hide();
 		$('#do-post').hide();

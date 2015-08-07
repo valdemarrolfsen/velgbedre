@@ -113,7 +113,12 @@ class UserProfile(AbstractBaseUser):
 class Product(models.Model):
 	name = models.CharField(max_length=100)
 	small_description = models.TextField()
-	description = models.TextField()
+	first_description = models.TextField()
+	second_description = models.TextField()
+
+	first_bullet = models.CharField(max_length=100)
+	second_bullet = models.CharField(max_length=100)
+	third_bullet = models.CharField(max_length=100)
 
 	employment = models.TextField()
 	location = models.TextField()
