@@ -22,7 +22,7 @@ def intro_view(request, code):
 		if userForm.is_valid():
 			user = userForm.save(company)
 			login(request, user)
-			return redirect(reverse('frontpage'))
+			return redirect(reverse('company_frontpage'))
 	else:
 		userForm = UserProfileForm()
 
