@@ -112,11 +112,23 @@ class UserProfile(AbstractBaseUser):
 
 class Product(models.Model):
 	name = models.CharField(max_length=100)
-	description = models.TextField()
+	small_description = models.TextField()
+	first_description = models.TextField()
+	second_description = models.TextField()
 
-	who = models.TextField()
-	how = models.TextField()
-	why = models.TextField()
+	first_bullet = models.CharField(max_length=100)
+	second_bullet = models.CharField(max_length=100)
+	third_bullet = models.CharField(max_length=100)
+
+	employment = models.TextField()
+	location = models.TextField()
+	cooperation = models.TextField()
+	wages = models.TextField()
+	economic_distribution = models.TextField()
+	ownership = models.TextField()
+	material_selection = models.TextField()
+	environmental_impact = models.TextField()
+	certification = models.TextField()
 
 	background = models.ImageField(upload_to='products/%Y/%m/%d')
 
@@ -130,6 +142,10 @@ class Product(models.Model):
 
 		return img_urls
 
+	def get_types(self):
+		return Type.objects.filter(product=self)
+
+
 
 class CompanyProductRelation(models.Model):
 	company = models.ForeignKey(Company)
@@ -139,6 +155,7 @@ class CompanyProductRelation(models.Model):
 class Wish(models.Model):
 	product = models.ForeignKey(Product)
 	user = models.ForeignKey(UserProfile)
+	productType = models.IntegerField(null=True, blank=True)
 
 	priority = models.IntegerField()
 
@@ -146,6 +163,11 @@ class ProductImage(models.Model):
 	name = models.CharField(max_length=50)
 	product = models.ForeignKey(Product)
 	image = models.ImageField(upload_to='images/%Y/%m/%d')
+
+class Type(models.Model):
+	name = models.CharField(max_length=50)
+	product = models.ForeignKey(Product)
+
 
 
 

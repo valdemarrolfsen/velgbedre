@@ -28,13 +28,11 @@
 				{% if forloop.first %}
 					<div class="item active">
 						<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
-							<h1>{{product.name}}</h1>
 						</section>
 					</div>
 				{% else %}
 					<div class="item">
 						<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
-							<h1>{{product.name}}</h1>
 						</section>
 					</div>
 				{% endif %}
@@ -54,28 +52,107 @@
 	<section id ="section-product">
 		{% for product in products %}
 			<div id = "product{{ forloop.counter0 }}" data-productid = "{{ product.id }}">
-				<div class="content">
-					<h1>{{product.name}}</h1>
-					<p>{{product.description}}</p>
+				<div class="first-part">
+					<div class="content">
+						<h1>{{product.name}}</h1>
+						<p><strong>{{product.small_description}}</strong></p>
+						<ul>
+							<li>Bulletpoint 1</li>
+							<li>Bulletpoint 2</li>
+							<li>Bulletpoint 3</li>
+						</ul>
+						<p>{{product.first_description}}</p>
+					</div>
+					<div class="other-info">
+						<div class = "picture-container">
+							<h1>Flere bilder</h1>
+							{% for image in product.get_images %}
+								<div class = "picture" style="background-image: url({{image}});" data-picture = "{{forloop.counter0}}"></div>
+							{% endfor %}
+						</div>
+						<div class="info-container">
+							<p>Type:</p>
+							<select name="productTypes" id="productTypes{{forloop.counter0}}">
+								{% for type in product.get_types %}
+									<option value="{{ type.id }}">{{type.name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="image-container">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<span class="icon-arrow-down" aria-hidden="true"></span>
+					</div>
 				</div>
-				<div class="other-info">
-					<div class = "picture-container">
-						<h1>Flere bilder</h1>
-						{% for image in product.get_images %}
-							<div class = "picture" style="background-image: url({{image}});" data-picture = "{{forloop.counter0}}"></div>
-						{% endfor %}
+				<div class="second-part">
+					<div class="center-box">
+						<h1>{{product.name}}</h1>
+						<p>
+							{{product.second_description}}
+						</p>
 					</div>
-					<div class="info-container">
-						<h1>Hvem</h1>
-						<p>{{product.who}}</p>
+					<div class="small-content-box">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<h2>SYSSELSETTING</h2>
+						<p>
+							{{product.employment}}
+						</p>
 					</div>
-					<div class="info-container">
-						<h1>Hvordan</h1>
-						<p>{{product.how}}</p>
+					<div class="small-content-box">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<h2>SYSSELSETTING</h2>
+						<p>
+							{{product.location}}
+						</p>
 					</div>
-					<div class="info-container">
-						<h1>Hvorfor</h1>
-						<p>{{product.why}}</p>
+					<div class="small-content-box">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<h2>SYSSELSETTING</h2>
+						<p>
+							{{product.cooperation}}
+						</p>
+					</div>
+					<div class="small-content-box">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<h2>SYSSELSETTING</h2>
+						<p>
+							{{product.wages}}
+						</p>
+					</div>
+					<div class="small-content-box">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<h2>SYSSELSETTING</h2>
+						<p>
+							{{product.economic_distribution}}
+						</p>
+					</div>
+					<div class="small-content-box">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<h2>SYSSELSETTING</h2>
+						<p>
+							{{product.ownership}}
+						</p>
+					</div>
+					<div class="small-content-box">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<h2>SYSSELSETTING</h2>
+						<p>
+							{{product.material_selection}}
+						</p>
+					</div>
+					<div class="small-content-box">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<h2>SYSSELSETTING</h2>
+						<p>
+							{{product.environmental_impact}}
+						</p>
+					</div>
+					<div class="small-content-box">
+						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+						<h2>SYSSELSETTING</h2>
+						<p>
+							{{product.certification}}
+						</p>
 					</div>
 				</div>
 			</div>
@@ -152,81 +229,82 @@
 		  <!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<h1>Trippel bunnlinje</h1>
-					<p>
-						Hvert eneste produkt som lages har en effekt, og hvert produkt du kjøper er en stemme på den verdenen du har lyst å leve i. Velg Bedre forteller deg hvordan effekten av hvert produkt er med på å skape en bærekraftig fremtid, og vi deler denne effekten opp i tre kategorier:
-					</p>
-					<div class="effect">
-						<h3>Sosial effekt</h3>
-						<ul>
-							<li>
-								<strong>Sysselsetting:</strong> Hvor mange mennesker sysselsettes gjennom virksomheten.
-							</li>
-							<li>
-								<strong>Lokasjon:</strong> Hvor i verden produseres produktet?
-							</li>
-							<li>
-								<strong>Samarbeid:</strong> Samarbeider virksomheten med eksterne organisasjoner?
-							</li>
-						</ul>
-					</div>
-					<div class="effect">
-						<h3>Økonomisk effekt</h3>
-						<ul>
-							<li>
-								<strong>Lønnsforhold:</strong> Får alle involverte i produksjonen en rettferdig betaling?
-							</li>
-							<li>
-								<strong>Økonomisk fordeling:</strong> Hvordan fordeles profitten fra virksomheten?
-							</li>
-							<li>
-								<strong>Eierskap:</strong> Hvem eier selskapet?
-							</li>
-						</ul>
-					</div>
-					<div class="effect">
-						<h3>Miljøeffekt</h3>
-						<ul>
-							<li>
-								<strong>Materialvalg:</strong> Hvilke materialer brukes til å lage produktet?
-							</li>
-							<li>
-								<strong>Miljøpåvirkning:</strong> Hva er det totale avtrykket fra produksjonen av varen?
-							</li>
-							<li>
-								<strong>Sertifisering:</strong> Er selskapet godkjent av noen sertifiseringer eller ordninger?
-							</li>
-						</ul>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<h1>Velg bedre</h1>
+								<p>
+									Innledende setning som setter brukeren i kontekst og gir dem en fortsåelse av hva de nettopp har klikket seg inn på.
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="item">
-					<h1>Brukerinstruksjoner</h1>
-					<ul>
-						<li>
-							<h4>Kapasitetsbegrensninger</h4>
-							<p>
-								Skikkelig håndtverk er ressurs- og tidkrevende. Dette medfører at våre produsenter har kapasitetsbegrensninger i sin produksjon. Derfor gir vi deg mulighet til å fylle ut en hel ønskelisten slik at du er sikret å få noe du virkelig ønsker deg.
-							</p>
-						</li>
-						<li>
-							<h4>Produktoversikt</h4>
-							<p>
-								Øverst i velgeren finner du oversikten over produktene kun kan velge mellom. Du navigerer i produktoversikten ved å klikke på produktene.
-							</p>
-						</li>
-						<li>
-							<h4>Produkt</h4>
-							<p>
-								På hvert produkt kan du lese produktbeskrivelse og lese om effekten av produktet. Du kan også se gjennom bilder av produktet og velge hvilke variant du ønsker deg hvor det er aktuelt.
-							</p>
-						</li>
-						<li>
-							<h4>Logge ut og inn</h4>
-							<p>
-								Det er alltid mulig å lagre ønskelisten din til senere bruk, og logge på igjen med tilsendt påloggingsinformasjon.
-							</p>
-						</li>
-					</ul>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-9">
+								<h1>Trippel bunnlinje</h1>
+								<p>
+									Velg Bedre forteller deg hvordan effekten av hvert produkt er med på å skape en bærekraftig fremtid, og vi deler denne effekten opp i tre kategorier:
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<h2>Sosial Effekt</h2>
+								<div class="image-container">
+									<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+								</div>
+								<h3>Sysselsetting</h3>
+								<div class="image-container">
+									<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+								</div>
+								<h3>Lokasjon</h3>
+								<div class="image-container">
+									<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+								</div>
+								<h3>Samarbeid</h3>
+							</div>
+							<div class="col-md-4">
+								<h2>Økonomisk Effekt</h2>
+								<div class="image-container">
+									<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+								</div>
+								<h3>Lønnsforhold</h3>
+								<div class="image-container">
+									<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+								</div>
+								<h3>Økonomisk fordeling</h3>
+								<div class="image-container">
+									<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+								</div>
+								<h3>Eierskap</h3>
+							</div>
+							<div class="col-md-4">
+								<h2>Miljøeffekt</h2>
+								<div class="image-container">
+									<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+								</div>
+								<h3>Materialvalg</h3>
+								<div class="image-container">
+									<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+								</div>
+								<h3>Miljøpåvirking</h3>
+								<div class="image-container">
+									<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
+								</div>
+								<h3>Sertifisering</h3>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -248,17 +326,31 @@
 
 {% block extraJS %}
 <script>
-   var numProducts = Number({{numProducts }});
-   var wishlist = {{wishlist}};
+   var numProducts = Number({{numProducts}});
+
+   var wishlist = [];
+
+   {% for wish in wishlist %}
+   		wishlist.push({
+   			'product':{{wish.product}},
+   			'type':{{wish.type}}
+   		});	
+   {% endfor %}
 
    var selectedProduct;
+   var selectedType;
 
    $(document).ready(function() {
 		selectedProduct = 0;
 
+		selectedType = $('#productTypes' + selectedProduct).val();
+
 		$('#picture-slider0').hide();
 		$('#do-post').hide();
 		$('#go-to-wishlist').hide();
+		$('.infobox').hide();
+		$('.pointer').hide();
+
 
 		for (var i = 1; i<numProducts; i++) {
 			$('#picture-slider' + i).hide();
@@ -266,6 +358,15 @@
 		}
 
 		toggleSelectButton($('#add-product'));
+
+		// ------------- Product types -------------
+		$('#productTypes' + selectedProduct).change(function() {
+			selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
+
+			$('#add-product').removeClass('selected');
+			$('#add-product').addClass('updateble');
+			$('#add-product').html("<span class='glyphicon glyphicon-heart' aria-hidden='true'></span><p>Oppdater ønskeliste</p>");
+		});
    })
 </script>
 {% endblock extraJS %}

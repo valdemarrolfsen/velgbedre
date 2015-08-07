@@ -20,9 +20,13 @@ class CompanyAdmin(admin.ModelAdmin):
 class CompanyProductRelationAdmin(admin.ModelAdmin):
 	list_display = ['company']
 
+class TypeAdmin(admin.ModelAdmin):
+	list_display = ['name', 'product']
+
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(Wish, WishAdmin)
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(CompanyProductRelation, CompanyProductRelationAdmin)
+admin.site.register(Type, TypeAdmin)

@@ -12,15 +12,15 @@
 	width: 100%;
 	height: 100vh;
 
-	padding-top: 10vh;
+	padding-top: 5vh;
 
 	z-index: 10000;
 
 	background: rgba(0,0,0,0.6);
 
 	.message {
-		height: 80vh;
-		width: 80%;
+		height: 90vh;
+		width: 800px;
 
 		display: block;
 		margin: 0 auto;
@@ -54,7 +54,7 @@
 		#intro {
 			height: 100%;
 
-			padding: 40px 130px;
+			padding: 40px 80px;
 			
 			.carousel-control {
 				background-image: none;
@@ -63,9 +63,50 @@
 
 			.carousel-inner {
 				.item {
+					width: 100%;
+					
+					h1, h2, h3 {
+						font-weight: 800;
+						margin-top: 10px;
+					}
+
+					h2, h3 {
+						text-align: center;
+					}
+
+					h1 {
+						font-size: 24px;
+						text-transform: uppercase;
+					}
+
+					h2 {
+						font-size: 16px;
+						text-transform: uppercase;
+					}
+
+					h3 {
+						font-size: 14px;
+					}
+
+					p {
+						font-size: 14px;
+					}
+
 					.effect {
 						width: 33.3333%;
 						float: left;
+					}
+
+					.container {
+						width: 100%;
+
+						img {
+							width: 100%;
+						}
+
+						.image-container {
+							padding: 0 50px;
+						}
 					}
 				}
 			}
@@ -73,10 +114,11 @@
 		}
 	}
 }
+
 #company_service-frontpage {
 
 	padding: 80px;
-	padding-top: 130px;
+	padding-top: 100px;
 	background: #ddd;
 
 
@@ -183,6 +225,14 @@
 			}
 		}
 
+		.updateble {
+			background-color: #6D92A0;
+
+			&:hover {
+				background-color: #6D92A0;
+			}
+		}
+
 		#carousel-indicators {
 			position: absolute;
 			top: -100px;
@@ -233,7 +283,7 @@
 
 	#section-intro-image {
 		position: relative;
-		height: 60vh;
+		height: 40vh;
 
 		padding-top: 43vh; 
 
@@ -279,111 +329,234 @@
 	}
 
 	#section-product {
-		width: 100%;
-		min-height: 150vh;
-
-		background: #fff;
-
-		padding: 40px;
 
 		h1 {
-			font-size: 70px;
-			font-weight: 300;
+			font-size: 30px;
+			font-weight: 800;
 			text-transform: uppercase;
 		}
 
-		.content {
-			width: 60%;
+		.first-part {
+			width: 100%;
+			min-height: 150vh;
 
-			float: left;
+			background: #fff;
 
-			p {
-				font-size: 18px;
-			}
-		}
-
-		.other-info {
-			width: 40%;
-
-			float: right;
-
-			padding: 10px;
-			padding-left: 100px;
-
-
-			h1 {
-				font-size: 26px;
-			}
-
-			.picture-container {
-				width: 100%;
-				height: 250px;
-				
-				.picture {
-					width: 80px;
-					height: 80px;
-
-					margin: 8px;
-
-					border: 1px solid #bbb;
-
-					float: left;
-
-					cursor: pointer;
-
-					display: inline-block;
-					background-position: center center;
-					background-size: cover;
-				}
-			}
-
-			.info-container {
-				width: 100%;
-				height: 200px;
-
-				border-top: 2px solid #555;
-
-				padding-left: 20px;
-
-				p {
-					font-size: 18px;
-				}
-
-				@media (max-width: $smallMediaSize) { 
-					display: none;
-				}
-			}
-		}
-
-		@media (max-width: $smallMediaSize) { 
-			padding: 10px;
-			h1 {
-				font-size: 30px;
-			}
+			padding: 40px;
 
 			.content {
-				width: 70%;
+				width: 50%;
+
+				float: left;
 
 				p {
-					font-size: 14px;
+					font-size: 16px;
+				}
+
+				ul {
+					li {
+						font-size: 18px;
+						font-weight: 500;
+						margin: 10px 0;
+					}
 				}
 			}
 
 			.other-info {
-				padding: 0;
-				width: 30%;
+				width: 50%;
+
+				float: right;
+
+				padding: 10px;
+				padding-left: 100px;
+
 
 				h1 {
-					display: none;
+					font-size: 26px;
 				}
 
 				.picture-container {
-					height: 600px;
-					padding-top: 30px;
+					width: 100%;
+					height: 250px;
+					
 					.picture {
-						float: right;
+						width: 80px;
+						height: 80px;
+
+						margin: 8px;
+
+						border: 1px solid #bbb;
+
+						float: left;
+
+						cursor: pointer;
+
+						display: inline-block;
+						background-position: center center;
+						background-size: cover;
 					}
 				}
+
+				.info-container {
+					width: 100%;
+					height: 200px;
+
+					padding: 20px 5px;
+					
+					p {
+						font-size: 20px;
+					}
+					select {
+						width: 150px;
+						height: 40px;
+
+						background: none;
+						border-radius: 0;
+
+						border: 2px solid #000;
+					}
+
+					@media (max-width: $smallMediaSize) { 
+						display: none;
+					}
+				}
+			}
+
+			@media (max-width: $smallMediaSize) { 
+				min-height: 120vh;
+				padding: 10px;
+				h1 {
+					font-size: 20px;
+				}
+
+				.content {
+					width: 70%;
+
+					p {
+						font-size: 14px;
+					}
+				}
+
+				.other-info {
+					padding: 0;
+					width: 30%;
+
+					h1 {
+						display: none;
+					}
+
+					.picture-container {
+						height: 600px;
+						padding-top: 30px;
+						.picture {
+							float: right;
+						}
+					}
+				}
+			}
+
+		}
+
+		.second-part {
+			width: 100%;
+			min-height: 200vh;
+
+			padding: 40px 100px;
+			background: $secondSection;
+
+			h1, h2, p {
+				text-align: center;
+			}
+
+			.center-box {
+				width: 60%;
+				display: block;
+				margin: 0 auto;
+
+				margin-bottom: 50px;
+
+				p {
+					font-size: 18px;
+				}
+			}
+
+			.small-content-box {
+				position: relative;
+				width: 33.3333%;
+				float: left;
+
+				margin-bottom: 20px;
+
+				padding: 0 20px;
+
+				h2 {
+					font-size: 16px;
+					font-weight: 600;
+				}
+
+				p {
+					font-size: 14px;
+				}
+
+				img {
+					width: 60%;
+					margin: 0 20%;
+				}
+			}
+
+			@media (max-width: $smallMediaSize) { 
+				min-height: 270vh;
+				padding: 10px;
+
+				h1 {
+					font-size: 20px;
+				}
+
+				.center-box {
+					width: 80%;
+
+					p {
+						font-size: 14px;
+					}
+				}
+
+				.small-content-box {
+					width: 50%;
+					margin-bottom: 10px;
+
+					padding: 0 5px;
+
+					h2 {
+						font-size: 14px;
+					}
+
+					p {
+						font-size: 10px;
+					}
+
+					img {
+						width: 80%;
+						margin: 0 10%;
+					}
+				}
+			}
+		}
+
+		.image-container {
+			width: 30%;
+			display: block;
+			margin: 0 auto;
+
+			text-align: center;
+
+			img {
+				width: 100%;
+				margin-bottom: 40px;
+			}
+
+			span {
+				font-size: 100px;
+				font-weight: 100;
 			}
 		}
 	}
@@ -428,7 +601,9 @@
 
 					z-index: 200;
 
-					padding-top: 10px; 
+					padding-top: 10px;
+
+					text-shadow: 0 1px 10px rgba(0,0,0,.5);
 
 					&:hover span {
 				    	font-size: 40px;
@@ -479,9 +654,13 @@
 	width: 100%;
 	height: 100vh;
 
-	display: inline-block;
+	max-width: 1440px;
+
+	display: block;
     background-position: center center;
     background-size: cover;
+
+    margin: 0 auto;
 
     .logo {
     	position: absolute;
@@ -584,7 +763,7 @@
 
 #company_service-wishlist {
 	width: 100%;
-	min-height: 120vh;
+	min-height: 100vh;
 
 	display: inline-block;
     background-position: center center;
