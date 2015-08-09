@@ -57,9 +57,9 @@
 						<h1>{{product.name}}</h1>
 						<p><strong>{{product.small_description}}</strong></p>
 						<ul>
-							<li>Bulletpoint 1</li>
-							<li>Bulletpoint 2</li>
-							<li>Bulletpoint 3</li>
+							<li>{{product.first_bullet}}</li>
+							<li>{{product.second_bullet}}</li>
+							<li>{{product.third_bullet}}</li>
 						</ul>
 						<p>{{product.first_description}}</p>
 					</div>
@@ -344,6 +344,8 @@
 		selectedProduct = 0;
 
 		selectedType = $('#productTypes' + selectedProduct).val();
+
+		console.log(selectedType);
 
 		$('#picture-slider0').hide();
 		$('#do-post').hide();
