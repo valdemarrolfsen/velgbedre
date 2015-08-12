@@ -6,7 +6,7 @@ from velgbedre import settings
 
 
 class MyUserManager(BaseUserManager):
-	def create_user(self, firstname, lastname, email, address, post_nr, post_place, password=None):
+	def create_user(self, firstname, lastname, email, password=None):
 
 		if not email:
 			raise ValueError('Users must have an email address')
@@ -14,10 +14,7 @@ class MyUserManager(BaseUserManager):
 		user = self.model(
 			email=MyUserManager.normalize_email(email),
 			firstname=firstname,
-			lastname=lastname,
-			address=address,
-			post_nr=post_nr,
-			post_place=post_place
+			lastname=lastname
 		)
 
 		user.is_active = True
@@ -26,15 +23,12 @@ class MyUserManager(BaseUserManager):
 
 		return user
 
-	def create_superuser(self, firstname, lastname, email, address, post_nr, post_place, password=None):
+	def create_superuser(self, firstname, lastname, email, password=None):
 
 		u = self.create_user(email=email,
 						password=password,
 						firstname=firstname,
-						lastname = lastname,
-						address=address,
-						post_nr=post_nr,
-						post_place=post_place
+						lastname = lastname
 					)
 		u.is_admin = True
 		u.is_active = True
@@ -70,9 +64,7 @@ class UserProfile(AbstractBaseUser):
 					)
 	firstname = models.CharField(max_length=50)
 	lastname = models.CharField(max_length=50)
-	address = models.CharField(max_length=50)
-	post_nr = models.IntegerField()
-	post_place = models.CharField(max_length=50)
+
 	is_active = models.BooleanField(default=False)
 	is_admin = models.BooleanField(default=False)
 

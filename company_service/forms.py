@@ -8,14 +8,11 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['email', 'firstname', 'lastname', 'address', 'post_nr', 'post_place']
+        fields = ['email', 'firstname', 'lastname']
         widgets = {
             'email':forms.TextInput(attrs={'placeholder':'Epost'}),
             'firstname':forms.TextInput(attrs={'placeholder':'Fornavn'}),
-            'lastname':forms.TextInput(attrs={'placeholder':'Etternavn'}),
-            'address':forms.TextInput(attrs={'placeholder':'Leveringsadresse'}),
-            'post_nr':forms.TextInput(attrs={'placeholder':'Postnr.', 'class':'short'}),
-            'post_place':forms.TextInput(attrs={'placeholder':'Poststed', 'class':'short'}),
+            'lastname':forms.TextInput(attrs={'placeholder':'Etternavn'})
         }
 
     # Sets all the fields to required. Without using the html5 attribute wich does not work on iphones
