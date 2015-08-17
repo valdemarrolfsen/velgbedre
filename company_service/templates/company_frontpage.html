@@ -2,22 +2,14 @@
 {% load staticfiles %}
 {% block content %}
 <div id = "company_service-frontpage">
-	<div class="navigation-buttons" id="go-to-wishlist">
-		<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-		<p>Gå til ønskeliste</p>
-	</div>
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="1000000">
-		<div class="add-product" id="add-product">
-			<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-			<p>Legg til i Ønskeliste</p>
-		</div>
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="10000000000">
 		<!-- Indicators -->
 		<ol class="carousel-indicators" id="carousel-indicators">
 			{% for product in products %}
 				{% if forloop.first %}
-					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active" style = "background-image: url({{product.background.url}});"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active" style = "background-image: url({{product.small_photo.url}});"></li>
 				{% else %}
-					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" style = "background-image: url({{product.background.url}});"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" style = "background-image: url({{product.small_photo.url}});"></li>
 				{% endif %}
 			{% endfor %}
 		</ol>
@@ -28,11 +20,13 @@
 				{% if forloop.first %}
 					<div class="item active">
 						<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
+							<h1>{{product.name}}</h1>
 						</section>
 					</div>
 				{% else %}
 					<div class="item">
 						<section id = "section-intro-image" style = "background-image: url({{product.background.url}});">
+							<h1>{{product.name}}</h1>
 						</section>
 					</div>
 				{% endif %}
@@ -53,15 +47,19 @@
 		{% for product in products %}
 			<div id = "product{{ forloop.counter0 }}" data-productid = "{{ product.id }}">
 				<div class="first-part">
+					{% for type in product.get_types %}
+						<div class="product-picture" id="product-picture{{type.id}}" style = "background-image: url({{type.product_photo.url}});"></div>
+					{% endfor %}
 					<div class="content">
-						<h1>{{product.name}}</h1>
-						<p><strong>{{product.small_description}}</strong></p>
-						<ul>
-							<li>{{product.first_bullet}}</li>
-							<li>{{product.second_bullet}}</li>
-							<li>{{product.third_bullet}}</li>
-						</ul>
+						<p class="big"><strong>{{product.small_description}}</strong></p>
 						<p>{{product.first_description}}</p>
+						<div class="bullet-points">
+							<ul>
+								<li>{{product.first_bullet}}</li>
+								<li>{{product.second_bullet}}</li>
+								<li>{{product.third_bullet}}</li>
+							</ul>
+						</div>
 					</div>
 					<div class="other-info">
 						<div class = "picture-container">
@@ -72,19 +70,33 @@
 						</div>
 						<div class="info-container">
 							<p>Type:</p>
-							<select name="productTypes" id="productTypes{{forloop.counter0}}">
+							<select name="productTypes" class="productTypes" id="productTypes{{forloop.counter0}}">
 								{% for type in product.get_types %}
 									<option value="{{ type.id }}">{{type.name}}</option>
 								{% endfor %}
 							</select>
 						</div>
-					</div>
-					<div class="image-container">
-						<img src="{% static 'img/icons/company_service/intro/triple-bottom-line.png' %}" alt="">
-						<span class="icon-arrow-down" aria-hidden="true"></span>
+						<div class="global-button left add-product">
+							<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+							<p>Legg til i Ønskeliste</p>
+						</div>
+						<a href="/company/wishlist/">
+							<div class="global-button right">
+								<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+								<p>Gå til ønskeliste</p>
+							</div>
+						</a>
 					</div>
 				</div>
 				<div class="second-part">
+						<div class="row">
+							<div class="col-md-12">
+								<h1>Mer informasjon</h1>
+								<a href="#second-part{{forloop.counter0}}" class="page-scroll"><span class="icon-arrow-down" aria-hidden="true"></span></a>
+							</div>
+						</div>
+				</div>
+				<div class="third-part" id="second-part{{forloop.counter0}}">
 					<div class="center-box">
 						<h1>{{product.name}}</h1>
 						<p>
@@ -336,39 +348,6 @@
    			'type':{{wish.type}}
    		});	
    {% endfor %}
-
-   var selectedProduct;
-   var selectedType;
-
-   $(document).ready(function() {
-		selectedProduct = 0;
-
-		selectedType = $('#productTypes' + selectedProduct).val();
-
-		console.log(selectedType);
-
-		$('#picture-slider0').hide();
-		$('#do-post').hide();
-		$('#go-to-wishlist').hide();
-		$('.infobox').hide();
-		$('.pointer').hide();
-
-
-		for (var i = 1; i<numProducts; i++) {
-			$('#picture-slider' + i).hide();
-			$('#product' + i).hide();
-		}
-
-		toggleSelectButton($('#add-product'));
-
-		// ------------- Product types -------------
-		$('#productTypes' + selectedProduct).change(function() {
-			selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
-
-			$('#add-product').removeClass('selected');
-			$('#add-product').addClass('updateble');
-			$('#add-product').html("<span class='glyphicon glyphicon-heart' aria-hidden='true'></span><p>Oppdater ønskeliste</p>");
-		});
-   })
 </script>
+<script src="{% static 'js/company_service.js' %}"></script>
 {% endblock extraJS %}

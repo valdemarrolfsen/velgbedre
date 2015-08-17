@@ -44,6 +44,9 @@ class Company(models.Model):
 	logo = models.ImageField(upload_to='company_logo/%Y/%m/%d')
 	background = models.ImageField(upload_to='company_background/%y/%m/%d')
 
+	def __str__(self):
+		return "{} - {}".format(self.id, self.name)
+
 	def get_products(self):
 		relations = CompanyProductRelation.objects.filter(company=self)
 		products = []
@@ -73,7 +76,7 @@ class UserProfile(AbstractBaseUser):
 	objects = MyUserManager()
 
 	USERNAME_FIELD = 'email'
-	REQUIRED_FIELDS = ['firstname', 'lastname', 'address', 'post_nr', 'post_place']
+	REQUIRED_FIELDS = ['firstname', 'lastname']
 
 	def get_full_name(self):
 		# The user is identified by their email address
@@ -124,6 +127,12 @@ class Product(models.Model):
 
 	background = models.ImageField(upload_to='products/%Y/%m/%d')
 
+	small_photo = models.ImageField(upload_to='products/%Y/%m/%d')
+
+
+	def __str__(self):
+		return "{} - {}".format(self.id, self.name)
+
 	def get_images(self):
 		images = ProductImage.objects.filter(product=self)
 
@@ -159,6 +168,7 @@ class ProductImage(models.Model):
 class Type(models.Model):
 	name = models.CharField(max_length=50)
 	product = models.ForeignKey(Product)
+	product_photo = models.ImageField(upload_to='products/%Y/%m/%d')
 
 
 

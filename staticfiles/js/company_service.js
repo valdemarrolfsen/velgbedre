@@ -1,147 +1,143 @@
 var addProduct;
-var saveWishlist;
 var getCookie;
-var selectedInfobox;
+var selectedProduct;
+var selectedType;
 
 $(document).ready(function() {
 
-	toggleSelectButton = function(button) {
-		var productId = $('#product' + selectedProduct).data("productid");
+	selectedProduct = 0;
 
-		var isInList = false;
+	selectedType = $('#productTypes' + selectedProduct).val();
 
-		wishlist.forEach(function(entry) {
-			if (productId==entry.product) {
-				isInList = true;
-				selectedType = entry.type;
-			}
-		});
+	$('#picture-slider0').hide();
+	$('#do-post').hide();
+	$('.infobox').hide();
+	$('.pointer').hide();
 
+	$('.product-picture').hide();
 
-		$('#productTypes' + selectedProduct).val(selectedType);
- 
-		if (isInList && !button.hasClass('selected')) {
-			button.addClass('selected');
-			button.removeClass('updateble');
-			button.html("<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><p>Produkt lagt til</p>");
-		} else if (!isInList) {
-			button.removeClass('selected');
-			button.removeClass('updateble');
-			button.html("<span class='glyphicon glyphicon-heart' aria-hidden='true'></span><p>Legg til i Ønskeliste</p>");
-		}
+	$('#product-picture' + selectedType).show();
+
+	for (var i = 1; i<numProducts; i++) {
+		$('#picture-slider' + i).hide();
+		$('#product' + i).hide();
 	}
 
-	pushProduct = function() {
+	toggleSelectButton($('.add-product'));
 
-		var productId = $('#product' + selectedProduct).data("productid");
+	// ------------- Product types -------------
+	$('.productTypes').change(function() {
+		$('#product-picture' + selectedType).fadeOut();
 
-		//Add csrf-token 
-		$.ajaxSetup({
-		    beforeSend: function(xhr, settings) {
-		        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-		            // Only send the token to relative URLs i.e. locally.
-		            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-		        }
-		    }
-		});
+		selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
 
-		//[TODO] Should get url from django template tag
-		$.ajax({
-			type: 'POST',
-			url: 'frontpage',
-			data: {	
-				'productId' : productId,
-				'typeId' : selectedType
-			},
-			success: function(response) {
-				if (response=='delete') {
-					var index;
+		$('#product-picture' + selectedType).fadeIn();
 
-					wishlist.forEach(function(entry, i) {
-						if (productId==entry.product) {
-							index = i;
-						}
-					});
-
-					wishlist.splice(index, 1);
-
-				} else if (response=='new')
-					wishlist.push({'product' : productId, 'type' : selectedType});
-				else {
-					wishlist.forEach(function(entry) { 
-						if (entry.product == productId)
-							entry.type = selectedType
-					});
-				}
-
-				swal({   
-					title: "Ønskeliste lagret!",
-					type: "success",
-					timer: 1500,
-					showConfirmButton: false 
-				});
-
-				toggleSelectButton($('#add-product'));
-			}
-
-		});
-	}
-
-	pushWishlist = function(wishlist) {
-
-		//Add csrf-token 
-		$.ajaxSetup({
-		    beforeSend: function(xhr, settings) {
-		        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-		            // Only send the token to relative URLs i.e. locally.
-		            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-		        }
-		    }
-		});
-
-		//[TODO] Should get url from django template tag
-		$.ajax({
-			type: 'POST',
-			url: 'wishlist',
-			data: {	
-				'wishlist' : JSON.stringify(wishlist, null, 2)
-			},
-			success: function() {
-				swal({   
-					title: "Ønskeliste lagret!",
-					type: "success",
-					timer: 1500,
-					showConfirmButton: false 
-				});
-			}
-
-		});
-	}
-
-	getCookie = function(name) {
-	    var cookieValue = null;
-	    if (document.cookie && document.cookie != '') {
-	        var cookies = document.cookie.split(';');
-	        for (var i = 0; i < cookies.length; i++) {
-	            var cookie = jQuery.trim(cookies[i]);
-	            // Does this cookie string begin with the name we want?
-	            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-	                break;
-	            }
-	        }
-	    }
-	    return cookieValue;
-	}
+		$('.add-product').removeClass('selected');
+		$('.add-product').addClass('updateble');
+		$('.add-product').html("<span class='glyphicon glyphicon-heart' aria-hidden='true'></span><p>Oppdater ønskeliste</p>");
+	});
 })
 
-$('#add-product').click( function() {
-	pushProduct();
-	$('#go-to-wishlist').fadeIn();
-});
+toggleSelectButton = function(button) {
+	var productId = $('#product' + selectedProduct).data("productid");
 
-$('#go-to-wishlist').click(function() {
-	window.location.replace("/company/wishlist");
+	var isInList = false;
+
+	wishlist.forEach(function(entry) {
+		if (productId==entry.product) {
+			isInList = true;
+			selectedType = entry.type;
+		}
+	});
+
+	$('#productTypes' + selectedProduct).val(selectedType);
+
+	if (isInList && !button.hasClass('selected')) {
+		button.addClass('selected');
+		button.removeClass('updateble');
+		button.html("<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><p>Produkt lagt til</p>");
+	} else if (!isInList) {
+		button.removeClass('selected');
+		button.removeClass('updateble');
+		button.html("<span class='glyphicon glyphicon-heart' aria-hidden='true'></span><p>Legg til i Ønskeliste</p>");
+	}
+}
+
+pushProduct = function() {
+
+	var productId = $('#product' + selectedProduct).data("productid");
+
+	//Add csrf-token 
+	$.ajaxSetup({
+	    beforeSend: function(xhr, settings) {
+	        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+	            // Only send the token to relative URLs i.e. locally.
+	            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+	        }
+	    }
+	});
+
+	//[TODO] Should get url from django template tag
+	$.ajax({
+		type: 'POST',
+		url: 'frontpage',
+		data: {	
+			'productId' : productId,
+			'typeId' : selectedType
+		},
+		success: function(response) {
+			if (response=='delete') {
+				var index;
+
+				wishlist.forEach(function(entry, i) {
+					if (productId==entry.product) {
+						index = i;
+					}
+				});
+
+				wishlist.splice(index, 1);
+
+			} else if (response=='new')
+				wishlist.push({'product' : productId, 'type' : selectedType});
+			else {
+				wishlist.forEach(function(entry) { 
+					if (entry.product == productId)
+						entry.type = selectedType
+				});
+			}
+
+			swal({   
+				title: "Ønskeliste lagret!",
+				type: "success",
+				timer: 1500,
+				showConfirmButton: false 
+			});
+
+			toggleSelectButton($('.add-product'));
+		}
+
+	});
+}
+
+getCookie = function(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+$('.add-product').click( function() {
+	pushProduct();
 });
 
 $('.picture').click(function() {
@@ -164,11 +160,15 @@ $('#carousel-left').click(function() {
 	else
 		selectedProduct -= 1;
 
-	toggleSelectButton($('#add-product'));
+	toggleSelectButton($('.add-product'));
 
 	$('#product' + selectedProduct).fadeIn();
 
+	$('#product-picture' + selectedType).hide();
+
 	selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
+
+	$('#product-picture' + selectedType).fadeIn();
 })
 
 $('#carousel-right').click(function() {
@@ -180,11 +180,15 @@ $('#carousel-right').click(function() {
 	else
 		selectedProduct = 0;
 
-	toggleSelectButton($('#add-product'));
+	toggleSelectButton($('.add-product'));
 
 	$('#product' + selectedProduct).fadeIn();
 
+	$('#product-picture' + selectedType).hide();
+
 	selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
+	
+	$('#product-picture' + selectedType).fadeIn();
 })
 
 $('#carousel-indicators li').click(function() {
@@ -192,10 +196,18 @@ $('#carousel-indicators li').click(function() {
 
 	selectedProduct = $(this).data("slide-to");
 
-	toggleSelectButton($('#add-product'));
+	$('#product-picture' + selectedType).fadeOut();
+
+	selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
+
+	$('#product-picture' + selectedType).fadeIn();
+
+	toggleSelectButton($('.add-product'));
 
 	$('#product' + selectedProduct).fadeIn();
 })
+
+// --------------- Intro message ---------------
 
 $('#intro-close').click(function() {
 	$('#intro-message').fadeOut();
@@ -205,64 +217,3 @@ $('#intro-message').click(function(e) {
 	if (e.target == this)
 		$('#intro-message').fadeOut();
 })
-
-// ------------- Infoboxes ---------------
-$('#first-icon').click(function() {
-	var pos = $(this).offset();
-
-	if (selectedInfobox == 1) {
-		$('.infobox').fadeOut();
-		$('.pointer').hide();
-		selectedInfobox = 0;
-
-		return
-	}
-
-	selectedInfobox = 1;
-
-	$('.infobox').css({'top':pos.top - 500});
-	$('.pointer').css({'left':pos.left + 70});
-
-	$('.infobox').fadeIn();
-	$('.pointer').show();
-
-});
-
-$('#second-icon').click(function() {
-	var pos = $(this).offset();
-
-	if (selectedInfobox == 2) {
-		$('.infobox').fadeOut();
-		$('.pointer').hide();
-		selectedInfobox = 0;
-		return
-	}
-
-	selectedInfobox = 2;
-
-	$('.infobox').css({'top':pos.top - 500});
-	$('.pointer').css({'left':pos.left + 70});
-
-	$('.pointer').show();
-	$('.infobox').fadeIn();
-});
-
-$('#third-icon').click(function() {
-	var pos = $(this).offset();
-
-	if (selectedInfobox == 3) {
-		$('.infobox').fadeOut();
-		$('.pointer').hide();
-		selectedInfobox = 0;
-		return
-	}
-
-	selectedInfobox = 3;
-
-	$('.infobox').css({'top':pos.top - 500});
-	$('.pointer').css({'left':pos.left + 70});
-
-	$('.infobox').fadeIn();
-	$('.pointer').show();
-
-});

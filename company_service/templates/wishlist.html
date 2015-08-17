@@ -3,11 +3,17 @@
 {% block content %}
 	<div id = "company_service-wishlist" style="background-image: url('{{company.background.url}}');">
 		<div class="cover"></div>
-		<div class="add-product" id ="save-wishlist">
+		<div class="global-button right" id ="save-wishlist">
 			<span class="glyphicon glyphicon-gift" aria-hidden="true"></span>
 			<p>Lagre ønskeliste</p>
 		</div>
-		<div class="add-product" id ="close-window">
+		<a href="/company/frontpage/">
+			<div class="global-button left">
+				<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+				<p>Tilbake</p>
+			</div>
+		</a>
+		<div class="global-button right" id ="close-window">
 			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 			<p>Avslutt velgeren</p>
 		</div>
@@ -18,15 +24,20 @@
 			</p>
 		</div>
 		<div class="wishlist">
+			<div class="rankings">
+				{% for wish in wishlist %}
+				<div class="ranking">{{forloop.counter}}</div>
+				{% endfor %}
+			</div>
 			<ul class="top-three" id="sortable">
 				{% for wish in wishlist %}
-				  <li id = "{{wish.id}}" class="ui-state-default wishlist-product">
-				  	<div class="wishlist-product-image" style="background-image: url('{{ wish.product.background.url}}');"></div>
+					<li id = "{{wish.id}}" class="ui-state-default wishlist-product">
+						<div class="wishlist-product-image" style="background-image: url('{{ wish.product.background.url}}');"></div>
 					<div class="wishlist-product-text">
 						<p>{{wish.product.name}}</p>
 						<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
 					</div>
-				  </li>
+					</li>
 				{% endfor %}
 			</ul>
 		</div>
@@ -34,47 +45,5 @@
 {% endblock content %}
 
 {% block extraJS %}
-
-<script>
-$(function() {
-	$( "#sortable" ).sortable();
-	$( "#sortable" ).disableSelection();
-
-	$('#close-window').hide();
-
-	$('#save-wishlist').click(function() {
-		var sortedIDs = $("#sortable").sortable("toArray");
-		pushWishlist(sortedIDs);
-		$(this).fadeOut();
-		$('#close-window').fadeIn();
-	});
-
-	$('#close-window').click(function() {
-		swal({
-			title: "Er du sikker?",
-			text: "Ved å gå videre vil du avslutte gavevelgeren",
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonText: "Lukk vindu",
-			cancelButtonText: "Gå tilbake",
-			closeOnConfirm: false,
-			closeOnCancel: false },
-			function(isConfirm){
-				if (isConfirm) {
-					window.location.replace("http://www.velgbedre.no");
-				} else {
-					swal({   
-						title: "Avbrutt",
-						type: "error",
-						timer: 1500,
-						showConfirmButton: false 
-					});
-					$('#save-wishlist').fadeIn();
-					$('#close-window').fadeOut();
-				}
-			});
-	});
-
-});
-</script>
+	<script src="{% static 'js/wishlist.js' %}"></script>
 {% endblock extraJS %}
