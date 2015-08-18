@@ -3,11 +3,7 @@
 {% block content %}
 	<div id="company_service-intro" style="background-image: url('{{company.background.url}}');">
 		<div class="cover"></div>
-		<video autoplay loop muted poster="{% static 'img/background/lstn-bg.jpg' %}" id="bgvid">
-			<source src="{% static 'video/velgbedre.mp4' %}">
-			<source src="{% static 'video/velgbedre.webm' %}" type="video/webm">
-			<source src="{% static 'video/velgbedre.mp4' %}" type="video/mp4">
-		</video>
+		
 		<div class="logo">
 			<img src="{{company.logo.url}}" alt="">
 		</div>
