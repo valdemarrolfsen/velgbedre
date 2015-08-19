@@ -111,9 +111,9 @@ class Product(models.Model):
 	first_description = models.TextField()
 	second_description = models.TextField()
 
-	first_bullet = models.CharField(max_length=100)
-	second_bullet = models.CharField(max_length=100)
-	third_bullet = models.CharField(max_length=100)
+	first_bullet = models.CharField(max_length=255)
+	second_bullet = models.CharField(max_length=255)
+	third_bullet = models.CharField(max_length=255)
 
 	employment = models.TextField()
 	location = models.TextField()

@@ -1,45 +1,13 @@
 $(document).ready(function() {
 
 	$( "#sortable" ).sortable({
-		revert: true,
-		change: function( event, ui ) {
-			$('#save-wishlist').fadeIn();
-			$('#close-window').fadeOut();
-		}
+		revert: true
 	});
 	$( "#sortable" ).disableSelection();
 
-	$('#close-window').hide();
-
-	$('#save-wishlist').click(function() {
+	$('#send-wishlist').click(function() {
 		var sortedIDs = $("#sortable").sortable("toArray");
 		pushWishlist(sortedIDs);
-		$(this).fadeOut();
-		$('#close-window').fadeIn();
-	});
-
-	$('#close-window').click(function() {
-		swal({
-			title: "Er du sikker?",
-			text: "Ved å gå videre vil du avslutte gavevelgeren",
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonText: "Lukk vindu",
-			cancelButtonText: "Gå tilbake",
-			closeOnConfirm: false,
-			closeOnCancel: false },
-			function(isConfirm){
-				if (isConfirm) {
-					window.location.replace("http://www.velgbedre.no");
-				} else {
-					swal({   
-						title: "Avbrutt",
-						type: "error",
-						timer: 1500,
-						showConfirmButton: false 
-					});
-				}
-			});
 	});
 });
 
@@ -64,11 +32,32 @@ pushWishlist = function(wishlist) {
 			'wishlist' : JSON.stringify(wishlist, null, 2)
 		},
 		success: function() {
-			swal({   
-				title: "Ønskeliste lagret!",
-				type: "success",
-				timer: 1500,
-				showConfirmButton: false 
+			swal({
+			title: "Er du sikker?",
+			text: "Ved å trykke send inn, vil du bli ført bort fra denne siden",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonText: "Send inn",
+			cancelButtonText: "Gå tilbake",
+			closeOnConfirm: false,
+			closeOnCancel: false },
+			function(isConfirm){
+				if (isConfirm) {
+					swal({   
+						title: "Ønskeliste sendt inn!",
+						type: "success",
+						timer: 2500,
+						showConfirmButton: false 
+					});
+					setTimeout(function() {window.location.replace("http://www.velgbedre.no");}, 2500)
+				} else {
+					swal({   
+						title: "Avbrutt",
+						type: "error",
+						timer: 1500,
+						showConfirmButton: false 
+					});
+				}
 			});
 		}
 

@@ -355,7 +355,7 @@
 
 				p {
 					font-size: 18px;
-					padding: 0 20px;
+					padding: 5px 20px;
 				}
 
 				.big {
@@ -828,6 +828,19 @@
 
     margin: 0 auto;
 
+    #velgefilm {
+    	position: absolute;
+    	top: 50px;
+    	left: 0;
+    	right: 0;
+
+    	margin: 0 auto;
+
+    	width: 55%;
+
+    	z-index: 100;
+    }
+
     .logo {
     	position: absolute;
     	bottom: 30px;
@@ -860,7 +873,8 @@
     .intro {
     	position: absolute;
 
-    	top: 250px;
+    	top: 100px;
+    	left: 0;
 
     	z-index: 1;
 
@@ -871,13 +885,10 @@
 
 		padding-left: 60px;
 
-		display: block;
-    	margin: 0 auto;
-
     	text-shadow: 0 1px 10px rgba(0,0,0,.5);
 
     	h1 {
-    		font-size: 40px;
+    		font-size: 30px;
     		font-weight: 900;
     		color: #fff;
     	}
@@ -893,14 +904,15 @@
     .register {
     	position: absolute;
 
-    	top: 450px;
+    	bottom: 50px;
+    	left: 0;
+    	right: 0;
+
+    	margin: 0 auto;
 
     	z-index: 1;
 
-    	width: 60%;
-    	height: 40vh;
-
-    	padding-left: 50px;
+    	width: 55%;
 
 		display: block;
     	margin: 0 auto;

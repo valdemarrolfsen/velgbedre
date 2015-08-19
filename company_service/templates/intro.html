@@ -3,11 +3,16 @@
 {% block content %}
 	<div id="company_service-intro" style="background-image: url('{{company.background.url}}');">
 		<div class="cover"></div>
-		
+		<video controls poster="{% static 'img/background/lstn-bg.jpg' %}" id="velgefilm">
+			<source src="{% static 'video/velgefilm.mp4' %}">
+			<source src="{% static 'video/velgefilm.webm' %}" type="video/webm">
+			<source src="{% static 'video/velgefilm.mp4' %}" type="video/mp4">
+		</video>
+
 		<div class="logo">
 			<img src="{{company.logo.url}}" alt="">
 		</div>
-		<div class="intro">
+		<div class="intro" id="intro">
 			<h1>Takk for jobben du gjør!</h1>
 			<p>
 				{{company.greeting}}
@@ -23,3 +28,20 @@
 		</div>
 	</div>
 {% endblock content %}
+
+{% block extraJS %}
+<script>
+
+	$('#intro').hide();
+    var vid=document.getElementById('velgefilm');
+    vid.addEventListener("ended", hideVideo, false);
+
+    function hideVideo() {
+        var vid = $('#velgefilm');
+        var other = $('#intro');
+
+        vid.fadeOut();
+        other.fadeIn();
+    }
+</script>
+{% endblock extraJS %}
