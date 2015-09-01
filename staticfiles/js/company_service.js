@@ -33,9 +33,11 @@ $(document).ready(function() {
 
 		$('#product-picture' + selectedType).fadeIn();
 
-		$('.add-product').removeClass('selected');
-		$('.add-product').addClass('updateble');
-		$('.add-product').html("<span class='glyphicon glyphicon-heart' aria-hidden='true'></span><p>Oppdater ønskeliste</p>");
+		if ($('.add-product').hasClass('selected')) {
+			$('.add-product').removeClass('selected');
+			$('.add-product').addClass('updateble');
+			$('.add-product').html("<span class='glyphicon glyphicon-heart' aria-hidden='true'></span><p>Oppdater ønskeliste</p>");
+		}
 	});
 })
 

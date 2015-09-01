@@ -181,6 +181,10 @@
 
 	.carousel {
 
+		max-width: 1080px;
+		display: block;
+		margin: 0 auto;
+
 		.smaller-picture {
 			position: absolute;
 			top: -25px;
@@ -324,12 +328,17 @@
 		.first-part {
 			position: relative;
 			width: 100%;
-			min-height: 120vh;
 
 			background: #fff;
 
 			padding: 40px;
 			padding-top: 50px;
+
+			&:after {
+			  content: "";
+			  display: table;
+			  clear: both;
+			}
 
 			.product-picture {
 				position: absolute;
@@ -523,7 +532,6 @@
 			}
 
 			@media (max-width: $smallMediaSize) {
-				min-height: 120vh;
 				padding: 10px;
 
 				.product-picture {
@@ -609,13 +617,18 @@
 
 		.third-part {
 			width: 100%;
-			min-height: 220vh;
 
 			padding: 40px 100px;
 			background: $secondSection;
 
 			h1, h2, p {
 				text-align: center;
+			}
+
+			&:after {
+			  content: "";
+			  display: table;
+			  clear: both;
 			}
 
 			.center-box {
@@ -658,7 +671,6 @@
 			}
 
 			@media (max-width: $smallMediaSize) { 
-				min-height: 270vh;
 				padding: 10px;
 
 				h1 {
@@ -896,13 +908,13 @@
     	text-shadow: 0 1px 10px rgba(0,0,0,.5);
 
     	h1 {
-    		font-size: 30px;
+    		font-size: 34px;
     		font-weight: 900;
     		color: #fff;
     	}
 
     	p {
-    		font-size: 20px;
+    		font-size: 24px;
     		font-weight: 500;
 
     		color: #fff;
