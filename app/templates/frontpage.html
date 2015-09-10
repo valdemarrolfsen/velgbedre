@@ -32,7 +32,7 @@
 				{% endif%}
 				<form class="frontpage-form" id = "frontpage-email" method="post">{% csrf_token %}
 					<label for="email">Epost:</label>
-					<input type="email" id="email" name="frontpage_email" placeholder="Skriv inn din epost her">
+					<input type="email" id="email" name="frontpage_email" placeholder="Skriv inn din epost her" required>
 					<button type="submit" class="frontpage-button">Send inn</button>
 				</form>
 				{% if not email_sent %}
