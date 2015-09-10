@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from app.models import *
+from .mail_sender import Mail_sender
 
 # Create your views here.
 
@@ -14,6 +15,8 @@ def frontpage_view(request):
 			let.email = request.POST.get('email')
 			let.the_lucky_one = request.POST.get('other_name')
 			let.save()
+		elif 'frontpage_email' in request.POST:
+			Mail_sender.send_cat_request(request.POST.get('frontpage_email'))
 		else:
 			sub = Subscriber()
 			sub.name = request.POST.get('name')

@@ -138,8 +138,6 @@
 		position: relative;
 		height: 65vh;
 
-		padding-top: 30vh; 
-
 		overflow: hidden;
 
 		box-shadow: 0px 20px 20px rgba(0,0,0,0.5);
@@ -164,49 +162,131 @@
 			background: rgba(0,0,150,0.3);
 		}
 
-		.number-wrap {
-			position: relative;
-			width: 1020px;
-			display: block;
-			margin-right: auto;
-			margin-left: auto;
+		.frontpage-wrap {
+			position: absolute;
+			top: 50%;
 
-			font-weight: 500;
-			text-align: center;
+			margin-top: -154px;
 
-			color: #fff;
-			text-align: center;
+			width: 100%;
 
-			h1 {
-				font-size: 30px;
-				font-weight: 100;
-				text-transform: uppercase;
-				font-style: italic;
-			}
+			.number-wrap {
+				position: relative;
+				width: 1020px;
+				display: block;
+				margin-right: auto;
+				margin-left: auto;
 
-			@media (max-width: $smallMediaSize) {
-				h1 {
-					font-size: 20px;
-				}
-			}
+				font-weight: 500;
+				text-align: center;
 
-			.number {
-				width: 300px;
-				float: left;
-				margin-right: 20px;
-				margin-left: 20px;
+				color: #fff;
+				text-align: center;
 
 				h1 {
-					font-size: 150px;
-					color: #eee;
-					padding-left: 0px;
+					font-size: 30px;
 					font-weight: 100;
+					text-transform: uppercase;
+					font-style: italic;
 				}
 
-				p {
-					font-size: 25px;
-					color: #ddd;
-					text-transform: uppercase;
+				&:after {
+				  content: "";
+				  display: table;
+				  clear: both;
+				}
+
+				@media (max-width: $smallMediaSize) {
+					h1 {
+						font-size: 20px;
+					}
+				}
+
+				.number {
+					width: 300px;
+					float: left;
+					margin-right: 20px;
+					margin-left: 20px;
+
+					h1 {
+						font-size: 130px;
+						color: #eee;
+						padding-left: 0px;
+						font-weight: 100;
+					}
+
+					p {
+						font-size: 25px;
+						color: #ddd;
+						text-transform: uppercase;
+					}
+				}
+			}
+
+			.frontpage-form {
+				position: relative;
+				width: 30%;
+				
+				padding-top: 100px;
+
+				display: block;
+				margin: 0 auto;
+
+				label {
+					font-size: 26px;
+					color: #fff;
+				}
+
+				input {
+					width: 100%;
+					height: 50px;
+					
+					padding-left: 15px;
+
+					background: #fff;
+					border: none;
+
+					font-size: 20px;
+
+					&:focus {
+						outline: none;
+						border: 3px solid orange;
+						border-radius: 3px;
+
+						-moz-transition: border 300ms ease;
+						-webkit-transition: border 300ms ease;
+						-o-transition: border 300ms ease;
+						transition: border 300ms ease;
+					}
+				}
+
+
+			}
+
+			.frontpage-button {
+				position: relative;
+				height: 50px;
+
+				display: block;
+				margin: 0 auto;
+				margin-top: 40px;
+
+				padding-left: 40px;
+				padding-right: 40px;
+
+				border: 2px solid #eee;
+
+				background: none;
+				color: #eee;
+
+				text-transform: uppercase;
+				font-size: 20px;
+
+				@include smoothBackgroundShift();
+
+				&:hover {
+					background: #eee;
+					color: #333;
 				}
 			}
 		}
@@ -312,7 +392,7 @@
 		height: 100vh;
 		padding: 50px;
 
-		padding-top: 70px;
+		padding-top: 100px;
 
 		background-attachment: scroll;
 		background-image: url(../../img/background/lstn-bg.jpg);
@@ -356,7 +436,7 @@
 		height: 100vh;
 		padding: 50px;
 
-		padding-top: 70px;
+		padding-top: 100px;
 
 		background-attachment: scroll;
 		background-image: url(../../img/background/yellow-bg.jpg);
@@ -398,7 +478,7 @@
 		height: 100vh;
 		padding: 50px;
 
-		padding-top: 20px;
+		padding-top: 100px;
 
 		background-attachment: scroll;
 		background-image: url(../../img/background/soulbottle-bg.jpg);
@@ -511,7 +591,7 @@
 		height: 100vh;
 		padding: 50px;
 
-		padding-top: 70px;
+		padding-top: 100px;
 
 		background-attachment: scroll;
 		background-image: url(../../img/background/trondheim-bw.jpg);
@@ -601,10 +681,10 @@
 	#section-press {
 		position: relative;
 		width: 100%;
-		height: 55vh;
+		height: 60vh;
 		padding: 50px;
 
-		padding-top: 30px;
+		padding-top: 100px;
 
 		box-shadow: 3px 20px 20px rgba(0,0,0,0.5);
 
@@ -660,7 +740,7 @@
 	}
 
 	#section-press-text {
-		height: 50vh;
+		height: 40vh;
 		padding: 50px;
 		
 		border: 0px;

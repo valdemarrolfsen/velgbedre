@@ -8,14 +8,32 @@
 				<source src="{% static 'video/velgbedre.webm' %}" type="video/webm">
 				<source src="{% static 'video/velgbedre.mp4' %}" type="video/mp4">
 			</video>
-
 			<div class = "filter"></div>
-			<div class = "number-wrap">
-				<h1>"Hver gang du bruker penger, stemmer du på hvilken verden du har lyst til å leve i" - <strong class = "thick">Anna Lappé</strong></h1>
+			<div class="frontpage-wrap">
+				<div class = "number-wrap" id="number-wrap">
+					<div class="number">
+						<h1>76</h1>
+						<p>produkter</p>
+					</div>
+					<div class="number">
+						<h1>18</h1>
+						<p>leverandører</p>
+					</div>
+					<div class="number">
+						<h1>3</h1>
+						<p>bunnlinjer</p>
+					</div>
+				</div>
+				<form class="frontpage-form" id = "frontpage-email" method="post">{% csrf_token %}
+					<label for="email">Epost:</label>
+					<input type="email" id="email" name="frontpage_email" placeholder="Skriv inn din epost her">
+					<button type="submit" class="frontpage-button">Send katalog</button>
+				</form>
+				<button class="frontpage-button" id="frontpage-get-button">Få tilsendt katalog her</button>
 			</div>
 		</section>
 		<section id = "section-intro-text">
-			<h1>Velg <strong>bærekraftig</strong> innkjøp</h1>
+			<h1>Velg <strong>bærekraftige</strong> julegaver</h1>
 			<div class = "down">
 				<a class = "page-scroll" href="#section-problem">
 					<span class = "icon-arrow-down" aria-hidden = "true"></span>
@@ -182,3 +200,20 @@
 		{% endfor %}
 	</div>
 {% endblock content %}
+{% block extraJS %}
+<script>
+	$(function() {
+		$('#frontpage-email').hide();
+
+		$('#frontpage-get-button').click(function() {
+
+			$('#number-wrap').fadeOut();
+			$('#frontpage-get-button').fadeOut();
+
+			setTimeout(function() {
+				$('#frontpage-email').fadeIn();
+			}, 700);
+		});
+	});
+</script>
+{% endblock extraJS %}

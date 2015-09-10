@@ -36,3 +36,11 @@ $lightOrange: rgba(184, 116, 62, 0.2);
 
 //Company
 $secondSection: rgb(247, 247, 247);
+
+@mixin smoothBackgroundShift() {
+	-webkit-transition: background-color 200ms linear;
+    -moz-transition: background-color 200ms linear;
+    -o-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+}
