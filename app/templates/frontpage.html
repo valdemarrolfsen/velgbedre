@@ -10,26 +10,34 @@
 			</video>
 			<div class = "filter"></div>
 			<div class="frontpage-wrap">
-				<div class = "number-wrap" id="number-wrap">
-					<div class="number">
-						<h1>76</h1>
-						<p>produkter</p>
+				{% if not email_sent %}
+					<div class = "number-wrap" id="number-wrap">
+						<div class="number">
+							<h1>76</h1>
+							<p>produkter</p>
+						</div>
+						<div class="number">
+							<h1>18</h1>
+							<p>leverandører</p>
+						</div>
+						<div class="number">
+							<h1>202</h1>
+							<p>arbeidsplasser</p>
+						</div>
 					</div>
-					<div class="number">
-						<h1>18</h1>
-						<p>leverandører</p>
+				{% else %}
+					<div class="frontpage-message">
+						<p>Forespørsel om katalog et sendt til en av våre julenisser :)</p>
 					</div>
-					<div class="number">
-						<h1>3</h1>
-						<p>bunnlinjer</p>
-					</div>
-				</div>
+				{% endif%}
 				<form class="frontpage-form" id = "frontpage-email" method="post">{% csrf_token %}
 					<label for="email">Epost:</label>
 					<input type="email" id="email" name="frontpage_email" placeholder="Skriv inn din epost her">
-					<button type="submit" class="frontpage-button">Send katalog</button>
+					<button type="submit" class="frontpage-button">Send inn</button>
 				</form>
-				<button class="frontpage-button" id="frontpage-get-button">Få tilsendt katalog her</button>
+				{% if not email_sent %}
+					<button class="frontpage-button" id="frontpage-get-button">Få tilsendt katalog her</button>
+				{% endif%}
 			</div>
 		</section>
 		<section id = "section-intro-text">

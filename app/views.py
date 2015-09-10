@@ -8,6 +8,8 @@ def frontpage_view(request):
 	products = Product.objects.all()
 	companies = Company.objects.all()
 
+	email_sent = False
+
 	if request.method == "POST":
 		if 'other_name' in request.POST:
 			let = Letter()
@@ -17,6 +19,7 @@ def frontpage_view(request):
 			let.save()
 		elif 'frontpage_email' in request.POST:
 			Mail_sender.send_cat_request(request.POST.get('frontpage_email'))
+			email_sent = True
 		else:
 			sub = Subscriber()
 			sub.name = request.POST.get('name')
@@ -26,6 +29,7 @@ def frontpage_view(request):
 	return render(request, 'frontpage.html', {
 		'products':products,
 		'companies':companies,
+		'email_sent':email_sent
 		})
 
 def about_view(request):

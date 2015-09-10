@@ -170,6 +170,15 @@
 
 			width: 100%;
 
+			.frontpage-message {
+				padding-top: 50px;
+				p {
+					font-size: 26px;
+					text-align: center;
+					color: #fff;
+				}
+			}
+
 			.number-wrap {
 				position: relative;
 				width: 1020px;
@@ -293,7 +302,7 @@
 
 		@media (max-width: $smallMediaSize) {
 			padding-top: 40px;
-			height: 40vh;
+			height: 70vh;
 
 			background-attachment: scroll;
 			background-image: url(../../img/background/lstn-bg.jpg);
@@ -307,22 +316,34 @@
 			#bgvid {
 				display: none;
 			}
+			
+			.frontpage-wrap {
+				.number-wrap {
+					width: 200px;
+					.number {
+						width: 100%;
+						margin-left: 0px;
+						h1 {
+							font-size: 45px;
+							margin: 0px;
+						}
 
-			.number-wrap {
-
-				width: 200px;
-				.number {
-					width: 100%;
-					margin-left: 0px;
-					h1 {
-						font-size: 45px;
-						margin: 0px;
+						p {
+							font-size: 15px;
+							margin: 0px;
+						}
 					}
+				}
 
-					p {
-						font-size: 15px;
-						margin: 0px;
-					}
+				.frontpage-form {
+					width: 80%;
+				}
+
+				.frontpage-button {
+					width: 90%;
+					height: 40px;
+
+					font-size: 14px;
 				}
 			}
 		}
@@ -369,8 +390,9 @@
 
 		@media (max-width: $smallMediaSize) {
 			height: 45vh;
+
 			h1 {
-				font-size: 35px;
+				font-size: 30px;
 			}
 			h2 {
 				font-size: 20px;
@@ -382,6 +404,10 @@
 				padding-left: 10px;
 				padding-right: 10px;
 				margin-bottom: 0px;
+			}
+
+			.down {
+				font-size: 16px;
 			}
 
 		}
