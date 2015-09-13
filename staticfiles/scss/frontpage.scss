@@ -1,5 +1,57 @@
 @import 'variables';
 
+.btn-circle i.animated {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
+}
+
+.btn-circle:hover i.animated {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    -moz-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+
+@-webkit-keyframes pulse {    
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-moz-keyframes pulse {    
+    0% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
 #app-frontpage-introsite {
 	display: block;
 
@@ -9,6 +61,11 @@
 
 	@media (max-width: $smallMediaSize) {
 		padding-top: 20px;
+	}
+
+	#frontpage-pin {
+		position: fixed;
+		top: 0;
 	}
 
 	.down {
@@ -26,6 +83,17 @@
 		span {
 			font-size: 70px;
 			color: #fff;
+		}
+
+		&:hover span {
+		    -webkit-animation-name: pulse;
+		    -moz-animation-name: pulse;
+		    -webkit-animation-duration: 1.5s;
+		    -moz-animation-duration: 1.5s;
+		    -webkit-animation-iteration-count: infinite;
+		    -moz-animation-iteration-count: infinite;
+		    -webkit-animation-timing-function: linear;
+		    -moz-animation-timing-function: linear;
 		}
 
 		@media (max-width: $smallMediaSize) {
@@ -190,6 +258,8 @@
 				margin-right: auto;
 				margin-left: auto;
 
+				margin-bottom: 30px;
+
 				font-weight: 500;
 				text-align: center;
 
@@ -308,7 +378,7 @@
 
 				display: inline-block;
 				margin: 0 20px;
-				margin-top: 40px;
+				margin-top: 10px;
 
 				padding-left: 40px;
 				padding-right: 40px;
@@ -474,7 +544,7 @@
 
 		@media (max-width: $smallMediaSize) {
 			padding: 10px;
-			padding-top: 0px;
+			padding-top: 60px;
 			h1 {
 				font-size: 30px;
 			}
@@ -518,7 +588,7 @@
 
 		@media (max-width: $smallMediaSize) {
 			padding: 10px;
-			padding-top: 0px;
+			padding-top: 60px;
 			h1 {
 				font-size: 30px;
 			}
@@ -564,6 +634,7 @@
 
 		@media (max-width: $smallMediaSize) {
 			padding: 10px;
+			padding-top: 60px;
 			height: 110vh;
 			h1 {
 				font-size: 30px;

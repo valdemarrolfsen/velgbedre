@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block content %}
 	<div id = "app-frontpage-introsite">
+		<div id="frontpage-pin"></div>
 		<section id = "section-intro-image">
 			<video autoplay loop muted poster="{% static 'img/background/lstn-bg.jpg' %}" id="bgvid">
 				<source src="{% static 'video/velgbedre.mp4' %}">
@@ -60,7 +61,7 @@
 		</section>
 		<section id = "section-problem">
 			<div class = "row">
-				<div class = "col-md-5">
+				<div class = "col-md-5" id="problem-text">
 					<h1>Handlekraft</h1>
 					<p>
 						Samfunnsansvarlige bedrifter har i dag et konkurransefortrinn i næringslivet. Den moderne forbruker stiller høyere og høyere forventninger til hva bedrifter utretter utover å drive virksomhet, men trender i norsk næringsliv viser at over halvparten av norske arbeidstakere ikke oppfatter at sin arbeidsgiver tar aktivt ansvar.
@@ -75,20 +76,20 @@
 		</section>
 		<section id = "section-solution">
 			<div class = "row">
-				<div class = "col-md-6">
+				<div class = "col-md-6" id="solution-text">
 					<h1>Bærekraftige gaver</h1>
 					<p>
 						Velg Bedre er en bedriftstjeneste som tilbyr bærekraftige premier og gaver til bedrifter, organisasjoner og konferanser. Vi finner kvalitetsbevisste produsenter fra hele verden og knytter dem til vårt nettverk slik at vi kan levere de beste bærekraftige løsningene. Hver gang du bruker penger, stemmer du på den verdenen du ønsker å leve i.
 					</p>	
 					<div class = "down">
-						<a class = "page-scroll" href="#section-supporters">
+						<a class = "page-scroll" href="#section-change">
 							<span class = "icon-arrow-down" aria-hidden = "true"></span>
 						</a>
 					</div>
 				</div>
 			</div>
 		</section>
-		<section id = "section-supporters">
+		<!--<section id = "section-supporters">
 			<h1>våre <strong>inspirerende</strong> løsninger</h1>
 			<div class = "product-wrap">
 				{% for c in companies %}
@@ -102,7 +103,7 @@
 					<span class = "icon-arrow-down" aria-hidden = "true"></span>
 				</a>
 			</div>
-		</section>
+		</section>-->
 		<section id = "section-change">
 			<h1>du kan <strong>bidra</strong> ved å</h1>
 			<div class = "icon-container" target="_blank">
@@ -224,6 +225,11 @@
 		$('#frontpage-email').hide();
 		$('#frontpage-video-cover').hide();
 
+		if ($(window).width() > 900) {
+			$('#problem-text').hide();
+			$('#solution-text').hide();
+		}
+
 		$('#frontpage-get-button').click(function() {
 
 			$('#number-wrap').fadeOut();
@@ -244,6 +250,14 @@
         		return;
 
         	$('#frontpage-video-cover').fadeOut();
+		});
+
+		$(document).on('scroll', function() {
+			if ($('#frontpage-pin').offset().top > 470)
+				$('#problem-text').fadeIn();
+			
+			if ($('#frontpage-pin').offset().top > 1400)
+				$('#solution-text').fadeIn();
 		});
 
 	});
