@@ -70,6 +70,13 @@
 			font-weight: 300;
 		}
 
+		.intro-video {
+			position: relative;
+			display: block;
+			margin: 0 auto;
+			margin-top: 50px;
+		}
+
 		@media (max-width: $smallMediaSize) {
 			height: auto;
 		}
@@ -79,6 +86,8 @@
 	#section-members {
 
 		background: #222;
+
+		padding-top: 40px;
 
 		.member {
 			width: 100%;
@@ -106,7 +115,11 @@
 			}
 
 			img {
-				width: 100%;
+				width: 80%;
+				display: block;
+				margin: 0 auto;
+
+				margin-bottom: 50px;
 			}
 		}
 	}
