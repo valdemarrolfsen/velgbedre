@@ -35,8 +35,16 @@
 					<input type="email" id="email" name="frontpage_email" placeholder="Skriv inn din epost her" required>
 					<button type="submit" class="frontpage-button">Send inn</button>
 				</form>
+				<div class="frontpage-video-cover" id="frontpage-video-cover">
+					<video controls class="frontpage-video" id="frontpage-video">
+						<source src="{% static 'video/velgbedre.mp4' %}">
+						<source src="{% static 'video/velgbedre.webm' %}" type="video/webm">
+						<source src="{% static 'video/velgbedre.mp4' %}" type="video/mp4">
+					</video>
+				</div>
 				{% if not email_sent %}
 					<button class="frontpage-button" id="frontpage-get-button">Få tilsendt katalog her</button>
+					<button class="frontpage-button" id="frontpage-view-button">Se forklaringsvideo her</button>
 				{% else %}
 					<a href="{% url 'frontpage' %}"><button class="frontpage-button">Tilbake</button></a>
 				{% endif%}
@@ -214,16 +222,30 @@
 <script>
 	$(function() {
 		$('#frontpage-email').hide();
+		$('#frontpage-video-cover').hide();
 
 		$('#frontpage-get-button').click(function() {
 
 			$('#number-wrap').fadeOut();
 			$('#frontpage-get-button').fadeOut();
+			$('#frontpage-view-button').fadeOut();
 
 			setTimeout(function() {
 				$('#frontpage-email').fadeIn();
 			}, 700);
 		});
+
+		$('#frontpage-view-button').click(function() {
+			$('#frontpage-video-cover').fadeIn();
+		});
+
+		$('#frontpage-video-cover').on('click', function (e) {
+			if (e.target != this)
+        		return;
+
+        	$('#frontpage-video-cover').fadeOut();
+		});
+
 	});
 </script>
 {% endblock extraJS %}
