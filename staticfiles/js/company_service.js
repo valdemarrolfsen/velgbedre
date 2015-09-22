@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 	selectedProduct = 0;
 
-	selectedType = $('#productTypes' + selectedProduct).val();
+	selectedType = $('#productTypes' + selectedProduct + ' option:selected').val();
 
 	$('#picture-slider0').hide();
 	$('#do-post').hide();
@@ -17,6 +17,8 @@ $(document).ready(function() {
 	$('.product-picture').hide();
 
 	$('#product-picture' + selectedType).show();
+
+	console.log(wishlist);
 
 	for (var i = 1; i<numProducts; i++) {
 		$('#picture-slider' + i).hide();
