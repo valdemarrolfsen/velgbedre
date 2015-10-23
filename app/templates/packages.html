@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+	<div id = "app-packages">
+		<div class="panel-group">
+			{% for package in packages %}
+				<div class="panel panel-package">
+					<div class="panel-heading">
+						<a data-toggle="collapse" href="#collapse1">
+							<h4 class="panel-title">{{ package.name }}</h4>
+						</a>
+						<a href="#"
+						    class="snipcart-add-item buy-button"
+						    data-item-id="{{package.id}}"
+						    data-item-name="{{package.name}}"
+						    data-item-price="{{package.price}}"
+						    data-item-weight="20"
+						    data-item-url="{% url 'packages' %}"
+						    data-item-description="Den minste gavepakken">
+						        Kjøp
+						</a>
+					</div>
+					<div id="collapse1" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class="package-info">
+								<h1>{{package.name}}</h1>
+								<p>
+									{{package.description}}
+								</p>
+							</div>
+							{% for relation in package.get_products %}
+								<div class="package-product">
+									<div class="package-product-image" style="background-image: url({% static 'img/products/lstn.png' %});"></div>
+									<h1>{{relation.product.name}}</h1>
+									<p>
+										{{relation.product.short_description}}
+									</p>
+									<a href="{% url 'product' relation.product.id %}" target="_blank"><button>Les mer</button></a>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock content %}

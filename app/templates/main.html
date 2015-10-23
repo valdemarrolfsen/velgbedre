@@ -2,7 +2,7 @@
 {% load compress %}
 {% load css_folder %}
 <!Doctype HTML>
-<html>
+<html lang="nb">
 	<head>
 		{% block head %}
 			<meta charset="utf-8">
@@ -25,6 +25,10 @@
 			<!-- Fonts -->
 			<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 			<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+			<link id="snipcart-theme" type="text/css"
+			    href="https://cdn.snipcart.com/themes/base/snipcart.min.css"
+			    rel="stylesheet">
 
 			{% compress css %}
 				{% load_scss %}
@@ -65,6 +69,8 @@
 					<li><a href="{% url 'frontpage' %}">Hjem</a></li>
 					<li><a href="{% url 'about' %}">Om oss</a></li>
 					<li><a href="{% url 'contact' %}">Kontakt</a></li>
+					<!--<li><a href="{% url 'packages' %}">Pakker</a></li>
+					<li><a href="#" class="snipcart-checkout"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>-->
 				</ul>
 			  </div><!-- /.navbar-collapse -->
 			</nav>
@@ -86,6 +92,10 @@
 		<!-- Chart -->
 		<script src = "{% static 'js/scrolling.js' %}"></script>
 		<script src = "{% static 'js/countdown.js' %}"></script>
+
+		<script type="text/javascript" src="https://cdn.snipcart.com/scripts/snipcart.js" id="snipcart" data-api-key="MGM5YmM4Y2MtYjc4My00OWE1LWJiMTEtZTViMTE2YzhhNjli"></script>
+
+		<script src = "{% static 'js/nb.js' %}"></script>
 
 		{% block extraJS %}
 		{% endblock extraJS %}

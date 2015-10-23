@@ -37,3 +37,17 @@ def about_view(request):
 
 def contact_view(request):
 	return render(request, 'contact.html')
+
+def package_view(request):
+	packages = Package.objects.all()
+
+	return render(request, 'packages.html', {
+		'packages':packages
+		})
+
+def product_view(request, pId):
+	product = Product.objects.get(id = pId)
+
+	return render(request, 'product.html', {
+		'product':product
+		})

@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+	<div id = "app-product">
+		<div class="product-content">
+			<div class="product-cover" style="background-image: url({% static 'img/background/lstn-bg.jpg' %});">
+				<h1>{{product.name}}</h1>
+			</div>
+			<div class="product-image" style="background-image: url({% static 'img/products/lstn.png' %});"></div>
+			<div class="product-info">
+				{{ product.description | safe }}
+			</div>
+		</div>
+	</div>
+{% endblock content %}

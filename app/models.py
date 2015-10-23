@@ -1,21 +1,20 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Product(models.Model):
-
 	name = models.CharField(max_length=100)
 	short_description = models.TextField(blank=True, null=True)
-	description = models.TextField(blank=True, null=True)
-	image = models.CharField(max_length=40)
-	score = models.IntegerField()
+	description = RichTextField()
+	image = models.ImageField(upload_to='products/%Y/%m/%d')
 
 	class Meta:
 		verbose_name = "Product"
 		verbose_name_plural = "Products"
 
 	def __str__(self):
-		return "{}-{}".format(
-			self.name, self.score)
+		return "{}".format(
+			self.name)
 
 class Company(models.Model):
 	name = models.CharField(max_length=100)
@@ -46,5 +45,21 @@ class Letter(models.Model):
 	class Meta:
 		verbose_name = "Letter"
 		verbose_name_plural = "Letters"
+
+class Package(models.Model):
+	name = models.CharField(max_length=255)
+	description = models.TextField()
+	price = models.IntegerField()
+
+	def get_products(self):
+		return ProductPackage.objects.filter(package = self)
+
+	def __str__(self):
+		return "{}".format(self.name)
+
+class ProductPackage(models.Model):
+	package = models.ForeignKey(Package, related_name='Pacakge')
+	product = models.ForeignKey(Product, related_name='Product')
+
 
     
