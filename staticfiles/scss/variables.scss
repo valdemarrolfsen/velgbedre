@@ -44,3 +44,11 @@ $secondSection: rgb(247, 247, 247);
     -ms-transition: background-color 200ms linear;
     transition: background-color 200ms linear;
 }
+
+@mixin setTrans($type: all, $duration: 500ms) {
+	-webkit-transition: $type $duration linear;
+    -moz-transition: $type $duration linear;
+    -o-transition: $type $duration linear;
+    -ms-transition: $type $duration linear;
+    transition: $type $duration linear;
+}

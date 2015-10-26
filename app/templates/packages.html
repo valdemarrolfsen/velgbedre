@@ -2,11 +2,71 @@
 {% load staticfiles %}
 {% block content %}
 	<div id = "app-packages">
+		<div class="cover-photo">
+			<div class="cover-photo-cover">
+				<h1>Du vet best hva du vil ha</h1>
+			</div>
+		</div>
+		<div class="package-container">
+			{% for package in packages %}
+				<div class="package-box" style="background-image: url({{ package.image.url }});"> 
+					<div class="package-box-cover">
+						<h1>{{ package.name }}</h1>
+						<h2>Trykk for å gå til pakken</h2>
+					</div>
+				</div>
+			{% endfor %}
+			{% for package in packages %}
+				<div class="package-box" style="background-image: url({{ package.image.url }});"> 
+					<a class="package-box-cover" data-toggle="modal" data-target="#product{{ forloop.counter }}">
+						<h1>{{ package.name }}</h1>
+						<h2>Trykk for å gå til pakken</h2>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+		{% for package in packages %}
+		<div class="modal fade" id="product{{ forloop.counter }}">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<div class="package-section">
+							<div class="package-image" style="background-image: url({{ package.image.url }});"></div>
+						</div>
+						<div class="package-section">
+							<div class="package-text">
+								<h1>{{ package.name }}</h1>
+								<p>{{ package.description }}</p>
+								<a href="#"
+								    class="snipcart-add-item buy-button"
+								    data-item-id="{{package.id}}"
+								    data-item-name="{{package.name}}"
+								    data-item-price="{{package.price}}"
+								    data-item-weight="20"
+								    data-item-url="{% url 'packages' %}"
+								    data-item-description="Den minste gavepakken"
+								    data-dismiss="modal">
+								    <button>Kjøp</button>
+								</a>
+								<button>Ønsk deg</button>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		{% endfor %}
+		<!--
 		<div class="panel-group">
 			{% for package in packages %}
 				<div class="panel panel-package">
 					<div class="panel-heading">
-						<a data-toggle="collapse" href="#collapse1">
+						<a data-toggle="collapse" href="#collapse{{ forloop.counter}}">
 							<h4 class="panel-title">{{ package.name }}</h4>
 						</a>
 						<a href="#"
@@ -20,7 +80,7 @@
 						        Kjøp
 						</a>
 					</div>
-					<div id="collapse1" class="panel-collapse collapse">
+					<div id="collapse{{ forloop.counter}}" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="package-info">
 								<h1>{{package.name}}</h1>
@@ -43,5 +103,6 @@
 				</div>
 			{% endfor %}
 		</div>
+		-->
 	</div>
 {% endblock content %}

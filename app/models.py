@@ -51,6 +51,8 @@ class Package(models.Model):
 	description = models.TextField()
 	price = models.IntegerField()
 
+	image = models.ImageField(upload_to='packages/%Y/%m/%d', blank=True, null=True)
+
 	def get_products(self):
 		return ProductPackage.objects.filter(package = self)
 
