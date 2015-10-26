@@ -10,14 +10,6 @@
 		<div class="package-container">
 			{% for package in packages %}
 				<div class="package-box" style="background-image: url({{ package.image.url }});"> 
-					<div class="package-box-cover">
-						<h1>{{ package.name }}</h1>
-						<h2>Trykk for å gå til pakken</h2>
-					</div>
-				</div>
-			{% endfor %}
-			{% for package in packages %}
-				<div class="package-box" style="background-image: url({{ package.image.url }});"> 
 					<a class="package-box-cover" data-toggle="modal" data-target="#product{{ forloop.counter }}">
 						<h1>{{ package.name }}</h1>
 						<h2>Trykk for å gå til pakken</h2>
