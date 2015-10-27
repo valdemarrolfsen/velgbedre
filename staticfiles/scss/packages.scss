@@ -98,6 +98,10 @@
 
 			&:hover .package-box-cover {
 				opacity: 1;
+
+				h1, h2 {
+					margin-top: 20px;
+				}
 			}
 
 			.package-box-cover {
@@ -110,25 +114,29 @@
 
 				padding-top: 120px;
 
-				background: rgba(0,0,0,0.8);
-				color: #fff;
+				background: rgba(255,255,255,0.8);
+				color: #333;
 
 				opacity: 0;
 
 				cursor: pointer;
 
 				h1 {
-					font-size: 20px;
-
+					margin-top: 23px;
+					font-size: 24px;
 					text-transform: uppercase;
+
+					@include setTrans(all, 300ms);
 				}
 
 				h2 {
+					margin-top: 23px;
 					font-size: 16px;
-					font-weight: 300;
+
+					@include setTrans(all, 300ms);
 				}
 
-				@include setTrans(opacity, 300ms);
+				@include setTrans(all, 300ms);
 			}
 		}
 
