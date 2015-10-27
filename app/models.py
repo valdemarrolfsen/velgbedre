@@ -7,6 +7,8 @@ class Product(models.Model):
 	short_description = models.TextField(blank=True, null=True)
 	description = RichTextField()
 	image = models.ImageField(upload_to='products/%Y/%m/%d')
+	cover_image = models.ImageField(upload_to='packages/%Y/%m/%d', blank=True, null=True)
+
 
 	class Meta:
 		verbose_name = "Product"

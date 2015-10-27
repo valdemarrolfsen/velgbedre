@@ -46,6 +46,13 @@
 								<button>Ønsk deg</button>
 							</div>
 						</div>
+						<div class="product-section">
+							{% for relation in package.get_products %}
+							<a href="/product/{{relation.product.id}}">
+								<div class="product-image" style="background-image: url({{ relation.product.image.url }});"></div>
+							</a>
+							{% endfor %}
+						</div>
 					</div>
 					<div class="modal-footer">
 					</div>
