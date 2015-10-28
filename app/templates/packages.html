@@ -12,6 +12,7 @@
 				<div class="package-box" style="background-image: url({{ package.image.url }});"> 
 					<a class="package-box-cover" data-toggle="modal" data-target="#product{{ forloop.counter }}">
 						<h1>{{ package.name }}</h1>
+						<h3>{{ package.price }},-</h3>
 						<h2>Trykk for å gå til pakken</h2>
 					</a>
 				</div>
@@ -48,7 +49,7 @@
 						</div>
 						<div class="product-section">
 							{% for relation in package.get_products %}
-							<a href="/product/{{relation.product.id}}">
+							<a href="/product/{{relation.product.id}}" target="_blank">
 								<div class="product-image" style="background-image: url({{ relation.product.image.url }});"></div>
 							</a>
 							{% endfor %}
