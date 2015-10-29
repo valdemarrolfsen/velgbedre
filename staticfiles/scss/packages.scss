@@ -311,7 +311,7 @@
 						@include setTrans(all, 100ms);
 
 						&:hover {
-							margin-top: -10px;
+							border: 2px solid orange;
 						}
 					}
 				}
