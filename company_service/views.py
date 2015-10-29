@@ -31,6 +31,55 @@ def intro_view(request, code):
 		'userForm':userForm
 	})
 
+def giftcard_view(request):
+
+	title = 'Gavekort'
+
+	logout(request)
+
+	errors = {}
+
+	if request.method == 'POST':
+		code = request.POST.get('code')
+		giftcode = False
+		try:
+			giftcode = GiftCardCode.objects.get(code=code)
+		except Exception:
+			errors['code'] = 'Ugyldig kode'
+
+		if giftcode and not giftcode.used:
+			giftcode.used = True
+			giftcode.save()
+			return redirect(reverse('intro', kwargs={'code':giftcode.company.code}))
+
+	return render(request, 'giftcode.html', {
+		'errors': errors
+		})
+
+def login_view(request):
+
+	title = 'Logg inn'
+
+	logout(request)
+
+	errors = {}
+
+	if request.method == 'POST':
+		loginForm = LoginForm(request.POST)
+		if loginForm.is_valid():
+			user = loginForm.login(request)
+
+			if user.is_active:
+				login(request, user)
+				return redirect(reverse('company_frontpage'))
+	else:
+		loginForm = LoginForm()
+
+	return render(request, 'login.html', {
+		'errors': errors,
+		'loginForm':loginForm
+		})
+
 @login_required
 def frontpage_view(request):
 

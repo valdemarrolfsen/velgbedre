@@ -68,6 +68,10 @@ class UserProfile(AbstractBaseUser):
 	firstname = models.CharField(max_length=50)
 	lastname = models.CharField(max_length=50)
 
+	address = models.CharField(max_length=255, blank=True, null=True)
+	post_code = models.CharField(max_length=255, blank=True, null=True)
+	city = models.CharField(max_length=255, blank=True, null=True)
+
 	is_active = models.BooleanField(default=False)
 	is_admin = models.BooleanField(default=False)
 
@@ -170,7 +174,10 @@ class Type(models.Model):
 	product = models.ForeignKey(Product)
 	product_photo = models.ImageField(upload_to='products/%Y/%m/%d')
 
-
+class GiftCardCode(models.Model):
+	code = models.IntegerField()
+	company = models.ForeignKey(Company)
+	used = models.BooleanField(default=False)
 
 
 

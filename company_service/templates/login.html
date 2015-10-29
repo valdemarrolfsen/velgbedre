@@ -1,0 +1,21 @@
+{% extends 'company_main.html' %}
+{% load staticfiles %}
+{% block content %}
+	<div id="company-giftcard-code">
+		
+		<!--<video controls poster="{% static 'img/background/lstn-bg.jpg' %}" id="velgefilm">
+			<source src="{% static 'video/velgefilm.mp4' %}">
+			<source src="{% static 'video/velgefilm.webm' %}" type="video/webm">
+			<source src="{% static 'video/velgefilm.mp4' %}" type="video/mp4">
+		</video>-->
+		<div class="giftcard-form">
+			<h1>Logg inn her</h1>
+			<form action="" method="post">{% csrf_token %}
+				{{loginForm.username}}
+				{{loginForm.password}}
+				<p>{{errors.code}}</p>
+				<button type="submit">Logg inn</button>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

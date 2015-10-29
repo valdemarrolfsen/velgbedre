@@ -126,6 +126,74 @@
 	}
 }
 
+#company-giftcard-code {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+
+	background-attachment: scroll;
+	background-image: url(../../img/background/present.jpg);
+	background-position: center center;
+	background-repeat: none;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+
+	.giftcard-form {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+
+		width: 400px;
+		height: 300px;
+		margin: 0 auto;
+
+		margin-top: -100px;
+
+		h1 {
+			font-size: 24px;
+			color: #fff;
+		}
+
+		input {
+			width: 100%;
+			height: 40px;
+
+			float: left;
+
+			padding-left: 10px;
+
+			border: 0;
+
+			margin-bottom: 10px;
+		}
+
+		.half {
+			width: 45%;
+			margin-right: 5%;
+		}
+
+		button {
+			padding: 10px 30px;
+
+			background: #333;
+			border: 0;
+
+			color: #fff;
+		}
+	}
+
+	@media screen and (max-width: $smallMediaSize) {
+		.giftcard-form {
+			width: 100%;
+
+			padding: 20px;
+		}
+	}
+}
+
 #company_service-frontpage {
 
 	padding: 100px;
@@ -870,7 +938,7 @@
 
     	margin: 0 auto;
 
-    	height: 50%;
+    	height: 30%;
 
     	z-index: 100;
 

@@ -8,11 +8,14 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['email', 'firstname', 'lastname']
+        fields = ['email', 'firstname', 'lastname', 'address', 'post_code', 'city']
         widgets = {
             'email':forms.TextInput(attrs={'placeholder':'Epost'}),
             'firstname':forms.TextInput(attrs={'placeholder':'Fornavn'}),
-            'lastname':forms.TextInput(attrs={'placeholder':'Etternavn'})
+            'lastname':forms.TextInput(attrs={'placeholder':'Etternavn'}),
+            'address':forms.TextInput(attrs={'placeholder':'Gate'}),
+            'post_code':forms.TextInput(attrs={'placeholder':'Postnummer'}),
+            'city':forms.TextInput(attrs={'placeholder':'By'}),
         }
 
     # Sets all the fields to required. Without using the html5 attribute wich does not work on iphones
@@ -43,15 +46,18 @@ class UserProfileForm(forms.ModelForm):
 
         if commit:
             user.save()
-            Mail_sender.send_welcome_mail(user, password)
+            try:
+                Mail_sender.send_welcome_mail(user, password)
+            except Exception as e:
+                print(e)
 
             user = authenticate(username=user.email.lower(), password=password)
             return user
 
 
 class LoginForm(forms.Form):
-    username = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Epost'}),max_length=255, required=True)
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Passord'}), required=True)
+    username = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Epost', 'class':'half'}),max_length=255, required=True)
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Passord', 'class':'half'}), required=True)
 
     def clean(self):
         username = self.cleaned_data.get('username')

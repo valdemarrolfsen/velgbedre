@@ -23,6 +23,9 @@ class CompanyProductRelationAdmin(admin.ModelAdmin):
 class TypeAdmin(admin.ModelAdmin):
 	list_display = ['name', 'product']
 
+class GiftCardCodeAdmin(admin.ModelAdmin):
+	list_display = ['code']
+
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
@@ -30,3 +33,4 @@ admin.site.register(Wish, WishAdmin)
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(CompanyProductRelation, CompanyProductRelationAdmin)
 admin.site.register(Type, TypeAdmin)
+admin.site.register(GiftCardCode, GiftCardCodeAdmin)
