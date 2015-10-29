@@ -4,10 +4,14 @@
 	<div id = "app-packages">
 		<div class="cover-photo">
 			<div class="cover-photo-cover">
-				<h1>Du vet best hva du vil ha</h1>
+				<h1>Gi vekk et inspirerende valg til de du er glad i</h1>
 			</div>
 		</div>
 		<div class="package-container">
+			<h1>Våre gavekort</h1>
+			<p>
+				Se gjennom en av våre fire gavekortpakker.
+			</p>
 			{% for package in packages %}
 				<div class="package-box" style="background-image: url({{ package.image.url }});"> 
 					<a class="package-box-cover" data-toggle="modal" data-target="#product{{ forloop.counter }}">

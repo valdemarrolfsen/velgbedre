@@ -17,7 +17,7 @@
 	.cover-photo {
 		position: relative;
 		width: 100%;
-		height: 60vh;
+		height: 30vh;
 
 		background-attachment: scroll;
 		background-image: url(../../img/background/child.jpg);
@@ -42,12 +42,12 @@
 				position: absolute;
 				top: 50%;
 
-				margin-top: -22px;
+				margin-top: -16.5px;
 
 				width: 100%;
 
 				color: #fff;
-				font-size: 40px;
+				font-size: 30px;
 				font-weight: 800;
 
 				letter-spacing: 7px;
@@ -71,6 +71,7 @@
 		h1 {
 			font-weight: 800;
 			font-size: 30px;
+			margin-top: 0;
 		}
 
 		p {
@@ -234,7 +235,7 @@
 					.package-text {
 						height: 100%;
 
-						padding: 20px 40px;
+						padding: 30px 40px;
 						padding-bottom: 30px;
 
 						border-left: 1px solid #888;
