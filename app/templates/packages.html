@@ -10,7 +10,7 @@
 		<div class="package-container">
 			<h1>Våre gavekort</h1>
 			<p>
-				Se gjennom en av våre fire gavekortpakker.
+				Denne julen kan du gi vekk et inspirerende valg til de du er glad i. Kjøp et valg og få tilsendt et fysisk gavekort som gir mottakeren til å velge den gaven som treffer hjertet. Trykk på pakkene under for å lære mer.
 			</p>
 			{% for package in packages %}
 				<div class="package-box" style="background-image: url({{ package.image.url }});"> 
@@ -44,7 +44,7 @@
 								    data-item-price="{{package.price}}"
 								    data-item-weight="20"
 								    data-item-url="{% url 'packages' %}"
-								    data-item-description="Den minste gavepakken"
+								    data-item-description="{{package.description}}"
 								    data-dismiss="modal">
 								    <button>Kjøp</button>
 								</a>

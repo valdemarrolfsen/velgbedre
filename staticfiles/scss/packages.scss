@@ -307,6 +307,12 @@
 
 						background-position: center center;
 						background-size: cover;
+
+						@include setTrans(all, 100ms);
+
+						&:hover {
+							margin-top: -10px;
+						}
 					}
 				}
 			}
