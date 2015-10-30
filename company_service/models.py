@@ -175,7 +175,7 @@ class Type(models.Model):
 	product_photo = models.ImageField(upload_to='products/%Y/%m/%d')
 
 class GiftCardCode(models.Model):
-	code = models.IntegerField()
+	code = models.CharField(max_length=255)
 	company = models.ForeignKey(Company)
 	used = models.BooleanField(default=False)
 
