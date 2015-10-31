@@ -31,10 +31,19 @@
 					</div>
 					<div class="modal-body">
 						<div class="package-section">
-							<div class="package-image" style="background-image: url({{ package.image.url }});"></div>
+							<div id="two" class="package-image" style="background-image: url({{ package.image.url }});"></div>
+							{% for relation in package.get_products %}
+								<div id="product{{forloop.parentloop.counter}}{{ forloop.counter }}" class="package-text product-text">
+									<div class="package-text-product-image" style="background-image: url({{relation.product.image.url}});">
+										<h1>{{relation.product.name}}</h1>
+									</div>
+									<p class="text-center">{{relation.product.short_description}}</p>
+									<a href="/product/{{relation.product.id}}"><button class="center">Les mer</button></a>
+								</div>
+							{% endfor %}
 						</div>
 						<div class="package-section">
-							<div class="package-text">
+							<div class="package-text with-border">
 								<h1>{{ package.name }}</h1>
 								<p>{{ package.description }}</p>
 								<a href="#"
@@ -53,7 +62,8 @@
 						</div>
 						<div class="product-section">
 							{% for relation in package.get_products %}
-							<a href="/product/{{relation.product.id}}" target="_blank">
+							<!--<a href="/product/{{relation.product.id}}">-->
+							<a href="#" id="productToggle{{forloop.parentloop.counter}}{{ forloop.counter }}">
 								<div class="product-image" style="background-image: url({{ relation.product.image.url }});"></div>
 							</a>
 							{% endfor %}
@@ -110,3 +120,23 @@
 		-->
 	</div>
 {% endblock content %}
+
+{% block extraJS %}
+<script>
+	$(document).ready(function() {
+
+		$('.product-text').hide();
+		{% for package in packages %}
+		{% for relation in package.get_products %}
+			$('#productToggle{{forloop.parentloop.counter}}{{ forloop.counter }}').click(function() {
+				$('#two').fadeOut();
+				$('.product-text').fadeOut();
+				setTimeout(function() {
+					$('#product{{forloop.parentloop.counter}}{{ forloop.counter }}').fadeIn();
+				}, 500);
+			});
+		{% endfor %}
+		{% endfor %}
+	});
+</script>
+{% endblock extraJS %}
