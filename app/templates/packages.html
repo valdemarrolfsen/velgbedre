@@ -31,7 +31,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="package-section">
-							<div id="two" class="package-image" style="background-image: url({{ package.image.url }});"></div>
+							<div class="package-image" style="background-image: url({{ package.image.url }});"></div>
 							{% for relation in package.get_products %}
 								<div id="product{{forloop.parentloop.counter}}{{ forloop.counter }}" class="package-text product-text">
 									<div class="package-text-product-image" style="background-image: url({{relation.product.image.url}});">
@@ -129,7 +129,7 @@
 		{% for package in packages %}
 		{% for relation in package.get_products %}
 			$('#productToggle{{forloop.parentloop.counter}}{{ forloop.counter }}').click(function() {
-				$('#two').fadeOut();
+				$('.package-image').fadeOut();
 				$('.product-text').fadeOut();
 				setTimeout(function() {
 					$('#product{{forloop.parentloop.counter}}{{ forloop.counter }}').fadeIn();
