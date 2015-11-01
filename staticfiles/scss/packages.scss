@@ -20,7 +20,7 @@
 		height: 30vh;
 
 		background-attachment: scroll;
-		background-image: url(../../img/background/child.jpg);
+		background-image: url(../../img/background/wintergirl.jpg);
 		background-position: center center;
 		background-repeat: none;
 		-webkit-background-size: cover;
@@ -276,9 +276,46 @@
 							}
 						}
 
+						input {
+							width: 45%;
+							height: 40px;
+							border: 1px solid #888;
+
+							float: left;
+
+							padding-left: 10px;
+
+							font-size: 16px;
+							font-weight: 300;
+
+							&:focus {
+								outline: none;
+								border: 2px solid orange;
+							}
+						}
+
+						.spesial-button {
+							width: 45%;
+							margin: 0;
+							margin-top: 10px;
+							font-size: 16px;
+						}
+
+						.input-left {
+							margin-right: 5%;
+						}
+
+						.input-under {
+							margin-top: 10px;
+						}
+
 						.center {
 							display: block;
 							margin: 0 auto;
+						}
+
+						.package-text-form {
+							position: relative;
 						}
 
 						.package-text-product-image {

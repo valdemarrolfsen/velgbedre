@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body style="margin: 0; padding: 0; min-width: 100%!important; font-family: 'Open Sans', sans-serif;">
+    <div style="
+            position: relative;
+            width: 100%;
+            padding-top: 10px;
+            z-index: 10000;
+            color: white;
+            font-size: 20px;
+            font-weight: 300;
+            text-align: center;
+            min-height: 200px;
+            line-height:210px;
+            box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6);
+            background-attachment: scroll;
+	    background-image: url(http://www.velgbedre.no/static/img/email/{{image}});
+	    background-position: center center;
+	    background-repeat: none;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    background-size: cover;
+	    -o-background-size: cover;"><div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4);"></div>
+        <span style="margin-left: auto;
+            position: relative;
+            margin-right: auto;
+            display: block;
+            padding-top: 20px;
+            padding-bottom: 20px;;
+            font-weight: 800;
+            font-size: 26px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            display:inline-block;
+            line-height:30px;
+            vertical-align:middle;">
+            {{ header }}
+        </span>
+    </div>
+    <div style="padding-top: 10px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;">
+        <h2 style="margin: 10px 0;">{{ title }}</h2>
+        <p style="margin-bottom: 30px; margin-top: 0; font-size: 16px; font-weight: 300;">{{small_text | safe}}</p>
+        <p><a style="padding: 10px 40px;
+            text-decoration: none;
+            font-weight: 600;
+            color:#333;
+            border: 1px solid #333;
+            background:none;" href="http://www.velgbedre.no/{{ url_link }}">TRYKK HER</a></p>
+    </div>
+</body>
+</html>

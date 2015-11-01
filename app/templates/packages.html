@@ -38,7 +38,7 @@
 										<h1>{{relation.product.name}}</h1>
 									</div>
 									<p class="text-center">{{relation.product.short_description}}</p>
-									<a href="/product/{{relation.product.id}}"><button class="center">Les mer</button></a>
+									<a href="/product/{{relation.product.id}}" target="_blank"><button class="center">Les mer</button></a>
 								</div>
 							{% endfor %}
 						</div>
@@ -47,7 +47,7 @@
 								<h1>{{ package.name }}</h1>
 								<p>{{ package.description }}</p>
 								<a href="#"
-								    class="snipcart-add-item buy-button"
+								    class="snipcart-add-item buy-button package-text-button"
 								    data-item-id="{{package.id}}"
 								    data-item-name="{{package.name}}"
 								    data-item-price="{{package.price}}"
@@ -55,9 +55,15 @@
 								    data-item-url="{% url 'packages' %}"
 								    data-item-description="{{package.description}}"
 								    data-dismiss="modal">
-								    <button>Kjøp</button>
+								    <button>Kjøp pakke</button>
 								</a>
-								<button>Ønsk deg</button>
+								<button class="package-text-button package-text-wish">Ønsk deg</button>
+								<form method="POST" class="package-text-form">{% csrf_token %}
+									<input class="input-left" type="text" name="from_name" placeholder="Ditt navn" required>
+									<input type="text" placeholder="Mottakers navn" name="to_name" required>
+									<input class="input-left input-under" type="email" name="to_email" placeholder="Mottakers epost" required>
+									<button type="submit" class="spesial-button">Send</button>
+								</form>
 							</div>
 						</div>
 						<div class="product-section">
@@ -126,6 +132,15 @@
 	$(document).ready(function() {
 
 		$('.product-text').hide();
+		$('.package-text-form').hide();
+
+		$('.package-text-wish').click(function() {
+			$('.package-text-button').fadeOut();
+			setTimeout(function() {
+				$('.package-text-form').fadeIn();
+			}, 400);
+		});
+
 		{% for package in packages %}
 		{% for relation in package.get_products %}
 			$('#productToggle{{forloop.parentloop.counter}}{{ forloop.counter }}').click(function() {
