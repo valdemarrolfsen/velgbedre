@@ -57,7 +57,15 @@ class Package(models.Model):
 	image = models.ImageField(upload_to='packages/%Y/%m/%d', blank=True, null=True)
 
 	def get_products(self):
-		return ProductPackage.objects.filter(package = self)
+
+		relations = ProductPackage.objects.filter(package = self)
+		products = []
+
+		for r in relations:
+			if r.package.is_visible:
+				products.append(r.product)
+
+		return products
 
 	def __str__(self):
 		return "{}".format(self.name)

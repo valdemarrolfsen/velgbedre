@@ -23,7 +23,6 @@
 			{% endfor %}
 		</div>
 		{% for package in packages %}
-		{% if package.is_visible %}
 		<div class="modal fade" id="product{{ forloop.counter }}">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -33,13 +32,13 @@
 					<div class="modal-body">
 						<div class="package-section">
 							<div class="package-image" style="background-image: url({{ package.image.url }});"></div>
-							{% for relation in package.get_products %}
+							{% for product in package.get_products %}
 								<div id="product{{forloop.parentloop.counter}}{{ forloop.counter }}" class="package-text product-text">
-									<div class="package-text-product-image" style="background-image: url({{relation.product.image.url}});">
-										<h1>{{relation.product.name}}</h1>
+									<div class="package-text-product-image" style="background-image: url({{product.image.url}});">
+										<h1>{{product.name}}</h1>
 									</div>
-									<p class="text-center">{{relation.product.short_description}}</p>
-									<a href="/product/{{relation.product.id}}" target="_blank"><button class="center">Les mer</button></a>
+									<p class="text-center">{{product.short_description}}</p>
+									<a href="/product/{{product.id}}" target="_blank"><button class="center">Les mer</button></a>
 								</div>
 							{% endfor %}
 						</div>
@@ -68,10 +67,9 @@
 							</div>
 						</div>
 						<div class="product-section">
-							{% for relation in package.get_products %}
-							<!--<a href="/product/{{relation.product.id}}">-->
+							{% for product in package.get_products %}
 							<a href="#" id="productToggle{{forloop.parentloop.counter}}{{ forloop.counter }}">
-								<div class="product-image" style="background-image: url({{ relation.product.image.url }});"></div>
+								<div class="product-image" style="background-image: url({{ product.image.url }});"></div>
 							</a>
 							{% endfor %}
 						</div>
@@ -81,51 +79,7 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
-		{% endif %}
 		{% endfor %}
-		<!--
-		<div class="panel-group">
-			{% for package in packages %}
-				<div class="panel panel-package">
-					<div class="panel-heading">
-						<a data-toggle="collapse" href="#collapse{{ forloop.counter}}">
-							<h4 class="panel-title">{{ package.name }}</h4>
-						</a>
-						<a href="#"
-						    class="snipcart-add-item buy-button"
-						    data-item-id="{{package.id}}"
-						    data-item-name="{{package.name}}"
-						    data-item-price="{{package.price}}"
-						    data-item-weight="20"
-						    data-item-url="{% url 'packages' %}"
-						    data-item-description="Den minste gavepakken">
-						        Kjøp
-						</a>
-					</div>
-					<div id="collapse{{ forloop.counter}}" class="panel-collapse collapse">
-						<div class="panel-body">
-							<div class="package-info">
-								<h1>{{package.name}}</h1>
-								<p>
-									{{package.description}}
-								</p>
-							</div>
-							{% for relation in package.get_products %}
-								<div class="package-product">
-									<div class="package-product-image" style="background-image: url({% static 'img/products/lstn.png' %});"></div>
-									<h1>{{relation.product.name}}</h1>
-									<p>
-										{{relation.product.short_description}}
-									</p>
-									<a href="{% url 'product' relation.product.id %}" target="_blank"><button>Les mer</button></a>
-								</div>
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-		-->
 	</div>
 {% endblock content %}
 
@@ -153,8 +107,7 @@
 		});
 
 		{% for package in packages %}
-		{% if package.is_visible %}
-		{% for relation in package.get_products %}
+		{% for product in package.get_products %}
 			$('#productToggle{{forloop.parentloop.counter}}{{ forloop.counter }}').click(function() {
 				$('.package-image').fadeOut();
 				$('.product-text').fadeOut();
@@ -163,7 +116,6 @@
 				}, 500);
 			});
 		{% endfor %}
-		{% endif %}
 		{% endfor %}
 	});
 </script>
