@@ -42,7 +42,7 @@ def package_view(request):
 	packages = Package.objects.all()
 
 	if request.method == "POST":
-		Mail_sender.send_wish_mail(request.POST.get('to_email'), request.POST.get('to_name'), request.POST.get('from_name'))
+		Mail_sender.send_wish_mail(request.POST.get('to_email'), request.POST.get('to_name'), request.POST.get('from_name'), request.POST.get('package_name'))
 
 	return render(request, 'packages.html', {
 		'packages':packages

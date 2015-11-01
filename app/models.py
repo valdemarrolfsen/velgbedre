@@ -52,6 +52,7 @@ class Package(models.Model):
 	name = models.CharField(max_length=255)
 	description = models.TextField()
 	price = models.IntegerField()
+	is_visible = models.BooleanField(default=True)
 
 	image = models.ImageField(upload_to='packages/%Y/%m/%d', blank=True, null=True)
 

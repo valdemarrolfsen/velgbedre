@@ -23,6 +23,7 @@
 			{% endfor %}
 		</div>
 		{% for package in packages %}
+		{% if package.is_visible %}
 		<div class="modal fade" id="product{{ forloop.counter }}">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -62,6 +63,7 @@
 									<input class="input-left" type="text" name="from_name" placeholder="Ditt navn" required>
 									<input type="text" placeholder="Mottakers navn" name="to_name" required>
 									<input class="input-left input-under" type="email" name="to_email" placeholder="Mottakers epost" required>
+									<input type="hidden" name="package_name" value="{{package.name}}">
 									<button type="submit" class="spesial-button">Send</button>
 								</form>
 							</div>
@@ -80,6 +82,7 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+		{% endif %}
 		{% endfor %}
 		<!--
 		<div class="panel-group">
@@ -142,6 +145,7 @@
 		});
 
 		{% for package in packages %}
+		{% if package.is_visible %}
 		{% for relation in package.get_products %}
 			$('#productToggle{{forloop.parentloop.counter}}{{ forloop.counter }}').click(function() {
 				$('.package-image').fadeOut();
@@ -151,6 +155,7 @@
 				}, 500);
 			});
 		{% endfor %}
+		{% endif %}
 		{% endfor %}
 	});
 </script>
