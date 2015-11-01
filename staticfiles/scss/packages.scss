@@ -61,7 +61,7 @@
 	.package-container {
 		width: 1000px;
 
-		padding-top: 50px;
+		padding-top: 30px;
 
 		display: block;
 		margin: 0 auto;
@@ -69,14 +69,19 @@
 		text-align: center;
 
 		h1 {
-			font-weight: 800;
-			font-size: 30px;
+			font-weight: 900;
+			font-size: 24px;
+
+			text-transform: uppercase;
 			margin-top: 0;
 		}
 
 		p {
-			font-size: 18px;
+			font-size: 16px;
 			font-weight: 300;
+			padding-bottom: 30px;
+
+			border-bottom: 2px solid #eee;
 		}
 
 		&:after {
