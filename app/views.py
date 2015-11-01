@@ -39,7 +39,7 @@ def contact_view(request):
 	return render(request, 'contact.html')
 
 def package_view(request):
-	packages = Package.objects.all()
+	packages = Package.objects.filter(is_visible=True)
 
 	if request.method == "POST":
 		Mail_sender.send_wish_mail(request.POST.get('to_email'), request.POST.get('to_name'), request.POST.get('from_name'), request.POST.get('package_name'))

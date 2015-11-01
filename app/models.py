@@ -62,8 +62,7 @@ class Package(models.Model):
 		products = []
 
 		for r in relations:
-			if r.package.is_visible:
-				products.append(r.product)
+			products.append(r.product)
 
 		return products
 
