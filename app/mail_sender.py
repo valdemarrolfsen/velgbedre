@@ -7,7 +7,7 @@ class Mail_sender:
     #This class is for sending different types of mail.
 
     def send_email(subject, to_email, content, html_content):
-        from_email = ''
+        from_email = 'Velg Bedre <valdemar@velgbedre.no>'
         msg = EmailMultiAlternatives(subject, content, from_email, [to_email])
         msg.attach_alternative(html_content, 'text/html')
         msg.send()
