@@ -22,7 +22,6 @@ class Mail_sender:
         content = 'Tull'
         html_content = render_to_string('emails/standardEmail.html', {
             'title' : 'Hei ' + to_name,
-            'image' : 'wintergirl.jpg',
             'header' : 'Jeg ønsker meg gave fra velg bedre',
             'small_text' : "I år ønsker jeg meg en bedre verden til jul. Jeg ønsker meg et gavekort fra Velg Bedre, som lar meg velge en ting jeg trenger og bygge en bedre verden samtidig. Følg denne linken for å se hvilket gavekort jeg ønsker meg.<br><br>Med vennlig hilsen,<br>" + from_name,
             'url_link' : '/packages/'
