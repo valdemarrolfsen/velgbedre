@@ -54,8 +54,7 @@
 								    data-item-price="{{package.price}}"
 								    data-item-weight="20"
 								    data-item-url="{% url 'packages' %}"
-								    data-item-description="{{package.description}}"
-								    data-dismiss="modal">
+								    data-item-description="{{package.description}}">
 								    <button>Kjøp pakke</button>
 								</a>
 								<button class="package-text-button package-text-wish">Ønsk deg</button>
@@ -141,6 +140,15 @@
 			$('.package-text-button').fadeOut();
 			setTimeout(function() {
 				$('.package-text-form').fadeIn();
+			}, 400);
+		});
+
+		$('.close').click(function() {
+			$('.product-text').fadeOut();
+			$('.package-text-form').fadeOut();
+			setTimeout(function() {
+				$('.package-image').fadeIn();
+				$('.package-text-button').fadeIn();
 			}, 400);
 		});
 

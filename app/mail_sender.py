@@ -24,7 +24,7 @@ class Mail_sender:
             'title' : 'Hei ' + to_name,
             'image' : 'flower.jpg',
             'header' : 'Jeg ønsker meg gavekort fra velg bedre',
-            'small_text' : "I år ønsker jeg meg en bedre verden til jul. Jeg ønsker meg et gavekort fra Velg Bedre, som lar meg velge en ting jeg vil ha og som bygger en bedre verden.<br><br>Pakken jeg ønsker meg er <strong>" + package_name + "</strong><br><br>Med vennlig hilsen,<br>" + from_name,
+            'small_text' : "I år ønsker jeg meg en bedre verden til jul. Jeg ønsker meg et gavekort fra Velg Bedre, som lar meg velge en ting jeg vil ha og som bygger en bedre verden.<br><br>Pakken jeg ønsker meg heter: <strong>" + package_name + "</strong><br><br>Med vennlig hilsen,<br>" + from_name,
             'url_link' : '/packages/'
             })
         Mail_sender.send_email(subject, email, content, html_content)
