@@ -17,7 +17,9 @@
 	.cover-photo {
 		position: relative;
 		width: 100%;
-		height: 40vh;
+
+		min-height: 300px;
+        line-height:310px;
 
 		background-attachment: scroll;
 		background-image: url(../../img/background/wintergirl.jpg);
@@ -36,30 +38,30 @@
 			width: 100%;
 			height: 100%;
 
+			text-align: center;
+			color: #fff;
+
 			background: rgba(0,0,0,0.2);
 
-			h1 {
-				position: absolute;
-				top: 50%;
-
-				margin-top: -16.5px;
-
-				width: 100%;
-
-				color: #fff;
-				font-size: 30px;
-				font-weight: 800;
-
-				letter-spacing: 7px;
-
-				text-transform: uppercase;
-				text-align: center;
+			span {
+				position: relative;
+	            margin-right: auto;
+	            display: block;
+	            padding: 20px;
+	            font-weight: 800;
+	            font-size: 30px;
+	            letter-spacing: 6px;
+	            text-transform: uppercase;
+	            display:inline-block;
+	            line-height:30px;
+	            vertical-align:middle;
 			}
 		}
 	}
 
 	.package-container {
-		width: 1000px;
+		width: 100%;
+		max-width: 1000px;
 
 		padding-top: 30px;
 
@@ -149,8 +151,65 @@
 
 				@include setTrans(all, 300ms);
 			}
+
+			.package-box-small-cover {
+				display: none;
+			}
 		}
 
+		@media (max-width: $smallMediaSize) {
+
+			padding: 20px;
+
+			.package-box {
+				position: relative;
+				width: 100%;
+				height: 40vh;
+				display: block;
+				margin: 0 auto;
+				margin-top: 30px;
+
+				float: none;
+
+				.package-box-small-cover {
+					position: absolute;
+					bottom: 0;
+					display: block;
+					width: 100%;
+					height: 40%;
+					background: rgba(255,255,255,0.8);
+					padding: 10px;
+					color: #000;
+
+					h1, h2, h3 {
+						margin: 3px 0;
+					}
+
+					h1 {
+						font-size: 20px;
+						font-weight: 800;
+						text-transform: uppercase;
+					}
+
+					h2 {
+						font-size: 16px;
+					}
+
+					h3 {
+						font-size: 18px;
+					}
+				}
+			}
+		}
+
+	}
+
+	.modal.fade{
+	    -webkit-transition: opacity .2s linear, none;
+	    -moz-transition: opacity .2s linear, none;
+	    -ms-transition: opacity .2s linear, none;
+	    -o-transition: opacity .2s linear, none;
+	    transition: opacity .2s linear, none;
 	}
 
 	.modal-dialog {
@@ -401,6 +460,192 @@
 
 			.modal-footer {
 				border-top: 0
+			}
+		}
+
+		@media (max-width: $smallMediaSize) {
+			.modal-content {
+				padding: 10px 10px;
+
+				.modal-header {
+
+					.close {
+						margin-top: -30px;
+						margin-right: -20px;
+
+						width: 50px;
+						height: 50px;
+						
+
+						span {
+							font-size: 60px;
+						}
+					}
+				}
+
+				.modal-body {
+
+					width: 100%;
+					height: 90%;
+
+					&:after {
+						content: "";
+						display: table;
+						clear: both;
+					}
+
+					.package-section {
+						position: relative;
+						width: 100%;
+						height: auto;
+						float: left;
+
+						.package-image {
+							position: relative;
+							top: 0;
+							right: 0;
+							left: 0;
+							margin-top: 0;
+
+							width: 90%;
+							height: 150px;
+						}
+
+						.package-text {
+
+							padding: 10px;
+
+							h1 {
+								font-size: 20px;
+							}
+
+							h2 {
+								font-size: 16px;
+							}
+
+							p {
+								font-size: 14px;
+							}
+
+
+							button {
+								width: 120px;
+								height: 30px;
+
+								font-size: 14px;
+							}
+
+							input {
+								width: 45%;
+								height: 40px;
+								border: 1px solid #888;
+
+								float: left;
+
+								padding-left: 10px;
+
+								font-size: 16px;
+								font-weight: 300;
+
+								&:focus {
+									outline: none;
+									border: 2px solid orange;
+								}
+							}
+
+							.spesial-button {
+								width: 45%;
+								margin: 0;
+								margin-top: 10px;
+								font-size: 16px;
+							}
+
+							.input-left {
+								margin-right: 5%;
+							}
+
+							.input-under {
+								margin-top: 10px;
+							}
+
+							.center {
+								display: block;
+								margin: 0 auto;
+							}
+
+							.package-text-form {
+								position: relative;
+							}
+
+							.package-text-product-image {
+								position: relative;
+								width: 300px;
+								height: 200px;
+
+								display: block;
+								margin: 0 auto;
+								margin-top: 5px;
+								margin-bottom: 10px;
+
+								background-position: center center;
+								background-size: cover;
+
+								h1 {
+									position: absolute;
+									bottom: 10px;
+									right: 0;
+
+									color: #fff;
+
+									padding: 5px 20px;
+
+									font-size: 24px;
+									font-weight: 300;
+
+									background: rgba(0,0,0,0.6);
+								}
+							}
+						}
+
+						.with-border {
+							border: 0;
+						}
+					}
+
+					.product-section {
+						position: absolute;
+						bottom: 0;
+						width: 100%;
+						height: auto;
+						padding-top: 0px;
+						padding-bottom: 20px;
+
+						text-align: center;
+
+						.product-image {
+							display: inline-block;
+
+							margin: 0 10px;
+
+							width: 50px;
+							height: 50px;
+
+							cursor: pointer;
+
+							border-radius: 100%;
+							box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+
+							background-position: center center;
+							background-size: cover;
+
+							@include setTrans(all, 100ms);
+
+							&:hover {
+								border: 2px solid orange;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
