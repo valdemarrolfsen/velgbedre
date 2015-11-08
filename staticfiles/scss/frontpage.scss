@@ -540,6 +540,7 @@
 
 		h5 {
 			font-size: 20px;
+			margin-bottom: 50px;
 		}
 
 		.section-product-picture {
@@ -549,12 +550,12 @@
 			display: block;
 			margin: 0 auto;
 
+			margin-bottom: 30px;
+
 			border-radius: 100%;
 			background-position: center center;
 			background-size: cover;
 		}
-
-
 	}
 
 	#section-explain {
@@ -614,6 +615,15 @@
 			border: 1px solid #fff;
 			border-radius: 100%;
 		}
+
+		@media (max-width: $smallMediaSize) {
+			padding: 20px;
+			padding-bottom: 50px;
+
+			.section-explain-circle {
+				margin-top: 50px;
+			}
+		}
 	}
 
 	#section-quote {
@@ -635,6 +645,14 @@
 			font-style: italic;
 			vertical-align: center;
 			font-family: 'Times New Roman';
+		}
+
+		@media (max-width: $smallMediaSize) {
+			padding: 40px 30px;
+
+			p {
+				font-size: 20px;
+			}
 		}
 	}
 
@@ -736,6 +754,15 @@
 				-ms-transform: skew(5deg) rotate(5deg);
 				-o-transform: skew(5deg) rotate(5deg);
 				transform: skew(5deg) rotate(5deg);
+			}
+		}
+
+		@media (max-width: $smallMediaSize) { 
+			padding: 20px 10px;
+
+			input, button {
+				display: block;
+				margin: 15px auto;
 			}
 		}
 	}
