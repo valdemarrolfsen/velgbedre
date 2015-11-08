@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from velgbedre import settings
+from django.views.generic.base import RedirectView
 
 admin.autodiscover()
 
@@ -22,5 +23,9 @@ if settings.DEBUG:
             'document_root': settings.MEDIA_ROOT,
         }),
    )
+
+urlpatterns += patterns('', 
+    url(r'^.*$', RedirectView.as_view(url='/home/privat/', permanent=False), name='index'),
+)
 
 static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

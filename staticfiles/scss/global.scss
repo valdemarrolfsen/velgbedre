@@ -8,6 +8,8 @@ html, body {
 }
 
 footer {
+  position: relative;
+  z-index: 1;
   padding: 30px;
   background: #222;
 
@@ -18,6 +20,15 @@ footer {
     margin: 0;
     font-weight: 100;
   }
+}
+
+.popover {
+  z-index: 1000;
+  color: #333;
+
+  background: #fff;
+  border-radius: 0;
+  border: 0;
 }
 
 #section-testemonial {
@@ -79,7 +90,7 @@ footer {
       }
 
       .navbar-brand {
-          width: 280px;
+          width: auto;
 
           h5 {
             float: left;
@@ -152,6 +163,7 @@ footer {
               > a, > a:hover, > a:focus {
                   color: $colHover;
                   background: $bgHighlight;
+                  box-shadow: none;
 
                   font-weight: 600;
               }
@@ -183,6 +195,16 @@ footer {
                   }
               }
           }
+      }
+
+      .navbar-center {
+        li {
+          a {
+            font-size: 10px;
+            text-align: center;
+            padding: 10px;
+          }
+        }
       }
 
       .navbar-toggle {

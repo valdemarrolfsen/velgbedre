@@ -14,12 +14,12 @@
 			</p>
 			{% for package in packages %}
 				<div class="package-box" style="background-image: url({{ package.image.url }});"> 
-					<a class="package-box-small-cover" data-toggle="modal" data-target="#product{{ forloop.counter }}">
+					<a class="package-box-small-cover" data-toggle="modal" data-target="#package{{ forloop.counter }}">
 						<h1>{{ package.name }}</h1>
 						<h3>{{ package.price }},-</h3>
 						<h2>Trykk for å gå til pakken</h2>
 					</a>
-					<a class="package-box-cover" data-toggle="modal" data-target="#product{{ forloop.counter }}">
+					<a class="package-box-cover" data-toggle="modal" data-target="#package{{ forloop.counter }}">
 						<h1>{{ package.name }}</h1>
 						<h3>{{ package.price }},-</h3>
 						<h2>Trykk her for å se produktene</h2>
@@ -28,7 +28,7 @@
 			{% endfor %}
 		</div>
 		{% for package in packages %}
-		<div class="modal fade" id="product{{ forloop.counter }}">
+		<div class="modal fade" id="package{{ forloop.counter }}">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -39,11 +39,10 @@
 							<div class="package-image" style="background-image: url({{ package.image.url }});"></div>
 							{% for product in package.get_products %}
 								<div id="product{{forloop.parentloop.counter}}{{ forloop.counter }}" class="package-text product-text">
-									<div class="package-text-product-image" style="background-image: url({{product.image.url}});">
-										<h1>{{product.name}}</h1>
-									</div>
+									<div class="package-text-product-image" style="background-image: url({{product.image.url}});"></div>
+									<h3>{{product.name}}</h3>
 									<p class="text-center">{{product.short_description}}</p>
-									<a href="/product/{{product.id}}" target="_blank"><button class="center">Les mer</button></a>
+									<a href="/product/{{product.id}}/" target="_blank"><button class="center">Les mer</button></a>
 								</div>
 							{% endfor %}
 						</div>

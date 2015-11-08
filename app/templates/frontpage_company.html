@@ -4,7 +4,7 @@
 	<div id = "app-frontpage-introsite">
 		<div id="frontpage-pin"></div>
 		<section id = "section-intro-image">
-			<video autoplay loop muted poster="{% static 'img/background/present.jpg' %}" id="bgvid">
+			<video autoplay loop muted poster="{% static 'img/background/lstn-bg.jpg' %}" id="bgvid">
 				<source src="{% static 'video/velgbedre.mp4' %}">
 				<source src="{% static 'video/velgbedre.webm' %}" type="video/webm">
 				<source src="{% static 'video/velgbedre.mp4' %}" type="video/mp4">
@@ -13,17 +13,27 @@
 			<div class="frontpage-wrap">
 				{% if not email_sent %}
 					<div class = "number-wrap" id="number-wrap">
-						<h1>Hver gang du bruker penger stemmer du på den verden du har lyst å leve i</h1>
+						<div class="number">
+							<h1>76</h1>
+							<p>produkter</p>
+						</div>
+						<div class="number">
+							<h1>18</h1>
+							<p>leverandører</p>
+						</div>
+						<div class="number">
+							<h1>604</h1>
+							<p>arbeidsplasser</p>
+						</div>
 					</div>
 				{% else %}
 					<div class="frontpage-message">
-						<p>En epost har nå blitt sendt! :)</p>
+						<p>Forespørsel om katalog er sendt til en av våre julenisser :)</p>
 					</div>
 				{% endif%}
 				<form class="frontpage-form" id = "frontpage-email" method="post">{% csrf_token %}
 					<label for="email">Epost:</label>
 					<input type="email" id="email" name="frontpage_email" placeholder="Skriv inn din epost her" required>
-					<input type="text" id="name" name="frontpage_name" placeholder="Ditt navn her" required>
 					<button type="submit" class="frontpage-button">Send inn</button>
 				</form>
 				<div class="frontpage-video-cover" id="frontpage-video-cover">
@@ -34,107 +44,97 @@
 					</video>
 				</div>
 				{% if not email_sent %}
-					<a href="/packages/"><button class="frontpage-button" id="frontpage-link-button">Gi et gavekort</button></a>
-					<button class="frontpage-button" id="frontpage-get-button">Tips en venn</button>
+					<button class="frontpage-button" id="frontpage-get-button">Få tilsendt katalog her</button>
+					<button class="frontpage-button" id="frontpage-view-button">Se forklaringsvideo her</button>
 				{% else %}
-					<a href="{% url 'frontpage' 'privat' %}"><button class="frontpage-button">Tilbake</button></a>
+					<a href="{% url 'frontpage' %}"><button class="frontpage-button">Tilbake</button></a>
 				{% endif%}
 			</div>
 		</section>
 		<section id = "section-intro-text">
-			<h1>Gi en <strong>meningsfull</strong> julegave</h1>
+			<h1>Velg <strong>bærekraftige</strong> julegaver</h1>
 			<div class = "down">
-				<a class = "page-scroll" href="#section-product">
+				<a class = "page-scroll" href="#section-problem">
 					<span class = "icon-arrow-down" aria-hidden = "true"></span>
 				</a>
 			</div>
 		</section>
-		<section id="section-product">
-			<div class="row text-center">
-				<div class="col-md-12">
-					<h3>Velg Bedre tilbyr 12 unike gavekort som gir mottakeren mulighet til å velge mellom 3 stilfulle og bærekraftige produkter.</h3>
-					<h4>Eksempel på produkter</h4>
-				</div>
-			</div>
-			<div class="row text-center">
-				<div class="col-md-4">
-					<div class="section-product-picture" style="background-image: url({% static 'img/products/elvis-and-kresse.jpg' %});"></div>
-					<h5>Elvis and kresse</h5>
-				</div>
-				<div class="col-md-4">
-					<div class="section-product-picture" style="background-image: url({% static 'img/products/elvis-and-kresse.jpg' %});"></div>
-					<h5>Elvis and kresse</h5>
-				</div>
-				<div class="col-md-4">
-					<div class="section-product-picture" style="background-image: url({% static 'img/products/elvis-and-kresse.jpg' %});"></div>
-					<h5>Elvis and kresse</h5>
-				</div>
-			</div>
-		</section>
-		<section id="section-explain">
-			<div class="rarallax-background"></div>
-			<div class="rarallax-cover"></div>
-			<div class="row text-center">
-				<div class="col-md-3 popoverData" data-content="Velg Bedre tilbyr 12 unike gavekort som gir mottakeren mulighet til å velge mellom 3 stilfulle og bærekraftige produkter." rel="popover" data-placement="bottom" data-trigger="hover">
-					<div class="section-explain-circle">1</div>
-					<h2>Kjøp et gavekort og gi vekk muligheten til å velge</h2>
-				</div>
-				<div class="col-md-3 popoverData" data-content="Mottaker får et gavekort med en unik kode som gir tilgang til Velg Bedres egen valgportal og lar mottaker velge sin egen gave." rel="popover" data-placement="bottom" data-trigger="hover">
-					<div class="section-explain-circle">2</div>
-					<h2>La mottaker ta valget</h2>
-				</div>
-				<div class="col-md-3 popoverData" data-content="Mange av produktene er håndlaget, og mens dette skjer vil mottaker få eksklusiv tilgang til blogg, video og intervjuer som forteller historien til de inspirerende menneskene bak produktet." rel="popover" data-placement="bottom" data-trigger="hover">
-					<div class="section-explain-circle">3</div>
-					<h2>Få eksklusiv tilgang til historiene mens produktet blir laget</h2>
-				</div>
-				<div class="col-md-3 popoverData" data-content="Effekten av en gave kan være så mye mer enn bare å overrekke et fysisk objekt. La årets julegave bli en inspirasjon for de du er glad i." rel="popover" data-placement="bottom" data-trigger="hover">
-					<div class="section-explain-circle">4</div>
-					<h2>Opplev effekten av en gave</h2>
-				</div>
-			</div>
-		</section>
-		<section id="section-quote">
-			<div class="row">
-				<div class="col-md-12 text-center">
+		<section id = "section-problem">
+			<div class = "row">
+				<div class = "col-md-5" id="problem-text">
+					<h1>Handlekraft</h1>
 					<p>
-						<span>"</span>Hver gang du kjøper noe støtter du et system hvor det lages flere av den ene tingen på den måten. Hver gang du kjøper noe, stemmer du på den verden du har lyst å leve i.<span>"</span>
+						Samfunnsansvarlige bedrifter har i dag et konkurransefortrinn i næringslivet. Den moderne forbruker stiller høyere og høyere forventninger til hva bedrifter utretter utover å drive virksomhet, men undersøkelser i norsk næringsliv viser at over halvparten av norske arbeidstakere ikke oppfatter at sin arbeidsgiver tar aktivt ansvar.
 					</p>
+					<div class = "down">
+						<a class = "page-scroll" href="#section-solution">
+							<span class = "icon-arrow-down" aria-hidden = "true"></span>
+						</a>
+					</div>	
 				</div>
 			</div>
 		</section>
-		<section id="section-wish">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<h3>
-						Har du lyst å ta del i vår historie? Fyll ut mailen under, og send ditt ønske til dine nærmeste.
-					</h3>
-				</div>
-			</div>
-			<div class="row letter-section">
-				<div class="col-md-6">
-					<div class="letter">
-						<h2>Hei <i>mottakers navn</i></h2>
-						<p>
-							I år ønsker jeg meg en bedre verden til jul. Jeg ønsker meg et gavekort fra Velg Bedre, som lar meg velge en ting jeg vil ha samtidig som jeg støtter opp under produsenter som lager ting på en bærekraftig måte.
-						</p>
-						<p>
-							Trykk her å vite mer.
-						</p>
-						<p>
-							Hilsen <i>ditt navn</i>
-						</p>
+		<section id = "section-solution">
+			<div class = "row">
+				<div class = "col-md-6" id="solution-text">
+					<h1>Bærekraftige gaver</h1>
+					<p>
+						Velg Bedre er en bedriftstjeneste som tilbyr bærekraftige premier og gaver til bedrifter, organisasjoner og konferanser. Vi finner kvalitetsbevisste produsenter fra hele verden og knytter dem til vårt nettverk slik at vi kan levere de beste bærekraftige løsningene. Hver gang du bruker penger, stemmer du på den verdenen du ønsker å leve i.
+					</p>	
+					<div class = "down">
+						<a class = "page-scroll" href="#section-change">
+							<span class = "icon-arrow-down" aria-hidden = "true"></span>
+						</a>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<form method="post">{% csrf_token %}
-						<input type="text" name="from_name" placeholder = "Ditt navn">
-						<input type="text" name="to_name" placeholder = "Mottakers navn">
-						<input type="email" name="to_email" placeholder = "Mottakers epost">
-						<button>Send ønske</button>
-					</form>
-				</div>
 			</div>
 		</section>
+		<!--<section id = "section-product-slider">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				</ol>
+
+				<div class="carousel-inner" role="listbox">
+					<div class="item active" style="background-image: url('{% static 'img/products/eandk-background.jpg' %}');">
+						<div class="item-picture" style="background-image: url('{% static 'img/products/lommebok.png' %}');"></div>
+						<div class="item-content"></div>
+					</div>
+					<div class="item">
+						
+					</div>
+					<div class="item">
+						
+					</div>
+				</div>
+				<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</section>-->
+		<!--<section id = "section-supporters">
+			<h1>våre <strong>inspirerende</strong> løsninger</h1>
+			<div class = "product-wrap">
+				{% for c in companies %}
+					<div id = "{{c.id}}" class = "product" style="background-image: url('{{c.logo.url}}');">
+						
+					</div>
+				{% endfor %}
+			</div>
+			<div class = "down">
+				<a class = "page-scroll" href="#section-change">
+					<span class = "icon-arrow-down" aria-hidden = "true"></span>
+				</a>
+			</div>
+		</section>-->
 		<section id = "section-change">
 			<h1>du kan <strong>bidra</strong> ved å</h1>
 			<div class = "icon-container" target="_blank">
@@ -253,7 +253,6 @@
 {% block extraJS %}
 <script>
 	$(function() {
-		$('.popoverData').popover();
 		$('#frontpage-email').hide();
 		$('#frontpage-video-cover').hide();
 
@@ -266,7 +265,7 @@
 
 			$('#number-wrap').fadeOut();
 			$('#frontpage-get-button').fadeOut();
-			$('#frontpage-link-button').fadeOut();
+			$('#frontpage-view-button').fadeOut();
 
 			setTimeout(function() {
 				$('#frontpage-email').fadeIn();

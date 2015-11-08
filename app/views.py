@@ -4,7 +4,7 @@ from .mail_sender import Mail_sender
 
 # Create your views here.
 
-def frontpage_view(request):
+def frontpage_view(request, type):
 	products = Product.objects.all()
 	companies = Company.objects.all()
 
@@ -17,19 +17,27 @@ def frontpage_view(request):
 			let.email = request.POST.get('email')
 			let.the_lucky_one = request.POST.get('other_name')
 			let.save()
+		elif 'frontpage_email' in request.POST and (type == 'privat'):
+			Mail_sender.send_tip_mail(request.POST.get('frontpage_email'), request.POST.get('frontpage_name'))
+			email_sent = True
 		elif 'frontpage_email' in request.POST:
 			Mail_sender.send_cat_request(request.POST.get('frontpage_email'))
+			email_sent = True
+		elif 'to_email' in request.POST:
+			Mail_sender.send_wish_mail(request.POST.get('to_email'), request.POST.get('to_name'), request.POST.get('from_name'))
 			email_sent = True
 		else:
 			sub = Subscriber()
 			sub.name = request.POST.get('name')
 			sub.email = request.POST.get('email')
 			sub.save()
-		
-	return render(request, 'frontpage.html', {
+
+	template_url = 'frontpage.html' if (type == 'privat') else 'frontpage_company.html'
+
+	return render(request, template_url, {
 		'products':products,
 		'companies':companies,
-		'email_sent':email_sent
+		'email_sent':email_sent,
 		})
 
 def about_view(request):
