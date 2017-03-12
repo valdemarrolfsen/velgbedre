@@ -21,15 +21,15 @@ class Mail_sender:
 
         wish = ""
         if package_name:
-            wish = "Pakken jeg ønsker meg heter: <strong>" + package_name + "</strong><br><br>"
+            wish = "Pakken jeg onsker meg heter: <strong>" + package_name + "</strong><br><br>"
 
-        subject = 'Dette ønsker jeg meg'
+        subject = 'Dette onsker jeg meg'
         content = 'Tull'
         html_content = render_to_string('emails/standardEmail.html', {
             'title' : 'Hei ' + to_name,
             'image' : 'flower.jpg',
-            'header' : 'Jeg ønsker meg gavekort fra velg bedre',
-            'small_text' : "I år ønsker jeg meg en bedre verden til jul. Jeg ønsker meg et gavekort fra Velg Bedre, som lar meg velge en ting jeg vil ha og som bygger en bedre verden.<br><br>" + wish + "Med vennlig hilsen,<br>" + from_name,
+            'header' : 'Jeg onsker meg gavekort fra velg bedre',
+            'small_text' : "I aar onsker jeg meg en bedre verden til jul. Jeg onsker meg et gavekort fra Velg Bedre, som lar meg velge en ting jeg vil ha og som bygger en bedre verden.<br><br>" + wish + "Med vennlig hilsen,<br>" + from_name,
             'url_link' : '/packages/'
             })
         Mail_sender.send_email(subject, email, content, html_content)
@@ -39,17 +39,17 @@ class Mail_sender:
         subject = 'Sjekk ut dette!'
         content = 'Tull'
         html_content = render_to_string('emails/standardEmail.html', {
-            'title' : 'Hei!',
-            'image' : 'flower.jpg',
-            'header' : 'Jeg fant en nettside jeg tror du vil like',
-            'small_text' : "På velgbedre.no har du i år muligheten til å kjøpe et gavekort til en du er glad i samtidig som du er med på å skape en bedre verden! Sjekk det ut ved å trykke på knappen under.<br><br>Hilsen " + name,
-            'url_link' : '/home/privat/'
+            'title': 'Hei!',
+            'image': 'flower.jpg',
+            'header': 'Jeg fant en nettside jeg tror du vil like',
+            'small_text': "Paa velgbedre.no har du i aar muligheten til aa kjope et gavekort til en du er glad i samtidig som du er med paa aa skape en bedre verden! Sjekk det ut ved aa trykke paa knappen under.<br><br>Hilsen " + name,
+            'url_link': '/home/privat/'
             })
         Mail_sender.send_email(subject, email, content, html_content)
 
     def send_cat_request(email):
         subject = 'Noen har etterspurt katalog'
-        text_content = 'Følgende har etterspurt en katalog \n Epost: ' + email
-        html_content = '<h2>Følgende har etterspurt en katalog</h2><p>Epost: ' + email + '</p>'
+        text_content = 'Folgende har etterspurt en katalog \n Epost: ' + email
+        html_content = '<h2>Folgende har etterspurt en katalog</h2><p>Epost: ' + email + '</p>'
         Mail_sender.send_email(subject, 'hei@velgbedre.no', text_content, html_content)
 

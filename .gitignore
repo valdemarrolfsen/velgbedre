@@ -6,5 +6,6 @@ media/
 venv/
 settings.py
 
+.idea/
 app/migrations/
 company_service/migrations/

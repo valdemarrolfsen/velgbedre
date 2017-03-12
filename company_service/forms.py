@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from django.contrib.auth import authenticate, login, logout
 from django import forms
 from .mail_sender import Mail_sender

@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from django.core.mail import EmailMultiAlternatives, EmailMessage
 from django.core import urlresolvers
 
