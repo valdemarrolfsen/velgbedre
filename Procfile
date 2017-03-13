@@ -1,3 +1,1 @@
-web:python manage.py runserver
-web: gunicorn velgbedre.wsgi --log-file -
-heroku ps:scale web=1
+web: gunicorn gettingstarted.wsgi --log-file -
