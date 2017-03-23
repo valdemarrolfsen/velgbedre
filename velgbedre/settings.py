@@ -142,6 +142,7 @@ STATICFILES_FINDERS = (
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+ALLOWED_HOSTS = ['afternoon-retreat-20444.herokuapp.com']
 
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
