@@ -1,190 +1,178 @@
 from django.db import models
 from django.contrib.auth.models import (
-	BaseUserManager, AbstractBaseUser
+    BaseUserManager, AbstractBaseUser
 )
-from velgbedre import settings
 
 
 class MyUserManager(BaseUserManager):
-	def create_user(self, firstname, lastname, email, password=None):
+    def create_user(self, firstname, lastname, email, password=None):
+        if not email:
+            raise ValueError('Users must have an email address')
 
-		if not email:
-			raise ValueError('Users must have an email address')
+        user = self.model(
+            email=MyUserManager.normalize_email(email),
+            firstname=firstname,
+            lastname=lastname
+        )
 
-		user = self.model(
-			email=MyUserManager.normalize_email(email),
-			firstname=firstname,
-			lastname=lastname
-		)
+        user.is_active = True
+        user.set_password(password)
+        user.save(using=self._db)
 
-		user.is_active = True
-		user.set_password(password)
-		user.save(using=self._db)
+        return user
 
-		return user
+    def create_superuser(self, firstname, lastname, email, password=None):
+        u = self.create_user(email=email,
+                             password=password,
+                             firstname=firstname,
+                             lastname=lastname
+                             )
+        u.is_admin = True
+        u.is_active = True
+        u.save(using=self._db)
+        return u
 
-	def create_superuser(self, firstname, lastname, email, password=None):
-
-		u = self.create_user(email=email,
-						password=password,
-						firstname=firstname,
-						lastname = lastname
-					)
-		u.is_admin = True
-		u.is_active = True
-		u.save(using=self._db)
-		return u
 
 class Company(models.Model):
-	code = models.CharField(max_length=50)
-	name = models.CharField(max_length=100)
-	greeting = models.TextField()
-	email = models.CharField(max_length=100)
+    code = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    greeting = models.TextField()
+    email = models.CharField(max_length=100)
 
-	logo = models.ImageField(upload_to='company_logo/%Y/%m/%d')
-	background = models.ImageField(upload_to='company_background/%y/%m/%d')
+    logo = models.ImageField(upload_to='company_logo/%Y/%m/%d')
+    background = models.ImageField(upload_to='company_background/%y/%m/%d')
 
-	def __str__(self):
-		return "{} - {}".format(self.id, self.name)
+    def __str__(self):
+        return "{} - {}".format(self.id, self.name)
 
-	def get_products(self):
-		relations = CompanyProductRelation.objects.filter(company=self)
-		products = []
+    def get_products(self):
+        relations = CompanyProductRelation.objects.filter(company=self)
+        products = []
 
-		for relation in relations:
-			products.append(relation.product)
+        for relation in relations:
+            products.append(relation.product)
 
-		return products
-
-
+        return products
 
 
 class UserProfile(AbstractBaseUser):
-	email = models.EmailField(
-						verbose_name='email address',
-						max_length=255,
-						unique=True,
-					)
-	firstname = models.CharField(max_length=50)
-	lastname = models.CharField(max_length=50)
+    email = models.EmailField(
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
+    )
+    firstname = models.CharField(max_length=50)
+    lastname = models.CharField(max_length=50)
 
-	address = models.CharField(max_length=255, blank=True, null=True)
-	post_code = models.CharField(max_length=255, blank=True, null=True)
-	city = models.CharField(max_length=255, blank=True, null=True)
+    address = models.CharField(max_length=255, blank=True, null=True)
+    post_code = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=255, blank=True, null=True)
 
-	is_active = models.BooleanField(default=False)
-	is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
 
-	company = models.ForeignKey(Company, null=True, blank=True)
+    company = models.ForeignKey(Company, null=True, blank=True)
 
-	objects = MyUserManager()
+    objects = MyUserManager()
 
-	USERNAME_FIELD = 'email'
-	REQUIRED_FIELDS = ['firstname', 'lastname']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['firstname', 'lastname']
 
-	def get_full_name(self):
-		# The user is identified by their email address
-		return self.firstname + ' ' + self.lastname
+    def get_full_name(self):
+        # The user is identified by their email address
+        return self.firstname + ' ' + self.lastname
 
-	def get_short_name(self):
-		# The user is identified by their email address
-		return self.email
+    def get_short_name(self):
+        # The user is identified by their email address
+        return self.email
 
-	def has_perm(self, perm, obj=None):
-		"Does the user have a specific permission?"
-		# Simplest possible answer: Yes, always
-		return True
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
 
-	def has_module_perms(self, app_label):
-		"Does the user have permissions to view the app `app_label`?"
-		# Simplest possible answer: Yes, always
-		return True
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
 
-	def __unicode__(self):
-		return self.email
+    def __unicode__(self):
+        return self.email
 
-	@property
-	def is_staff(self):
-		"Is the user a member of staff?"
-		# For now: All admins are staff
-		return self.is_admin
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # For now: All admins are staff
+        return self.is_admin
+
 
 class Product(models.Model):
-	name = models.CharField(max_length=100)
-	small_description = models.TextField()
-	first_description = models.TextField()
-	second_description = models.TextField()
+    name = models.CharField(max_length=100)
+    small_description = models.TextField()
+    first_description = models.TextField()
+    second_description = models.TextField()
 
-	first_bullet = models.CharField(max_length=255)
-	second_bullet = models.CharField(max_length=255)
-	third_bullet = models.CharField(max_length=255)
+    first_bullet = models.CharField(max_length=255)
+    second_bullet = models.CharField(max_length=255)
+    third_bullet = models.CharField(max_length=255)
 
-	employment = models.TextField()
-	location = models.TextField()
-	cooperation = models.TextField()
-	wages = models.TextField()
-	economic_distribution = models.TextField()
-	ownership = models.TextField()
-	material_selection = models.TextField()
-	environmental_impact = models.TextField()
-	certification = models.TextField()
+    employment = models.TextField()
+    location = models.TextField()
+    cooperation = models.TextField()
+    wages = models.TextField()
+    economic_distribution = models.TextField()
+    ownership = models.TextField()
+    material_selection = models.TextField()
+    environmental_impact = models.TextField()
+    certification = models.TextField()
 
-	background = models.ImageField(upload_to='products/%Y/%m/%d')
+    background = models.ImageField(upload_to='products/%Y/%m/%d')
 
-	small_photo = models.ImageField(upload_to='products/%Y/%m/%d')
+    small_photo = models.ImageField(upload_to='products/%Y/%m/%d')
 
+    def __str__(self):
+        return "{} - {}".format(self.id, self.name)
 
-	def __str__(self):
-		return "{} - {}".format(self.id, self.name)
+    def get_images(self):
+        images = ProductImage.objects.filter(product=self)
 
-	def get_images(self):
-		images = ProductImage.objects.filter(product=self)
+        img_urls = []
 
-		img_urls = []
+        for image in images:
+            img_urls.append(image.image.url)
 
-		for image in images:
-			img_urls.append(image.image.url)
+        return img_urls
 
-		return img_urls
-
-	def get_types(self):
-		return Type.objects.filter(product=self)
-
+    def get_types(self):
+        return Type.objects.filter(product=self)
 
 
 class CompanyProductRelation(models.Model):
-	company = models.ForeignKey(Company)
-	product = models.ForeignKey(Product)
+    company = models.ForeignKey(Company)
+    product = models.ForeignKey(Product)
 
 
 class Wish(models.Model):
-	product = models.ForeignKey(Product)
-	user = models.ForeignKey(UserProfile)
-	productType = models.IntegerField(null=True, blank=True)
+    product = models.ForeignKey(Product)
+    user = models.ForeignKey(UserProfile)
+    productType = models.IntegerField(null=True, blank=True)
 
-	priority = models.IntegerField()
+    priority = models.IntegerField()
+
 
 class ProductImage(models.Model):
-	name = models.CharField(max_length=50)
-	product = models.ForeignKey(Product)
-	image = models.ImageField(upload_to='images/%Y/%m/%d')
+    name = models.CharField(max_length=50)
+    product = models.ForeignKey(Product)
+    image = models.ImageField(upload_to='images/%Y/%m/%d')
+
 
 class Type(models.Model):
-	name = models.CharField(max_length=50)
-	product = models.ForeignKey(Product)
-	product_photo = models.ImageField(upload_to='products/%Y/%m/%d')
+    name = models.CharField(max_length=50)
+    product = models.ForeignKey(Product)
+    product_photo = models.ImageField(upload_to='products/%Y/%m/%d')
+
 
 class GiftCardCode(models.Model):
-	code = models.CharField(max_length=255)
-	company = models.ForeignKey(Company)
-	used = models.BooleanField(default=False)
-
-
-
-
-
-
-
-
-
-
+    code = models.CharField(max_length=255)
+    company = models.ForeignKey(Company)
+    used = models.BooleanField(default=False)

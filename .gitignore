@@ -6,5 +6,3 @@ media/
 venv/
 
 .idea/
-app/migrations/
-company_service/migrations/
