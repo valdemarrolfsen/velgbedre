@@ -4,7 +4,6 @@ staticroot/
 *.pyc
 media/
 venv/
-settings.py
 
 .idea/
 app/migrations/
